@@ -52,7 +52,7 @@ class HorizontalScroll {
     if (!this.isMobile) {
       e.preventDefault();
       const delta = e.deltaY || e.detail || e.wheelDelta;
-      this.smoothScroll(delta * 2);
+      this.smoothScroll(delta * 5);
     }
   }
 
