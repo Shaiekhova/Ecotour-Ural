@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="./css/index.css" />
     <title>ural</title>
   </head>
@@ -174,7 +178,98 @@
         </div>
         <div class="content" style="display: none">3</div>
         <div class="content" style="display: none">4</div>
-        <div class="content" style="display: none">5</div>
+        <div class="content" id="tour-page">
+          <div class="tour-page">
+            <!--bread crumbs-->
+            <div class="bread-crumbs bread-crumbs-contacts">
+              <ul class="bread-nav">
+                <li>
+                  <a href="">МЕНЮ</a>
+                </li>
+                <li>/</li>
+                <li>
+                  <a href="">ЭКОТУР УРАЛ</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tour-page__inner">
+              <h2 class="tour-page__text">
+                КУНГУРСКАЯ ЛЕДЯНАЯ ПЕЩЕРА — ЧУДО ПРИРОДЫ
+              </h2>
+              <div class="tour-page__desc">
+                <ul class="tour-page__item">
+                  <li>
+                    <h4>В ПРОГРАММЕ</h4>
+                  </li>
+                  <li>
+                    <p>
+                      - Экскурсия по Кунгурской ледяной пещере. Это чудо природы
+                      и визитная карточка Урала с богатой историей&nbsp;
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      - Прогулка по купеческому Кунгуру. Поднимемся
+                      на&nbsp;колокольню Тихвинского храма, оттуда открывается
+                      вид на&nbsp;весь город. Увидим "Пуп Земли" и «Гостиный
+                      двор»
+                    </p>
+                  </li>
+                </ul>
+                <ul class="tour-page__item">
+                  <li>
+                    <h4>В СТОИМОСТЬ ВКЛЮЧЕНО:</h4>
+                  </li>
+                  <li>
+                    <p>
+                      – транспорт, сопровождение гида, входные билеты
+                      &nbsp;&nbsp;в&nbsp;пещеру, экскурсия в пещере
+                      &nbsp;&nbsp;и&nbsp;по&nbsp;маршруту
+                    </p>
+                  </li>
+                  <li>
+                    <p>– Группа от 15 человек</p>
+                  </li>
+                  <li>
+                    <p>– При малой группе стоимость выше</p>
+                  </li>
+                </ul>
+                <ul class="tour-page__item">
+                  <li>
+                    <h4>СТОИМОСТЬ:</h4>
+                  </li>
+                  <li>
+                    <p>3500 рублей – взрослые,</p>
+                  </li>
+                  <li>
+                    <p>3300 рублей – дети с 5 до 14 лет включительно,</p>
+                  </li>
+                  <li>
+                    <p>2000 рублей – дети до 5 лет</p>
+                  </li>
+                </ul>
+                <a class="tour-page__link" href="">ЗАБРОНИРОВАТЬ</a>
+              </div>
+
+              <div class="tour-page-swiper-wrap">
+                <div class="swiper tour-page-swiper">
+                  <div class="swiper-wrapper">
+                    <!-- Slide -->
+                    <div class="swiper-slide">Slide 1</div>
+                    <!-- Slide -->
+                    <div class="swiper-slide">Slide 1</div>
+                    <!-- Slide -->
+                    <div class="swiper-slide">Slide 1</div>
+                    <!-- Slide -->
+                    <div class="swiper-slide">Slide 1</div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="content" style="display: none">6</div>
         <div class="content" style="display: none">7</div>
         <div class="content" id="contacts">
@@ -236,7 +331,8 @@
         </div>
       </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/swiper.js"></script>
   </body>
 </html>
