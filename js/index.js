@@ -102,3 +102,13 @@ class HorizontalScroll {
 document.addEventListener("DOMContentLoaded", () => {
   new HorizontalScroll();
 });
+
+//навигация фильтра
+document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
+  tab.addEventListener("click", function () {
+    this.closest(".all-tours-filter__tab-container")
+      ?.querySelectorAll(".active")
+      .forEach((el) => el.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
