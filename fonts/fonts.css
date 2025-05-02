@@ -1,20 +1,20 @@
 @font-face {
   font-family: "Garamond";
-  src: url("/fonts/garamond.woff") format("woff");
+  src: url("../fonts/garamond.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Garamond";
-  src: url("/fonts/garamond_bold.woff") format("woff");
+  font-family: "../Garamond";
+  src: url("fonts/garamond_bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Garamond";
-  src: url("/fonts/garamond_italic.woff") format("woff");
+  src: url("../fonts/garamond_italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
 }
