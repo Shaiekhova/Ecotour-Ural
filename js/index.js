@@ -113,10 +113,9 @@ document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
   });
 });
 //кнопка ON/OF фильтра
-const openFilter = document.querySelectorAll(".grand-filter-button");
+const openFilter = document.querySelector(".grand-filter-button");
 const bodyFilter = document.querySelector(".grand-filter");
 
 openFilter.addEventListener("click", () => {
   bodyFilter.classList.toggle("active");
-  console.log(111);
 });
