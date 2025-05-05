@@ -115,7 +115,7 @@ body {
   display: -webkit-flex;
   flex-direction: column;
   -webkit-flex-direction: column;
-  animation: animateVertical 50s linear infinite;
+  animation: animateVertical 10s linear infinite;
 }
 .menu-link {
   font-weight: 400;
@@ -492,7 +492,7 @@ body {
 }
 @media (max-width: 1600px) {
   .contacts__inner {
-    margin: 120px auto 150px;
+    margin: auto;
     padding-right: 30px;
   }
 }
@@ -501,6 +501,7 @@ body {
   height: 506px;
   margin-top: auto;
   overflow: hidden;
+  background: silver;
 }
 .contacts__map iframe {
   width: 100%;
@@ -538,7 +539,6 @@ body {
   .contacts__text {
     max-width: 400px;
     justify-content: flex-end;
-    gap: 100px;
   }
   .contacts__text h2 {
     font-size: 22px;
@@ -723,6 +723,11 @@ body {
   flex-direction: column;
   max-width: 566px;
   margin-bottom: 20px;
+}
+@media (max-width: 1024px) {
+  .tour-page__item {
+    max-width: 313px;
+  }
 }
 @media (max-width: 900px), (orientation: portrait) {
   .tour-page__item {
@@ -1216,6 +1221,7 @@ input:focus::placeholder {
 .booking__coordinates {
   max-width: 103px;
   height: 100%;
+  content: url(../images/booking__coordinates.png);
 }
 @media (max-width: 1366px) {
   .booking__coordinates {
@@ -1225,10 +1231,14 @@ input:focus::placeholder {
 
 @media (max-width: 900px), (orientation: portrait) {
   .booking__inner {
+    width: 100%;
     flex-direction: column;
     padding: 0;
     margin: 0;
     gap: 69px;
+  }
+  .booking__coordinates {
+    content: url(../images/booking__coordinates-900.png);
   }
   .booking__form-container {
     max-width: 100%;
@@ -1303,9 +1313,15 @@ input:focus::placeholder {
   width: 100%;
   display: flex;
 }
+#all-toursFilter {
+  display: none;
+}
 @media (max-width: 900px), (orientation: portrait) {
   .all-tours {
     flex-direction: column;
+  }
+  #all-toursFilter {
+    display: flex;
   }
 }
 .all-tours__wrapper {
@@ -1420,6 +1436,10 @@ input:focus::placeholder {
   font-size: 15px;
   line-height: 100%;
   color: #000000;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 12;
+  -webkit-box-orient: vertical;
 }
 .all-tours-card__pic {
   width: 50%;
@@ -1486,9 +1506,6 @@ input:focus::placeholder {
   }
 }
 @media (max-width: 1400px) {
-  .all-tours-card {
-    height: 250px;
-  }
   .all-tours-card__text h2 {
     font-size: 18px;
   }
@@ -1511,18 +1528,47 @@ input:focus::placeholder {
     font-size: 12px;
   }
 }
-@media (max-width: 1280px) {
+@media (max-width: 1370px) {
   .all-tours-card {
-    height: 221px;
+    height: 250px;
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (orientation: landscape) {
+  .all-tours-card {
+    height: 300px;
+  }
+  .all-tours-card__desc p {
+    font-size: 15px;
   }
 }
 @media (max-width: 1279px) {
   .all-tours-card__pic {
     width: 242px;
   }
-
+  .all-tours-card {
+    height: 250px;
+  }
   .all-tours-card__desc p:nth-child(even) {
     display: none;
+  }
+  .all-tours-card__desc p {
+    -webkit-line-clamp: 9;
+  }
+}
+@media (max-width: 1024px) {
+  .all-tours-card {
+    height: 220px;
+  }
+}
+@media (orientation: landscape) and (device-width: 1024px) and (device-height: 600px) {
+  .all-tours-card {
+    height: 200px;
+  }
+  .all-tours-card__desc {
+    margin-top: 15px;
+  }
+  .all-tours-container {
+    margin-top: 40px;
   }
 }
 @media (max-width: 1020px) {
@@ -1537,7 +1583,7 @@ input:focus::placeholder {
 }
 @media (max-width: 900px), (orientation: portrait) {
   .all-tours__wrapper {
-    margin: 0;
+    margin: 20px 0 0 0;
   }
   .all-tours-filter {
     display: none;
@@ -2203,7 +2249,7 @@ input:focus::placeholder {
 .about__inner {
   display: grid;
   grid-template-columns: auto 1.5fr 1fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto min-content minmax(auto, 49%);
   grid-template-areas:
     ". . ."
     ". a-pic a-stats"
@@ -2216,11 +2262,15 @@ input:focus::placeholder {
     margin: 30px 30px 30px 0;
   }
 }
+@media (max-width: 1400px) {
+  .about__inner {
+    gap: 20px;
+  }
+}
 .about__date {
   grid-area: a-num;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 .about__date img {
   display: none;
@@ -2228,7 +2278,8 @@ input:focus::placeholder {
 .about__date-nums {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  height: 100%;
+  justify-content: space-between;
 }
 .about__date-nums h2 {
   font-weight: 400;
@@ -2242,9 +2293,6 @@ input:focus::placeholder {
   }
 }
 @media (max-width: 1536px) {
-  .about__date-nums {
-    gap: 42px;
-  }
   .about__date-nums h2 {
     font-size: 100px;
   }
@@ -2264,7 +2312,7 @@ input:focus::placeholder {
 @media (max-width: 1280px) {
   .about__date span {
     font-size: 16px;
-    margin-top: 34px;
+    margin-top: 20px;
   }
 }
 .about__statistics {
@@ -2321,11 +2369,9 @@ input:focus::placeholder {
   display: flex;
   align-items: flex-end;
   gap: 20px;
-  position: relative;
 }
 .about__top-animate {
-  min-width: 307px;
-  min-height: 190px;
+  min-width: 287px;
   border: 1px solid #000;
 }
 .about__top-animate img {
@@ -2337,26 +2383,24 @@ input:focus::placeholder {
   white-space: nowrap;
   display: flex;
   height: 130px;
+  position: relative;
 }
 .about-text-span p {
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   color: #000000;
-  width: 15px;
-  height: 15px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 15px;
+  height: 15px;
   transform-origin: 0% 100%;
   transform: rotate(-90deg) translateY(100%);
 }
 .about__text {
   grid-area: a-text;
   width: 100%;
-  max-height: 480px;
   overflow: hidden;
-  padding: 5px;
+  padding: 0 5px;
   box-sizing: border-box;
 }
 .about__text p {
@@ -2380,7 +2424,6 @@ input:focus::placeholder {
 .about__image {
   grid-area: a-image;
   min-width: 353px;
-  min-height: 282px;
 }
 .about__image img {
   width: 100%;
@@ -2405,9 +2448,6 @@ input:focus::placeholder {
   .about-text-span p {
     font-size: 10px;
   }
-  .about__text {
-    max-height: 350px;
-  }
   .about__statistics-list {
     gap: 0;
   }
@@ -2427,8 +2467,6 @@ input:focus::placeholder {
     gap: 0;
   }
   .about__top-animate {
-    max-width: 550px;
-    min-height: 247px;
     margin: 0 auto;
   }
   .about-text-span p {

@@ -119,3 +119,70 @@ const bodyFilter = document.querySelector(".grand-filter");
 openFilter.addEventListener("click", () => {
   bodyFilter.classList.toggle("active");
 });
+
+// Функция для форматирования номера телефона
+function formatPhoneNumber(input) {
+  let numbers = input.value.replace(/\D/g, "");
+
+  numbers = numbers.slice(0, 11);
+
+  let formattedNumber = "";
+
+  if (numbers.length > 0) {
+    formattedNumber = "+7";
+  }
+
+  if (numbers.length > 1) {
+    formattedNumber += "(" + numbers.substring(1, 4);
+  }
+
+  if (numbers.length > 4) {
+    formattedNumber += ") " + numbers.substring(4, 7);
+  }
+
+  if (numbers.length > 7) {
+    formattedNumber += " " + numbers.substring(7, 9);
+  }
+
+  if (numbers.length > 9) {
+    formattedNumber += " " + numbers.substring(9, 11);
+  }
+
+  input.value = formattedNumber;
+}
+
+const phoneInputs = document.querySelectorAll('input[type="tel"]');
+
+phoneInputs.forEach((input) => {
+  input.addEventListener("input", function () {
+    formatPhoneNumber(this);
+  });
+
+  input.addEventListener("focusout", function () {
+    formatPhoneNumber(this);
+  });
+});
+
+//открыть / закрыть фильтр
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", (e) => {
+    const button = e.target.closest(".grand-filter-button");
+    if (!button) return;
+
+    // Находим ближайший родительский контейнер
+    const parentContainer =
+      button.closest(".filter-group") || button.parentElement;
+
+    // Ищем следующий элемент с классом .grand-filter
+    const filterBlock = parentContainer.querySelector(":scope > .grand-filter");
+
+    if (filterBlock) {
+      filterBlock.classList.toggle("active");
+
+      // Закрытие других блоков (опционально)
+      document.querySelectorAll(".grand-filter").forEach((el) => {
+        if (el !== filterBlock) el.classList.remove("active");
+      });
+    }
+  });
+});
