@@ -24,6 +24,11 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  cursor: grab;
+}
+.scroll-container:active {
+  cursor: grabbing;
 }
 
 .content-wrapper {
@@ -2021,8 +2026,9 @@ input:focus::placeholder {
 .card-inverted p {
   writing-mode: sideways-lr;
   position: absolute;
-  top: -65px;
+  top: -100px;
   right: 0;
+  height: fit-content;
 }
 @media (max-width: 1600px) {
   .desc-inverted h2 {
@@ -2033,15 +2039,11 @@ input:focus::placeholder {
   }
   .card-inverted p {
     font-size: 16px;
-    top: -130px;
   }
 }
 @media (max-width: 1280px) {
   .desc-inverted h3 {
     font-size: 16px;
-  }
-  .card-inverted p {
-    top: -160px;
   }
 }
 @media (max-width: 1000px) {
