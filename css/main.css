@@ -1236,7 +1236,38 @@ input:focus::placeholder {
     max-width: 75px;
   }
 }
-
+@media (orientation: landscape) and (device-width: 1024px) and (device-height: 600px) {
+  .booking__coordinates {
+    max-width: 60px;
+  }
+  .privacy-policy,
+  .privacy-policy a {
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  .booking-price {
+    margin-top: 20px;
+  }
+  .booking-form {
+    margin-top: 40px;
+  }
+}
+@media (orientation: landscape) and (device-width: 1000px) and (device-height: 600px) {
+  .booking__coordinates {
+    max-width: 60px;
+  }
+  .privacy-policy,
+  .privacy-policy a {
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  .booking-price {
+    margin-top: 20px;
+  }
+  .booking-form {
+    margin-top: 40px;
+  }
+}
 @media (max-width: 900px), (orientation: portrait) {
   .booking__inner {
     width: 100%;
@@ -1416,6 +1447,9 @@ input:focus::placeholder {
 .all-tours-section > *:nth-child(n + 4) {
   border-bottom: none;
   align-items: flex-end;
+}
+.all-tours-section > *:nth-child(n + 7) {
+  display: none;
 }
 .all-tours-card {
   max-width: 567px;
