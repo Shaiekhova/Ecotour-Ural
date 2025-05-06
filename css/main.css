@@ -427,6 +427,7 @@ body {
     flex-direction: column;
   }
 }
+
 .contacts__inner {
   display: flex;
   align-items: flex-end;
@@ -512,7 +513,7 @@ body {
 @media (max-width: 1366px) {
   .contacts__map {
     width: 500px;
-    height: 450px;
+    height: 400px;
   }
   .contacts__inner {
     gap: 20px;
@@ -552,7 +553,7 @@ body {
   }
   .contacts__map {
     width: 400px;
-    height: 300px;
+    height: 350px;
   }
 }
 @media (max-width: 1024px) {
@@ -578,6 +579,12 @@ body {
   .contacts__map {
     width: 307px;
     height: 221px;
+  }
+}
+@media (orientation: landscape) and (device-width: 1024px) and (device-height: 600px) {
+  .contacts__text {
+    max-width: 307px;
+    gap: 50px;
   }
 }
 @media (max-width: 900px), (orientation: portrait) {
