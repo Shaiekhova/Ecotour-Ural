@@ -1,0 +1,56 @@
+.admin-wrapper {
+  max-width: 1920px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: aquamarine;
+  padding: 50px;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+.panel__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.panel__tours {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+.panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.panel__list li {
+  display: flex;
+  gap: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.panel__list li a {
+  font-size: 18px;
+}
+.panel__form p {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.panel__form p input:focus::placeholder {
+  color: transparent;
+}
+.panel-link {
+  padding: 10px 20px;
+  color: #fff;
+  background: #036326;
+}
+.panel-item-link {
+  padding: 10px 20px;
+  color: #fff;
+  background: #450363;
+}

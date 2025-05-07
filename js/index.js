@@ -199,3 +199,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+//тест
+function adaptCards() {
+  document
+    .querySelectorAll(".all-tours-section__item:nth-child(-n+3)")
+    .forEach((item) => {
+      const card = item.querySelector(".all-tours-card");
+      if (!card) return;
+
+      const itemHeight = item.offsetHeight;
+      const minSpace = 25;
+      const maxSpace = 88;
+
+      // Расчёт отступа
+      const space = Math.min(Math.max(itemHeight * 0.085, minSpace), maxSpace);
+
+      card.style.marginBottom = `${space}px`;
+    });
+}
+
+window.addEventListener("resize", adaptCards);
+window.addEventListener("DOMContentLoaded", adaptCards);
+window.addEventListener("load", adaptLayout);
