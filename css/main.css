@@ -177,6 +177,7 @@ body {
   justify-content: space-between;
   border-right: 1px solid #000000;
 }
+
 .bread-crumbs-about {
   border-right: none;
 }
@@ -204,8 +205,18 @@ body {
 .bread-nav {
   display: flex;
   align-items: center;
-  gap: 5px;
   transform: rotate(90deg);
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.bread-nav:hover {
+  color: #0000009b;
 }
 @media (max-width: 900px), (orientation: portrait) {
   .bread-nav {
@@ -220,32 +231,22 @@ body {
     bottom: 70px;
   }
 }
-.bread-nav li {
-  display: inline-block;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: #000000;
-}
 @media (max-width: 1366px) {
-  .bread-nav li {
+  .bread-nav {
     font-size: 12px;
   }
 }
 @media (max-width: 900px), (orientation: portrait) {
-  .bread-nav li {
+  .bread-nav {
     font-size: 14px;
   }
 }
 @media (max-width: 600px) {
-  .bread-nav li {
+  .bread-nav {
     font-size: 13px;
   }
 }
-.bread-nav li a {
-  color: #000000;
-}
+
 .bread-link {
   font-weight: 400;
   font-size: 20px;
@@ -649,7 +650,7 @@ body {
   .bread-crumbs-contacts {
     max-width: 30px;
   }
-  .bread-nav-contacts li {
+  .bread-nav-contacts {
     font-size: 10px;
   }
 }
