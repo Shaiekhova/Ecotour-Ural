@@ -204,6 +204,7 @@ body {
     height: 48px;
     padding: 0 22px 29px 24px;
     border-right: none;
+    display: flex;
   }
 }
 @media (max-width: 600px) {
@@ -1378,7 +1379,7 @@ input:focus::placeholder {
   }
 }
 /*===all-tours main===*/
-/* .all-tours {
+.all-tours {
   width: 100%;
   display: flex;
 }
@@ -1484,17 +1485,17 @@ input:focus::placeholder {
   .all-tours-filter {
     display: none;
   }
-} */
+}
 /*===переменная для all-tours===*/
-/* :root {
+:root {
   --card-height-offset: clamp(25px, 8vh, 88px);
-} */
+}
 /*===scroll galery===*/
 
 /*===END scroll galery===*/
 
 /* Основной контейнер */
-/* .all-tours-grid {
+.all-tours-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(20px, 2.08vw, 40px);
@@ -1502,18 +1503,18 @@ input:focus::placeholder {
   max-width: 1780px;
   width: 100%;
   margin: 0 auto;
-} */
+}
 /* Элементы сетки */
-/* .all-tours-section__item {
+.all-tours-section__item {
   width: clamp(242px, 29.53vw, 567px);
   height: clamp(289px, 36.85vh, 398px);
   display: flex;
   flex-direction: column;
   position: relative;
-} */
+}
 
 /* Первые 3 элемента - верхнее позиционирование */
-/* .all-tours-section__item:nth-child(-n + 3) {
+.all-tours-section__item:nth-child(-n + 3) {
   align-self: start;
   border-bottom: 1px solid #000000;
 
@@ -1521,20 +1522,20 @@ input:focus::placeholder {
     margin-top: 0;
     margin-bottom: var(--card-height-offset);
   }
-} */
+}
 
 /* Элементы 4-6 - нижнее позиционирование */
-/* .all-tours-section__item:nth-child(n + 4) {
+.all-tours-section__item:nth-child(n + 4) {
   align-self: end;
 
   .all-tours-card {
     margin-top: auto;
     margin-bottom: 0;
   }
-} */
+}
 
 /* Внутренняя карточка */
-/* .all-tours-card {
+.all-tours-card {
   position: relative;
   display: flex;
   gap: 20px;
@@ -1713,9 +1714,9 @@ input:focus::placeholder {
   .all-tours-card__desc p {
     -webkit-line-clamp: 8;
   }
-} */
+}
 /* Адаптация для планшетов */
-/* @media (max-width: 900px), (orientation: portrait) {
+@media (max-width: 900px), (orientation: portrait) {
   .all-tours-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px 20px;
@@ -1756,10 +1757,10 @@ input:focus::placeholder {
     position: initial;
     font-size: 20px;
   }
-} */
+}
 
 /* Адаптация для мобильных */
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
   .all-tours-grid {
     gap: 24px 16px;
   }
@@ -1776,15 +1777,15 @@ input:focus::placeholder {
   .all-tours-card__pic {
     height: 181px;
   }
-} */
+}
 
 /* Гарантия пропорций на больших экранах */
-/* @media (min-width: 1921px) {
+@media (min-width: 1921px) {
   .all-tours-section__item {
     width: 567px;
     height: 398px;
   }
-} */
+}
 /*===grand-filter===*/
 .grand-filter {
   max-width: 283px;
@@ -2016,7 +2017,7 @@ input:focus::placeholder {
   position: absolute;
   right: 0;
   bottom: -35px;
-  pointer-events: none;
+  pointer-events: n;
 }
 .hot-tours-desc {
   display: flex;
