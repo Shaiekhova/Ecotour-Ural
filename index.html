@@ -46,8 +46,10 @@
               />
             </div>
             <!--bread crumbs-->
-            <div class="bread-crumbs">
-              <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
+            <div class="bread-crumbs bread-crumbs-main">
+              <a class="bread-nav bread-nav-main" href="#home"
+                >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
+              >
               <a class="bread-link" href="all-tours.html">К ТУРАМ</a>
             </div>
             <!--menu-->
@@ -168,8 +170,10 @@
         <div class="content" id="about">
           <div class="about">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts bread-crumbs-white">
-              <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
+            <div class="bread-crumbs left-borde">
+              <a class="bread-nav bread-nav-main" href="#home"
+                >МЕНЮ / ЭКОТУР УРАЛ</a
+              >
             </div>
             <div class="about__inner">
               <div class="about__date">
@@ -257,7 +261,7 @@
         <div class="content" id="hot">
           <div class="hot-tours">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <!--filter-->
@@ -334,34 +338,36 @@
                 </div>
               </div>
             </div>
-            <div class="hot-tours__inner">
-              <div class="tours-container">
-                <a href="#tours" class="hot-tours-title">ВСЕ ТУРЫ</a>
-                <div class="hot-tours__item">
-                  <a href="" class="hot-tours-card">
-                    <img src="" alt="" />
-                    <div class="hot-tours-desc">
-                      <h2>
-                        УРАЛЬСКАЯ<br />
-                        ШВЕЙЦАРИЯ
-                      </h2>
-                      <h3>от 65 000 руб/чел</h3>
-                    </div>
+            <div class="hot-tours-inner">
+              <a href="#" class="all-tours-link">ВСЕ ТУРЫ</a>
+              <div class="hot-tours-item item-left">
+                <div class="hot-tours-block">
+                  <a href="" class="hot-tours-picture">
+                    <img src="./images/i.jpg" alt="" />
                     <p>5 ДНЕЙ 4 НОЧИ</p>
                   </a>
+                  <div class="hot-tours-desc">
+                    <h2>
+                      УРАЛЬСКАЯ<br />
+                      ШВЕЙЦАРИЯ
+                    </h2>
+                    <h3>от 65 000 руб/чел</h3>
+                  </div>
                 </div>
-                <div class="hot-tours__item item-inverted">
-                  <a href="" class="hot-tours-card card-inverted">
-                    <img src="" alt="" />
-                    <div class="hot-tours-desc desc-inverted">
-                      <h2>
-                        НА ГРАНИЦЕ<br />
-                        ЕВРОПЫ И АЗИИ
-                      </h2>
-                      <h3>от 65 000 руб/чел</h3>
-                    </div>
+              </div>
+              <div class="hot-tours-item item-right">
+                <div class="hot-tours-block">
+                  <a href="" class="hot-tours-picture">
+                    <img src="./images/i.jpg" alt="" />
                     <p>5 ДНЕЙ 4 НОЧИ</p>
                   </a>
+                  <div class="hot-tours-desc">
+                    <h2>
+                      НА ГРАНИЦЕ<br />
+                      ЕВРОПЫ И АЗИИ
+                    </h2>
+                    <h3>от 65 000 руб/чел</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -370,7 +376,7 @@
         <div class="content" id="tours">
           <div class="all-tours">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <!--filter wrapper-->
@@ -688,7 +694,7 @@
         <div class="content" id="tour-page">
           <div class="tour-page">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <div class="tour-page__inner">
@@ -771,39 +777,35 @@
         <div class="content" id="reviews">
           <div class="reviews">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <div class="reviews__wrapper">
               <div class="reviews__inner">
                 <div class="reviews__item">
-                  <div class="reviews__banner">
-                    <picture>
-                      <!-- Для экранов (ниже 600px) -->
-                      <source
-                        media="(max-width: 600px)"
-                        srcset="./images/banner-480.png"
-                      />
+                  <picture class="reviews__banner-pic">
+                    <!-- Для экранов (ниже 600px) -->
+                    <source
+                      media="(max-width: 600px)"
+                      srcset="./images/banner-480.png"
+                    />
 
-                      <!-- Для экранов (ниже 900px) -->
-                      <source
-                        media="(max-width: 900px), (orientation: portrait)"
-                        srcset="./images/banner-768.png"
-                      />
+                    <!-- Для экранов (ниже 900px) -->
+                    <source
+                      media="(max-width: 900px), (orientation: portrait)"
+                      srcset="./images/banner-768.png"
+                    />
 
-                      <!-- Дефолтная версия (выше 900px) -->
-                      <img
-                        class="reviews__banner"
-                        img
-                        src="./images/banner.png"
-                        alt="image"
-                        srcset="./images/banner.png"
-                        alt="image"
-                        alt="image"
-                        loading="lazy"
-                      />
-                    </picture>
-                  </div>
+                    <!-- Дефолтная версия (выше 900px) -->
+                    <img
+                      src="./images/banner.png"
+                      alt="image"
+                      srcset="./images/banner.png"
+                      alt="image"
+                      alt="image"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="reviews__item">
                   <div class="reviews__picture">
@@ -867,7 +869,7 @@
         <div class="content" id="booking">
           <div class="booking">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <div class="booking__wrapper">
@@ -944,7 +946,7 @@
         <div class="content" id="contacts">
           <div class="contacts">
             <!--bread crumbs-->
-            <div class="bread-crumbs bread-crumbs-contacts">
+            <div class="bread-crumbs">
               <a class="bread-nav" href="#home">МЕНЮ / ЭКОТУР УРАЛ</a>
             </div>
             <div class="contacts__inner">

@@ -129,12 +129,6 @@ document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
     tab.classList.toggle("active");
   });
 });
-//кнопка ON/OF фильтра
-const openFilter = document.querySelector(".grand-filter-button");
-const bodyFilter = document.querySelector(".grand-filter");
-openFilter.addEventListener("click", () => {
-  bodyFilter.classList.toggle("active");
-});
 
 // Функция для форматирования номера телефона
 function formatPhoneNumber(input) {
@@ -184,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
     const button = e.target.closest(".grand-filter-button");
     if (!button) return;
-
+    const allToursTitle = document.querySelector(".all-tours-link");
     const parentContainer =
       button.closest(".filter-group") || button.parentElement;
 
@@ -192,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (filterBlock) {
       filterBlock.classList.toggle("active");
+      allToursTitle.classList.toggle("active");
 
       document.querySelectorAll(".grand-filter").forEach((el) => {
         if (el !== filterBlock) el.classList.remove("active");
@@ -201,24 +196,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //тест
-function adaptCards() {
-  document
-    .querySelectorAll(".all-tours-section__item:nth-child(-n+3)")
-    .forEach((item) => {
-      const card = item.querySelector(".all-tours-card");
-      if (!card) return;
+// function adaptCards() {
+//   document
+//     .querySelectorAll(".all-tours-section__item:nth-child(-n+3)")
+//     .forEach((item) => {
+//       const card = item.querySelector(".all-tours-card");
+//       if (!card) return;
 
-      const itemHeight = item.offsetHeight;
-      const minSpace = 25;
-      const maxSpace = 88;
+//       const itemHeight = item.offsetHeight;
+//       const minSpace = 25;
+//       const maxSpace = 88;
 
-      // Расчёт отступа
-      const space = Math.min(Math.max(itemHeight * 0.085, minSpace), maxSpace);
+//       // Расчёт отступа
+//       const space = Math.min(Math.max(itemHeight * 0.085, minSpace), maxSpace);
 
-      card.style.marginBottom = `${space}px`;
-    });
-}
+//       card.style.marginBottom = `${space}px`;
+//     });
+// }
 
-window.addEventListener("resize", adaptCards);
-window.addEventListener("DOMContentLoaded", adaptCards);
-window.addEventListener("load", adaptLayout);
+// window.addEventListener("resize", adaptCards);
+// window.addEventListener("DOMContentLoaded", adaptCards);
+// window.addEventListener("load", adaptLayout);
