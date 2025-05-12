@@ -190,20 +190,20 @@
                 <!--TABS-->
                 <div class="grand-filter__item">
                   <h2>Сезон</h2>
-                  <div class="grand-filter__tab-container">
-                    <div class="grand-filter__tab">
+                  <div class="grand-filter__tab-container" id="season-filter">
+                    <div class="grand-filter__tab" data-season="зима">
                       <span></span>
                       <p>Зима</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-season="лето">
                       <span></span>
                       <p>Лето</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-season="весна">
                       <span></span>
                       <p>Весна</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-season="осень">
                       <span></span>
                       <p>Осень</p>
                     </div>
@@ -212,20 +212,20 @@
                 <!--TABS-->
                 <div class="grand-filter__item">
                   <h2>Продолжительность</h2>
-                  <div class="grand-filter__tab-container">
-                    <div class="grand-filter__tab">
+                  <div class="grand-filter__tab-container" id="duration-filter">
+                    <div class="grand-filter__tab" data-duration="1 день">
                       <span></span>
                       <p>1 день</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-duration="от 3-х дней">
                       <span></span>
                       <p>от 3-х дней</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-duration="5 дней">
                       <span></span>
                       <p>5 дней</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-duration="7 дней">
                       <span></span>
                       <p>7 дней</p>
                     </div>
@@ -234,20 +234,29 @@
                 <!--TABS-->
                 <div class="grand-filter__item">
                   <h2>Тип тура</h2>
-                  <div class="grand-filter__tab-container tab-container-last">
-                    <div class="grand-filter__tab">
+                  <div
+                    class="grand-filter__tab-container tab-container-last"
+                    id="activity-filter"
+                  >
+                    <div class="grand-filter__tab" data-activity="сплав">
                       <span></span>
                       <p>Сплав</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div class="grand-filter__tab" data-activity="для детей">
                       <span></span>
                       <p>Для детей</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div
+                      class="grand-filter__tab"
+                      data-activity="ближайшие туры"
+                    >
                       <span></span>
                       <p>Ближайшие туры</p>
                     </div>
-                    <div class="grand-filter__tab">
+                    <div
+                      class="grand-filter__tab"
+                      data-activity="для гостей урала"
+                    >
                       <span></span>
                       <p>Для гостей Урала</p>
                     </div>
@@ -257,43 +266,77 @@
             </div>
             <div class="all-tours__wrapper">
               <!--табы-->
-              <div class="all-tours-filter">
-                <div class="all-tours-filter__item f-season">
+              <div id="all-tours-filter" class="all-tours-filter">
+                <div class="all-tours-filter__item">
                   <h2>Сезон</h2>
-                  <div class="filter-group" data-category="season">
-                    <span class="all-tours-filter__tab">Зима</span>
-                    <span class="all-tours-filter__tab">Лето</span>
-                    <span class="all-tours-filter__tab">Весна</span>
-                    <span class="all-tours-filter__tab">Осень</span>
+                  <div class="filter-group" id="season-filter">
+                    <span class="all-tours-filter__tab" data-season="зима"
+                      >Зима</span
+                    >
+                    <span class="all-tours-filter__tab" data-season="лето"
+                      >Лето</span
+                    >
+                    <span class="all-tours-filter__tab" data-season="весна"
+                      >Весна</span
+                    >
+                    <span class="all-tours-filter__tab" data-season="осень"
+                      >Осень</span
+                    >
                   </div>
                 </div>
-                <div class="all-tours-filter__item f-duration">
-                  <h2>Продолжительность</h2>
-                  <div class="filter-group" data-category="duration">
-                    <span class="all-tours-filter__tab">1 день</span>
-                    <span class="all-tours-filter__tab">От 3-х дней</span>
-                    <span class="all-tours-filter__tab">5 дней</span>
-                    <span class="all-tours-filter__tab">7 дней</span>
-                  </div>
-                </div>
-                <div class="all-tours-filter__item f-type-of">
-                  <h2>Тип тура</h2>
 
-                  <div class="filter-group" data-category="activity">
-                    <span class="all-tours-filter__tab">Сплав</span>
-                    <span class="all-tours-filter__tab">Для детей</span>
-                    <span class="all-tours-filter__tab">Ближайшие туры</span>
-                    <span class="all-tours-filter__tab">Для гостей Урала</span>
+                <div class="all-tours-filter__item">
+                  <h2>Продолжительность</h2>
+                  <div class="filter-group" id="duration-filter">
+                    <span class="all-tours-filter__tab" data-duration="1 день"
+                      >1 день</span
+                    >
+                    <span
+                      class="all-tours-filter__tab"
+                      data-duration="от 3-х дней"
+                      >От 3-х дней</span
+                    >
+                    <span class="all-tours-filter__tab" data-duration="5 дней"
+                      >5 дней</span
+                    >
+                    <span class="all-tours-filter__tab" data-duration="7 дней"
+                      >7 дней</span
+                    >
+                  </div>
+                </div>
+                <div class="all-tours-filter__item">
+                  <h2>Тип тура</h2>
+                  <div class="filter-group" id="activity-filter">
+                    <span class="all-tours-filter__tab" data-activity="сплав"
+                      >Сплав</span
+                    >
+                    <span
+                      class="all-tours-filter__tab"
+                      data-activity="для детей"
+                      >Для детей</span
+                    >
+                    <span
+                      class="all-tours-filter__tab"
+                      data-activity="ближайшие туры"
+                      >Ближайшие туры</span
+                    >
+                    <span
+                      class="all-tours-filter__tab"
+                      data-activity="для гостей урала"
+                      >Для гостей Урала</span
+                    >
                   </div>
                 </div>
               </div>
               <!--общий контейнер-->
-              <div id="all-tours-grid" class="all-tours-grid">
+              <div id="all-tours-grid-1" class="all-tours-grid">
                 <!--6 карточек-->
               </div>
               <!--шаблон карточки-->
               <template id="tour-card-template">
                 <div
+                  id=""
+                  data-tip=""
                   class="all-tours-section__item"
                   data-season=""
                   data-duration=""
@@ -306,11 +349,48 @@
                         <p></p>
                       </div>
                     </div>
-                    <a href="" class="all-tours-card__pic">
+                    <div class="all-tours-card__pic">
                       <img src="" alt="" />
                       <span class="all-tours-card__price"></span>
-                    </a>
-                    <a href="" class="all-tours-card__link">ПОДРОБНЕЕ</a>
+                    </div>
+                    <span class="all-tours-card__link">ПОДРОБНЕЕ</span>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+        <!--tour-2-->
+        <div class="content" id="tourTwo">
+          <div class="all-tours">
+            <!--bread crumbs-->
+            <div class="bread-crumbs bread-crumbs-white"></div>
+            <div class="all-tours__wrapper">
+              <div id="all-tours-grid-2" class="all-tours-grid">
+                <!--6 карточек-->
+              </div>
+              <!--шаблон карточки-->
+              <template id="tour-card-template">
+                <div
+                  id=""
+                  data-tip=""
+                  class="all-tours-section__item"
+                  data-season=""
+                  data-duration=""
+                  data-activity=""
+                >
+                  <div class="all-tours-card">
+                    <div class="all-tours-card__text">
+                      <h2></h2>
+                      <div class="all-tours-card__desc">
+                        <p></p>
+                      </div>
+                    </div>
+                    <div class="all-tours-card__pic">
+                      <img src="" alt="" />
+                      <span class="all-tours-card__price"></span>
+                    </div>
+                    <span class="all-tours-card__link">ПОДРОБНЕЕ</span>
                   </div>
                 </div>
               </template>
@@ -319,8 +399,8 @@
         </div>
       </div>
     </div>
-    <script src="./js/grand-filter.js"></script>
-    <script src="./js/index.js"></script>
     <script src="./js/all-tours-init.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/filter.js"></script>
   </body>
 </html>

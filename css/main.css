@@ -727,6 +727,7 @@ body {
   font-size: clamp(35px, 3.5vw, 60px);
   line-height: 100%;
   color: #000000;
+  text-transform: uppercase;
   border-bottom: 1px solid #000000;
   height: fit-content;
   align-self: flex-end;
@@ -808,7 +809,7 @@ body {
     margin-top: 0;
   }
 }
-.tour-page__item li h4 {
+.tour-page__item h4 {
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
@@ -816,48 +817,48 @@ body {
   margin-bottom: 20px;
 }
 @media (max-width: 1366px) {
-  .tour-page__item li h4 {
+  .tour-page__item h4 {
     font-size: 16px;
   }
 }
 @media (max-width: 1024px) {
-  .tour-page__item li h4 {
+  .tour-page__item h4 {
     font-size: 12px;
   }
 }
 @media (max-width: 900px), (orientation: portrait) {
-  .tour-page__item li h4 {
+  .tour-page__item h4 {
     font-size: 18px;
   }
 }
 @media (max-width: 600px) {
-  .tour-page__item li h4 {
+  .tour-page__item h4 {
     font-size: 19px;
   }
 }
-.tour-page__item li p {
+.tour-page__item ul li {
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
   color: #000000;
 }
 @media (max-width: 1366px) {
-  .tour-page__item li p {
+  .tour-page__item ul li {
     font-size: 16px;
   }
 }
 @media (max-width: 1024px) {
-  .tour-page__item li p {
+  .tour-page__item ul li {
     font-size: 12px;
   }
 }
 @media (max-width: 900px), (orientation: portrait) {
-  .tour-page__item li p {
+  .tour-page__item ul li {
     font-size: 18px;
   }
 }
 @media (max-width: 600px) {
-  .tour-page__item li p {
+  .tour-page__item ul li {
     font-size: 14px;
   }
   .tour-page__item {
@@ -915,6 +916,10 @@ body {
   border-left: 1px solid #000000;
   padding: 60px 60px 60px 20px;
   box-sizing: border-box;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
 }
 @media (max-width: 600px) {
   .tour-page__link {
@@ -1064,6 +1069,7 @@ body {
   font-size: 30px;
   line-height: 100%;
   color: #000000;
+  text-transform: uppercase;
 }
 @media (max-width: 1366px) {
   .booking__form-container h3 {
@@ -1403,6 +1409,7 @@ input:focus::placeholder {
   flex-direction: column;
   justify-content: space-between;
 }
+
 @media (max-width: 1366px) {
   .all-tours__wrapper {
     margin: 30px 30px 30px 15px;
@@ -1428,6 +1435,13 @@ input:focus::placeholder {
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+}
+/* Класс для фиксации */
+.fixed {
+  position: fixed;
+  top: 60px;
+  right: 60px;
+  background-color: #ffffff;
 }
 .all-tours-filter__item h2 {
   font-weight: 400;
@@ -1491,10 +1505,6 @@ input:focus::placeholder {
 :root {
   --card-height-offset: clamp(25px, 8vh, 88px);
 }
-/*===scroll galery===*/
-
-/*===END scroll galery===*/
-
 /* Основной контейнер */
 .all-tours-grid {
   display: grid;
@@ -1503,7 +1513,9 @@ input:focus::placeholder {
   row-gap: 0;
   max-width: 1780px;
   width: 100%;
-  margin: 0 auto;
+  margin: auto auto 0;
+  z-index: 5;
+  background: #fff;
 }
 /* Элементы сетки */
 .all-tours-section__item {
@@ -1512,8 +1524,8 @@ input:focus::placeholder {
   display: flex;
   flex-direction: column;
   position: relative;
+  cursor: pointer;
 }
-
 /* Первые 3 элемента - верхнее позиционирование */
 .all-tours-section__item:nth-child(-n + 3) {
   align-self: start;
@@ -1534,7 +1546,6 @@ input:focus::placeholder {
     margin-bottom: 0;
   }
 }
-
 /* Внутренняя карточка */
 .all-tours-card {
   position: relative;
@@ -1580,18 +1591,26 @@ input:focus::placeholder {
   max-width: 284px;
   width: 100%;
   height: 100%;
-  background: silver;
 }
 .all-tours-card__pic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.fallback-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 16px;
+}
 .all-tours-card__price {
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
-  color: #000000;
+  color: #ffffff;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1917,6 +1936,9 @@ input:focus::placeholder {
     color: #000000;
     background: #ffffff;
   }
+  .hot-tour-two {
+    display: none;
+  }
 }
 @media (max-width: 480px) {
   .grand-filter-button {
@@ -2008,6 +2030,7 @@ input:focus::placeholder {
   gap: 15px;
   position: relative;
   margin: 60px 60px 60px 0;
+  cursor: pointer;
 }
 .hot-tours-block p {
   font-weight: 400;
@@ -2018,7 +2041,7 @@ input:focus::placeholder {
   position: absolute;
   right: 0;
   bottom: -35px;
-  pointer-events: n;
+  pointer-events: none;
 }
 .hot-tours-desc {
   display: flex;
@@ -2031,6 +2054,9 @@ input:focus::placeholder {
   line-height: 100%;
   color: #000000;
   text-transform: uppercase;
+}
+.item-right .hot-tours-desc h2 {
+  max-height: 640px;
 }
 .hot-tours-desc h3 {
   font-weight: 400;
@@ -2071,7 +2097,6 @@ input:focus::placeholder {
   align-self: flex-end;
   flex-direction: row;
   align-items: end;
-  white-space: nowrap;
   writing-mode: sideways-lr;
 }
 .item-right .hot-tours-picture {
@@ -2671,13 +2696,9 @@ input:focus::placeholder {
 }
 .reviews__picture {
   width: 100%;
-  position: relative;
-  background: #d9d9d9;
+  height: 100%;
 }
 .reviews__picture img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
