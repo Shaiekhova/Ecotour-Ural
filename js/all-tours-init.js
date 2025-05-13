@@ -1,6 +1,6 @@
 function loadToursData() {
   return fetch(
-    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/dc52f39e47030c4a07be90d3d4f2cdcdc482520c/db.json"
+    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/15f4c86815932fc5d28cd01fbdf875231dd93d5c/db.json"
   )
     .then((response) => {
       if (!response.ok) throw new Error("Ошибка сети");
@@ -28,8 +28,25 @@ function createTourCardElement(tour, template) {
   card.dataset.activity = tour.param.activity;
 
   clone.querySelector("h2").textContent = tour.param.title;
-  clone.querySelector(".all-tours-card__desc p").textContent =
-    tour.param.description;
+  const descContainer = clone.querySelector(".all-tours-card__desc");
+  descContainer.innerHTML = "";
+
+  tour.param.description.forEach((text) => {
+    const p = document.createElement("p");
+    p.textContent = text;
+    descContainer.appendChild(p);
+  });
+
+  // Проверка
+  const pElements = descContainer.querySelectorAll("p");
+
+  if (pElements.length > 1) {
+    // Много элементов
+  } else if (pElements.length === 1) {
+    // Один элемент
+  } else {
+    // Нет элементов
+  }
   const img = clone.querySelector("img");
   if (!tour.param.image) {
     img.src = "https://placeholder.apptor.studio/200/200/product3.png";
@@ -70,6 +87,7 @@ function initApp() {
   loadToursData()
     .then((toursData) => {
       renderTours(toursData);
+      adjustAllCards();
     })
     .catch((error) => {
       handleError(error);

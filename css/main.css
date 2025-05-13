@@ -1575,6 +1575,7 @@ input:focus::placeholder {
   flex-direction: column;
   max-height: 176px;
   overflow: hidden;
+  gap: 20px;
 }
 .all-tours-card__desc p {
   font-weight: 400;
