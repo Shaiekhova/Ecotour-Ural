@@ -9,60 +9,72 @@ const containersAndTemplates = [
   },
 ];
 
-function loadActivityData() {
-  return fetch(
-    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/15f4c86815932fc5d28cd01fbdf875231dd93d5c/db.json"
-  )
-    .then((response) => {
-      if (!response.ok) throw new Error("Ошибка сети");
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    });
+// Асинхронная функция загрузки данных
+async function loadActivityData() {
+  try {
+    const response = await fetch(
+      "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/190c25f1a3003e035ff0df79ec40bbb7400c3095/db.json"
+    );
+    if (!response.ok) {
+      throw new Error("Ошибка сети: " + response.status);
+    }
+    const data = await response.json();
+    console.log("Полученные данные:", data);
+    return data;
+  } catch (e) {
+    console.error("Ошибка при загрузке данных:", e);
+    return [];
+  }
 }
 
+// Создание карточки тура
 function createActivityCard(tour, template, positionClass) {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector(".hot-tours-item");
+  const param = JSON.parse(tour.param);
   card.classList.add(positionClass);
+  card.id = tour.id_tour;
+  card.dataset.tip = tour.tip;
+  card.dataset.season = param.season;
+  card.dataset.duration = param.duration;
+  card.dataset.activity = param.activity;
 
-  const link = card.querySelector(".hot-tours-block");
-  link.addEventListener("click", (e) => {
+  // Обработчик перехода
+  card.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = `tour-page.html?id=${tour.id_tour}`;
   });
 
+  // Заполнение изображения
   const img = card.querySelector("img");
-  img.src =
-    tour.param.image ||
-    "https://placeholder.apptor.studio/200/200/product3.png";
-  img.alt = tour.param.title || "на ремонте";
+  img.src = param.image;
+  img.alt = param.title || "на ремонте";
 
-  const duration = card.querySelector("p");
-  duration.textContent = tour.param.duration || "5 ДНЕЙ 4 НОЧИ";
+  // Продолжительность
+  const durationElem = card.querySelector("p");
+  durationElem.textContent = param.duration || "5 ДНЕЙ 4 НОЧИ";
 
+  // Название тура
   const title = card.querySelector("h2");
-  title.innerHTML = (tour.param.title || "Название тура").replace(
-    /\n/g,
-    "<br />"
-  );
+  title.innerHTML = (param.title || "Название тура").replace(/\n/g, "<br />");
 
+  // Цена
   const price = card.querySelector("h3");
-  if (tour.param.price !== undefined && price) {
-    price.textContent = `${tour.param.price} руб/чел`;
+  if (param.price !== undefined && price) {
+    price.textContent = param.price;
   }
 
   return clone;
 }
 
+// Рендеринг туров в указанный контейнер
 function renderActivities(tours, containerId, templates) {
   const container = document.getElementById(containerId);
   if (!container) {
     console.error(`Контейнер ${containerId} не найден`);
     return;
   }
-  container.innerHTML = "";
+  container.innerHTML = ""; // очищаем контейнер
 
   tours.forEach((tour, index) => {
     const templateId = templates[index];
@@ -77,26 +89,22 @@ function renderActivities(tours, containerId, templates) {
   });
 }
 
-function initActivities() {
-  loadActivityData()
-    .then((tours) => {
-      const hotTours = tours.filter((tour) => tour.tip === "hot");
-      // Для каждого контейнера
-      containersAndTemplates.forEach(({ containerId, templates }) => {
-        const toursSubset = hotTours.splice(0, 2);
-        renderActivities(toursSubset, containerId, templates);
-      });
-    })
-    .catch((error) => {
-      console.error("Ошибка:", error);
-      // В случае ошибки показываем сообщение в контейнерах
-      containersAndTemplates.forEach(({ containerId }) => {
-        const container = document.getElementById(containerId);
-        if (container) {
-          container.innerHTML = "<p>Не удалось загрузить данные</p>";
-        }
-      });
-    });
+// Инициализация
+async function initActivities() {
+  const tours = await loadActivityData();
+
+  if (!Array.isArray(tours)) {
+    console.error("Данные туров не получены или не являются массивом");
+    return;
+  }
+
+  const hotTours = tours.filter((tour) => tour.tip === "hot");
+
+  // Распределяем по контейнерам
+  for (const { containerId, templates } of containersAndTemplates) {
+    const toursSubset = hotTours.splice(0, 2);
+    renderActivities(toursSubset, containerId, templates);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initActivities);

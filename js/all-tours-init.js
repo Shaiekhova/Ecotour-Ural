@@ -1,15 +1,15 @@
-function loadToursData() {
-  return fetch(
-    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/15f4c86815932fc5d28cd01fbdf875231dd93d5c/db.json"
-  )
-    .then((response) => {
-      if (!response.ok) throw new Error("Ошибка сети");
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    });
+async function loadToursData() {
+  const response = await fetch(
+    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/190c25f1a3003e035ff0df79ec40bbb7400c3095/db.json"
+  );
+  if (!response.ok) {
+    throw new Error("Ошибка сети");
+  }
+  const data = await response.json();
+  return data;
 }
+
+// Обработка ошибок загрузки
 function handleError(error) {
   console.error("Ошибка:", error);
   document.getElementById("all-tours-grid-1").innerHTML =
@@ -18,6 +18,7 @@ function handleError(error) {
     "<p>Ошибка загрузки данных</p>";
 }
 
+// Создание карточки тура из шаблона
 function createTourCardElement(tour, template) {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector(".all-tours-section__item");
@@ -27,26 +28,25 @@ function createTourCardElement(tour, template) {
   card.dataset.duration = tour.param.duration;
   card.dataset.activity = tour.param.activity;
 
+  // Заголовок
   clone.querySelector("h2").textContent = tour.param.title;
+
+  // Описание
   const descContainer = clone.querySelector(".all-tours-card__desc");
   descContainer.innerHTML = "";
-
-  tour.param.description.forEach((text) => {
+  if (Array.isArray(tour.param.description)) {
+    tour.param.description.forEach((text) => {
+      const p = document.createElement("p");
+      p.textContent = text;
+      descContainer.appendChild(p);
+    });
+  } else if (typeof tour.param.description === "string") {
     const p = document.createElement("p");
-    p.textContent = text;
+    p.textContent = tour.param.description;
     descContainer.appendChild(p);
-  });
-
-  // Проверка
-  const pElements = descContainer.querySelectorAll("p");
-
-  if (pElements.length > 1) {
-    // Много элементов
-  } else if (pElements.length === 1) {
-    // Один элемент
-  } else {
-    // Нет элементов
   }
+
+  // Изображение
   const img = clone.querySelector("img");
   if (!tour.param.image) {
     img.src = "https://placeholder.apptor.studio/200/200/product3.png";
@@ -55,27 +55,32 @@ function createTourCardElement(tour, template) {
     img.src = tour.param.image;
     img.alt = tour.param.title;
   }
+
+  // Цена
   clone.querySelector(".all-tours-card__price").textContent = tour.param.price;
 
+  // Обработка клика по карточке
   card.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = `tour-page.html?id=${tour.id_tour}`;
   });
+
   return clone;
 }
 
+// Функция рендера туров
 function renderTours(tours) {
   const container1 = document.getElementById("all-tours-grid-1");
   const container2 = document.getElementById("all-tours-grid-2");
   const template = document.getElementById("tour-card-template");
 
-  // Очистка контейнеров перед вставкой
+  // Очистка контейнеров
   container1.innerHTML = "";
   container2.innerHTML = "";
 
-  tours.forEach((tour) => {
+  tours.forEach((tour, index) => {
     const cardElement = createTourCardElement(tour, template);
-    if (Number(tour.id_tour) >= 1 && Number(tour.id_tour) <= 6) {
+    if (index < 6) {
       container1.appendChild(cardElement);
     } else {
       container2.appendChild(cardElement);
@@ -83,15 +88,21 @@ function renderTours(tours) {
   });
 }
 
-function initApp() {
-  loadToursData()
-    .then((toursData) => {
-      renderTours(toursData);
+// Инициализация приложения
+async function initApp() {
+  try {
+    const data = await loadToursData();
+    const toursData = data.map((item) => ({
+      ...item,
+      param: JSON.parse(item.param),
+    }));
+    renderTours(toursData);
+    if (typeof adjustAllCards === "function") {
       adjustAllCards();
-    })
-    .catch((error) => {
-      handleError(error);
-    });
+    }
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

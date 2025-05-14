@@ -243,9 +243,11 @@
                   <div class="reviews__picture"></div>
                 </div>
                 <div class="reviews__item">
-                  <div class="reviews__video">
-                    <iframe src="" class="reviews__video-iframe"></iframe>
-                  </div>
+                  <iframe
+                    class="reviews__video"
+                    src=""
+                    frameborder="0"
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -266,7 +268,8 @@
                     data-id=""
                     id="booking-form"
                     class="booking-form"
-                    action=""
+                    action="https://formspree.io/f/xldbadje"
+                    method="POST"
                   >
                     <h3></h3>
                     <span
@@ -278,32 +281,23 @@
                       id="name"
                       name="name"
                       required
-                      minlength="4"
-                      maxlength="12"
                       placeholder="Имя"
                     />
                     <input
                       type="email"
                       id="email"
-                      pattern=".+@example\.com"
-                      size="30"
-                      required
+                      name="email"
                       placeholder="E-mail"
                     />
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      required
                       placeholder="Номер телефона"
                     />
                     <input
+                      name="message"
                       type="text"
-                      id="text"
-                      name="text"
-                      required
-                      minlength="2"
-                      maxlength="40"
                       placeholder="Комментарий"
                     />
                     <h4 class="booking-price"></h4>
@@ -320,12 +314,11 @@
                     >
                   </p>
                 </div>
-
                 <picture>
                   <img
                     class="booking__coordinates"
-                    src=""
-                    alt="Карта с координатами"
+                    src="https://i.postimg.cc/0Nnwch7d/coordinaty-1920.gif"
+                    alt="coordinaty"
                     loading="lazy"
                   />
                 </picture>
@@ -335,9 +328,9 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/swiper.js"></script>
     <script src="./js/tour-page-init.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/swiper.js"></script>
   </body>
 </html>
