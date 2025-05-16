@@ -2686,7 +2686,6 @@ input:focus::placeholder {
   width: 100%;
   max-width: 390px;
   margin: 0 auto;
-  border: 1px solid #000;
   aspect-ratio: 390/348;
 }
 .reviews__banner-pic img {
