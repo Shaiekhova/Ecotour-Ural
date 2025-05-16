@@ -1265,6 +1265,10 @@ input:focus::placeholder {
 .booking__coordinates {
   max-width: 103px;
   height: 100%;
+  display: block;
+}
+.booking__coordinates-mobile {
+  display: none;
 }
 @media (max-width: 1366px) {
   .booking__coordinates {
@@ -1350,7 +1354,11 @@ input:focus::placeholder {
     max-width: 353px;
   }
   .booking__coordinates {
-    max-width: 100%;
+    display: none;
+  }
+  .booking__coordinates-mobile {
+    display: block;
+    width: 100%;
   }
 }
 @media (max-width: 900px) {
@@ -1421,6 +1429,7 @@ input:focus::placeholder {
   justify-content: center;
   gap: 40px;
   margin-bottom: 20px;
+  caret-color: transparent;
 }
 .all-tours-filter__item {
   max-width: 567px;
@@ -2053,7 +2062,6 @@ input:focus::placeholder {
   min-width: 307px;
   max-height: 633px;
   aspect-ratio: 587/633;
-  border: 1px solid #000;
 }
 .hot-tours-picture img {
   width: 100%;
@@ -2879,9 +2887,9 @@ input:focus::placeholder {
   text-transform: uppercase;
 }
 .hot-tours-desc h2 {
-  font-size: clamp(20px, calc(1.2vw + 1.2vh), 35px);
+  font-size: clamp(20px, calc(1.3vw + 1.3vh), 40px);
 }
 
 .hot-tours-desc h3 {
-  font-size: clamp(16px, calc(1vw + 1vh), 28px);
+  font-size: clamp(16px, calc(1vw + 1vh), 30px);
 }
