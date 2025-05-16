@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchToursData() {
     try {
       const response = await fetch(
-        "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/190c25f1a3003e035ff0df79ec40bbb7400c3095/db.json"
+        "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/46bc8ac0657af5315d886567ce6f3d56034be6ef/db.json"
       );
       if (!response.ok) {
         throw new Error("Ошибка сети: " + response.status);
@@ -79,12 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("tour-content");
     const reviewsContainer = document.getElementById("reviews-content");
     const bookingForm = document.getElementById("booking-form");
-
     if (!container || !reviewsContainer || !bookingForm) {
       console.warn("Некоторые элементы DOM не найдены");
       return;
     }
-
+    // if (tour.reviews_item === null) {
+    //   reviewsContainer.className = ;
+    // }
     // Обновляем название
     const titleEl = container.querySelector(".tour-page__text");
     if (titleEl) titleEl.textContent = tour.param.page_title || "";
@@ -155,9 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".reviews__banner-pic"
     );
     if (reviewsBannerPic) {
-      reviewsBannerPic.src =
-        tour.param.reviews_pic ||
-        "https://placeholder.apptor.studio/200/200/product3.png";
+      reviewsBannerPic.src = tour.param.reviews_pic || "";
     }
 
     // Фото отзывов
@@ -166,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const reviewsImages = ensureArray(tour.param.reviews_images);
     reviewsImages.forEach((src, index) => {
       const img = document.createElement("img");
-      img.src = src;
+      img.src = src || "";
       if (reviewPicturesBlocks.length >= 2) {
         if (index % 2 === 0) {
           reviewPicturesBlocks[0].appendChild(img);
@@ -179,18 +178,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Видеоролик
     const videoCont = document.querySelector(".reviews__video");
     if (videoCont) {
-      videoCont.src = tour.param.reviews_video;
+      videoCont.src = tour.param.reviews_video || "";
     }
 
     // Обновление формы
     if (bookingForm) {
       bookingForm.dataset.id = tour.id_tour;
       const formTitleH3 = bookingForm.querySelector("h3");
-      if (formTitleH3) formTitleH3.textContent = tour.param.page_title || "";
+      if (formTitleH3)
+        formTitleH3.textContent = tour.param.page_title || "ТУТ ПОКА ПУСТО";
       const formTitleH4 = bookingForm.querySelector("h4");
-      if (formTitleH4)
-        formTitleH4.textContent =
-          `Сумма: *` + (tour.param.price || "").replace(/^от\s*/, "");
+      if (formTitleH4) formTitleH4.textContent = tour.param.link;
     }
   }
 

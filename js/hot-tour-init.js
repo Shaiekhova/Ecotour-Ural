@@ -13,7 +13,7 @@ const containersAndTemplates = [
 async function loadActivityData() {
   try {
     const response = await fetch(
-      "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/190c25f1a3003e035ff0df79ec40bbb7400c3095/db.json"
+      "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/46bc8ac0657af5315d886567ce6f3d56034be6ef/db.json"
     );
     if (!response.ok) {
       throw new Error("Ошибка сети: " + response.status);
@@ -42,7 +42,7 @@ function createActivityCard(tour, template, positionClass) {
   // Обработчик перехода
   card.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = `tour-page.html?id=${tour.id_tour}`;
+    window.location.href = `tour-page.html?id=${tour.id_tour}#tour-page`;
   });
 
   // Заполнение изображения

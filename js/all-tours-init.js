@@ -1,6 +1,6 @@
 async function loadToursData() {
   const response = await fetch(
-    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/190c25f1a3003e035ff0df79ec40bbb7400c3095/db.json"
+    "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/46bc8ac0657af5315d886567ce6f3d56034be6ef/db.json"
   );
   if (!response.ok) {
     throw new Error("Ошибка сети");
@@ -62,7 +62,7 @@ function createTourCardElement(tour, template) {
   // Обработка клика по карточке
   card.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = `tour-page.html?id=${tour.id_tour}`;
+    window.location.href = `tour-page.html?id=${tour.id_tour}#tour-page`;
   });
 
   return clone;
@@ -97,9 +97,6 @@ async function initApp() {
       param: JSON.parse(item.param),
     }));
     renderTours(toursData);
-    if (typeof adjustAllCards === "function") {
-      adjustAllCards();
-    }
   } catch (error) {
     handleError(error);
   }

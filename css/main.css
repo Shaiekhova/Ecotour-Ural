@@ -17,7 +17,6 @@ body {
   -moz-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
-
 .scroll-container {
   display: flex;
   height: 100vh;
@@ -33,13 +32,13 @@ body {
 }
 
 .content {
+  flex: 0 0 auto;
+  width: 100%;
   max-width: 1920px;
-  min-width: 100vw;
   min-height: 100vh;
   display: flex;
   overflow: hidden;
 }
-
 @media (max-width: 900px), (orientation: portrait) {
   .scroll-container {
     flex-direction: column;
@@ -178,7 +177,9 @@ body {
   border-right: 1px solid #000000;
   z-index: 2;
 }
-
+.right-border {
+  border-right: 1px solid #000000;
+}
 .left-border {
   border-right: none;
   border-left: 1px solid #000000;
@@ -369,7 +370,6 @@ body {
   }
 }
 .promo__inner {
-  max-width: 1520px;
   width: 100%;
   position: relative;
   background: url(../images/main.png) no-repeat center center;
@@ -425,6 +425,7 @@ body {
 }
 /*===contacts===*/
 .contacts {
+  max-width: 1920px;
   width: 100%;
   display: flex;
 }
@@ -496,7 +497,6 @@ body {
   max-width: 515px;
   width: 100%;
   height: 72px;
-  content: url(../images/contacts__coordinates.png);
 }
 @media (max-width: 1600px) {
   .contacts__inner {
@@ -536,7 +536,6 @@ body {
   }
   .contacts__coordinates {
     max-width: 450px;
-    content: url(../images/contacts__coordinates-1024.png);
   }
 }
 @media (max-width: 1280px) {
@@ -614,7 +613,6 @@ body {
     max-width: 100%;
     width: 100%;
     height: 100px;
-    content: url(../images/contacts__coordinates-768.png);
   }
   .contacts__map {
     width: 100%;
@@ -644,7 +642,6 @@ body {
     max-width: 100%;
     width: 100%;
     height: 49px;
-    content: url(../images/contacts__coordinates-480.png);
   }
   .contacts__map {
     height: 353px;
@@ -1405,7 +1402,6 @@ input:focus::placeholder {
   margin: 60px 60px 60px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 @media (max-width: 1366px) {
@@ -1510,7 +1506,7 @@ input:focus::placeholder {
   row-gap: 0;
   max-width: 1780px;
   width: 100%;
-  margin: auto auto 0;
+  margin: auto;
   z-index: 5;
   background: #fff;
 }
@@ -1569,18 +1565,16 @@ input:focus::placeholder {
 .all-tours-card__desc {
   display: flex;
   flex-direction: column;
-  max-height: 60%;
   gap: 10px;
 }
 .all-tours-card__desc p {
   font-weight: 400;
   font-size: 15px;
-  line-height: 1.2;
   color: #000000;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 5;
 }
 .all-tours-card__desc .no-clamp {
   display: block;
@@ -1645,6 +1639,7 @@ input:focus::placeholder {
   }
   .all-tours-card__desc p {
     font-size: 12px;
+    -webkit-line-clamp: 3;
   }
   .all-tours-card__link {
     font-size: 18px;
@@ -1743,9 +1738,6 @@ input:focus::placeholder {
   .all-tours-card {
     margin-bottom: 0 !important;
   }
-  .all-tours-card__text {
-    max-width: 250px;
-  }
   .all-tours-card__text h2 {
     font-size: 24px;
   }
@@ -1769,6 +1761,10 @@ input:focus::placeholder {
   }
   .all-tours-card__text h2 {
     font-size: 17px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
   .all-tours-card__link {
     position: initial;
@@ -1793,6 +1789,7 @@ input:focus::placeholder {
 .grand-filter {
   max-width: 283px;
   width: 100%;
+  height: 100%;
   border-right: 1px solid #000000;
   display: flex;
   padding: 50px 8px;
@@ -1918,6 +1915,7 @@ input:focus::placeholder {
     line-height: 100%;
     color: #000000;
     background: #ffffff;
+    align-self: flex-start;
   }
   .hot-tour-two {
     display: none;
@@ -1985,8 +1983,12 @@ input:focus::placeholder {
 
 /*===hot-tours===*/
 .hot-tours {
+  max-width: 1920px;
   width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 900px), (orientation: portrait) {
   .hot-tours {
@@ -1995,6 +1997,7 @@ input:focus::placeholder {
 }
 .hot-tours-inner {
   width: 100%;
+  height: 100%;
   margin: 0 60px 0 20px;
   display: flex;
   align-items: center;
@@ -2032,16 +2035,15 @@ input:focus::placeholder {
   gap: 24px;
 }
 .hot-tours-desc h2 {
-  max-width: 560px;
   font-weight: 400;
-  font-size: 45px;
+  font-size: 35px;
   line-height: 100%;
   color: #000000;
   text-transform: uppercase;
 }
 .hot-tours-desc h3 {
   font-weight: 400;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 100%;
   color: #000000;
   text-transform: uppercase;
@@ -2134,10 +2136,10 @@ input:focus::placeholder {
 }
 @media (max-width: 1536px) {
   .hot-tours-desc h2 {
-    font-size: 32px;
+    font-size: 28px;
   }
   .item-right .hot-tours-desc h2 {
-    max-height: 450px;
+    max-height: 333px;
   }
   .hot-tours-desc h3 {
     font-size: 18px;
@@ -2192,7 +2194,7 @@ input:focus::placeholder {
     gap: 20px;
   }
   .hot-tours-desc h2 {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 /* 900px */
@@ -2305,7 +2307,9 @@ input:focus::placeholder {
 }
 /*===about===*/
 .about {
+  max-width: 1920px;
   width: 100%;
+  height: 100%;
   display: flex;
 }
 @media (max-width: 900px), (orientation: portrait) {
@@ -2319,7 +2323,7 @@ input:focus::placeholder {
 .about__inner {
   display: grid;
   grid-template-columns: auto 1.5fr 1fr;
-  grid-template-rows: auto min-content minmax(auto, 49%);
+  grid-template-rows: auto min-content minmax(auto, 50%);
   grid-template-areas:
     ". . ."
     ". a-pic a-stats"
@@ -2437,6 +2441,7 @@ input:focus::placeholder {
   display: flex;
   align-items: flex-end;
   gap: 20px;
+  caret-color: transparent;
 }
 .about__top-animate {
   min-width: 287px;
@@ -2467,15 +2472,23 @@ input:focus::placeholder {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  overflow: hidden;
+  overflow: auto;
   padding: 0 5px;
   box-sizing: border-box;
+  caret-color: transparent;
+}
+.about__text::-webkit-scrollbar {
+  display: none;
 }
 .about__text p {
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   color: #000000;
+}
+.about__text {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
 }
 @media (max-width: 1536px) {
   .about__text p {
@@ -2713,7 +2726,10 @@ input:focus::placeholder {
 .reviews__video {
   width: 100%;
   position: relative;
+  border: none;
+  overflow: hidden;
 }
+
 @media (max-width: 1536px) {
   .cropped-text {
     margin-top: 0;
@@ -2810,6 +2826,15 @@ input:focus::placeholder {
     font-size: 17px;
     line-height: 19px;
   }
+  .all-tours-card__text {
+    max-width: 100%;
+  }
+  .all-tours-card__text h2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
 }
 @media (max-width: 600px) {
   .reviews__banner-pic {
@@ -2838,4 +2863,26 @@ input:focus::placeholder {
   .reviews__item:nth-child(3) {
     height: 230px;
   }
+}
+/*****пробую сделать резину******/
+.hot-tours-desc h2 {
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 100%;
+  color: #000000;
+  text-transform: uppercase;
+}
+.hot-tours-desc h3 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 100%;
+  color: #000000;
+  text-transform: uppercase;
+}
+.hot-tours-desc h2 {
+  font-size: clamp(20px, calc(1.2vw + 1.2vh), 35px);
+}
+
+.hot-tours-desc h3 {
+  font-size: clamp(16px, calc(1vw + 1vh), 28px);
 }
