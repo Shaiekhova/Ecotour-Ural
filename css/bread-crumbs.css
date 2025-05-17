@@ -1,0 +1,130 @@
+.bread-crumbs {
+  max-width: 60px;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  padding-top: 80px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #000000;
+  z-index: 2;
+}
+.right-border {
+  border-right: 1px solid #000000;
+}
+.left-border {
+  border-right: none;
+  border-left: 1px solid #000000;
+}
+@media (max-width: 1366px) {
+  .bread-crumbs {
+    max-width: 30px;
+    font-size: 10px;
+    max-width: 30px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+  }
+  .bread-crumbs-main {
+    max-width: 50px;
+  }
+}
+@media (max-width: 900px), (orientation: portrait) {
+  .bread-crumbs {
+    display: none;
+  }
+  .bread-crumbs-main {
+    flex-direction: row-reverse;
+    max-width: 100%;
+    height: 48px;
+    padding: 0 22px 29px 24px;
+    border-right: none;
+    display: flex;
+  }
+}
+@media (max-width: 600px) {
+  .bread-crumbs {
+    padding: 13px 13px 13px 16px;
+  }
+}
+.bread-nav {
+  display: flex;
+  align-items: center;
+  transform: rotate(90deg);
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #000000;
+  transition: all 0.2s ease-out;
+}
+.bread-nav:hover {
+  color: #0000009b;
+}
+@media (max-width: 1366px) {
+  .bread-nav {
+    font-size: 10px;
+  }
+  .bread-nav-main {
+    font-size: 12px;
+  }
+}
+@media (max-width: 900px), (orientation: portrait) {
+  .bread-nav {
+    font-size: 14px;
+    position: relative;
+    left: 75px;
+    bottom: 75px;
+  }
+}
+@media (max-width: 600px) {
+  .bread-nav {
+    font-size: 13px;
+    left: 68px;
+    bottom: 70px;
+  }
+}
+
+.bread-link {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 18px;
+  color: #000000;
+  text-transform: uppercase;
+  position: relative;
+  left: -45px;
+  width: fit-content;
+}
+@media (max-width: 1366px) {
+  .bread-link {
+    font-size: 18px;
+  }
+}
+@media (max-width: 900px), (orientation: portrait) {
+  .bread-link {
+    line-height: 100%;
+    left: 0;
+  }
+}
+@media (max-width: 600px) {
+  .bread-link {
+    font-size: 17px;
+    left: 0;
+  }
+}
+.bread-link:before {
+  content: "";
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 0;
+  height: 1px;
+  transition: 0.2s;
+  background-color: #000000;
+}
+.bread-link:hover:before {
+  width: 100%;
+}
