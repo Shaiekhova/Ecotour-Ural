@@ -1,194 +1,83 @@
-class HorizontalScrollWithInertia {
-  constructor() {
-    this.container = document.querySelector(".scroll-container");
-    if (!this.container) {
-      console.error("Контейнер не найден!");
-      return;
-    }
+const container = document.querySelector(".scroll-container");
 
-    this.targetScroll = this.container.scrollLeft;
-    this.currentScroll = this.container.scrollLeft;
-    this.easing = 0.1;
-    this.velocity = 0;
-    this.deceleration = 0.995;
-    this.keyboardStep = 150;
+let isEnabled = false; // статус активации скролла
+let targetScrollLeft = 0;
+let isScrolling = false;
 
-    this.isMouseDown = false;
-    this.prevMouseX = undefined;
+// Функция для включения/отключения обработчика
+function updateScrollFunction() {
+  const width = window.innerWidth;
+  const orientation = window.orientation; // 0 или 180 — портрет, 90 или -90 — ландшафт
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-    this.isTouchDevice =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-    this.init();
-  }
-
-  init() {
-    this.wheelHandler = (e) => this.onWheel(e);
-    this.touchStartHandler = (e) => this.onTouchStart(e);
-    this.touchMoveHandler = (e) => this.onTouchMove(e);
-    this.keyDownHandler = (e) => this.onKeyDown(e);
-    this.mouseDownHandler = (e) => this.onMouseDown(e);
-    this.mouseUpHandler = (e) => this.onMouseUp(e);
-    this.mouseMoveHandler = (e) => this.onMouseMove(e);
-    this.interactionHandler = () => this.onInteraction();
-
-    this.container.addEventListener("wheel", this.wheelHandler, {
-      passive: false,
-    });
-    // Добавляем обработчики только если не тач устройство
-    if (!this.isTouchDevice) {
-      this.container.addEventListener("touchstart", this.touchStartHandler, {
-        passive: false,
-      });
-      this.container.addEventListener("touchmove", this.touchMoveHandler, {
-        passive: false,
-      });
-    }
-    document.addEventListener("keydown", this.keyDownHandler);
-    this.container.addEventListener("mousedown", this.mouseDownHandler);
-    document.addEventListener("mouseup", this.mouseUpHandler);
-    document.addEventListener("mousemove", this.mouseMoveHandler);
-    this.container.addEventListener("wheel", this.interactionHandler);
-    if (!this.isTouchDevice) {
-      this.container.addEventListener("touchstart", this.interactionHandler);
-    }
-    document.addEventListener("keydown", this.interactionHandler);
-
-    this.animate();
-  }
-
-  onInteraction() {
-    // Можно оставить пустым
-  }
-
-  onWheel(e) {
-    e.preventDefault();
-    const delta = e.deltaY || e.deltaX;
-    this.setTargetScroll(this.targetScroll + delta);
-    this.velocity += delta * 0.1;
-  }
-
-  onTouchStart(e) {
-    if (this.isTouchDevice) {
-      this.startX = e.touches[0].clientX;
-      this.startScroll = this.targetScroll;
-    }
-  }
-
-  onTouchMove(e) {
-    if (this.isTouchDevice) {
-      e.preventDefault(); // Можно убрать, чтобы не мешать стандартной прокрутке
-      const deltaX = e.touches[0].clientX - this.startX;
-      this.setTargetScroll(this.startScroll - deltaX * 2);
-      this.velocity += deltaX * 0.05;
-    }
-  }
-
-  onKeyDown(e) {
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      this.setTargetScroll(this.targetScroll - this.keyboardStep);
-      this.velocity -= this.keyboardStep * 0.1;
-    } else if (e.key === "ArrowRight") {
-      e.preventDefault();
-      this.setTargetScroll(this.targetScroll + this.keyboardStep);
-      this.velocity += this.keyboardStep * 0.1;
-    }
-  }
-
-  onMouseDown(e) {
-    if (e.button === 0) {
-      this.isMouseDown = true;
-      this.prevMouseX = e.clientX;
-    }
-  }
-
-  onMouseUp(e) {
-    if (e.button === 0) {
-      this.isMouseDown = false;
-      this.prevMouseX = undefined;
-    }
-  }
-
-  onMouseMove(e) {
-    if (this.isMouseDown) {
-      if (this.prevMouseX !== undefined) {
-        const deltaX = e.clientX - this.prevMouseX;
-        this.setTargetScroll(this.targetScroll - deltaX);
-        this.velocity += deltaX * 0.05;
-        this.prevMouseX = e.clientX;
-      }
-    }
-  }
-
-  setTargetScroll(value) {
-    const maxScroll = this.container.scrollWidth - this.container.clientWidth;
-    this.targetScroll = Math.max(0, Math.min(value, maxScroll));
-  }
-
-  animate() {
-    if (!this.isMouseDown && Math.abs(this.velocity) > 0.01) {
-      this.setTargetScroll(this.targetScroll + this.velocity);
-      this.velocity *= this.deceleration;
-    } else {
-      this.velocity = 0;
-    }
-
-    const diff = this.targetScroll - this.currentScroll;
-    this.currentScroll += diff * this.easing;
-    this.container.scrollLeft = this.currentScroll;
-
-    this.animationFrameId = requestAnimationFrame(() => this.animate());
-  }
-
-  destroy() {
-    this.container.removeEventListener("wheel", this.wheelHandler);
-    if (!this.isTouchDevice) {
-      this.container.removeEventListener("touchstart", this.touchStartHandler);
-      this.container.removeEventListener("touchmove", this.touchMoveHandler);
-    }
-    document.removeEventListener("keydown", this.keyDownHandler);
-    this.container.removeEventListener("mousedown", this.mouseDownHandler);
-    document.removeEventListener("mouseup", this.mouseUpHandler);
-    document.removeEventListener("mousemove", this.mouseMoveHandler);
-    this.container.removeEventListener("wheel", this.interactionHandler);
-    if (!this.isTouchDevice) {
-      this.container.removeEventListener("touchstart", this.interactionHandler);
-    }
-    document.removeEventListener("keydown", this.interactionHandler);
-    cancelAnimationFrame(this.animationFrameId);
-  }
-}
-
-// Инициализация
-let scrollInstance = null;
-
-function manageScroll() {
-  const mediaQuery = window.matchMedia(
-    "(max-width: 900px), (orientation: portrait)"
-  );
-  const shouldDisable = mediaQuery.matches;
-
-  if (!shouldDisable) {
-    if (!scrollInstance) {
-      scrollInstance = new HorizontalScrollWithInertia();
+  // Включаем только если ширина > 900 и не в портретной ориентации
+  if (width > 900 && !isPortrait) {
+    if (!isEnabled) {
+      enableScroll();
     }
   } else {
-    if (scrollInstance) {
-      scrollInstance.destroy();
-      scrollInstance = null;
+    if (isEnabled) {
+      disableScroll();
     }
   }
 }
 
-manageScroll();
-window.addEventListener("resize", manageScroll);
+function enableScroll() {
+  isEnabled = true;
+  container.addEventListener("wheel", onWheel, { passive: false });
+}
 
-// Обработчик при изменении размера окна
-window.addEventListener("resize", manageScroll);
+function disableScroll() {
+  isEnabled = false;
+  container.removeEventListener("wheel", onWheel);
+}
 
-// Обработчик при изменении размера окна
-window.addEventListener("resize", manageScroll);
+// Обработчик колесика
+function onWheel(e) {
+  e.preventDefault();
+
+  const delta = Math.sign(e.deltaY);
+  const scrollStep = 150; // скорость прокрутки
+
+  // Обновляем целевое значение
+  targetScrollLeft += delta * scrollStep;
+
+  // Ограничения по границам
+  targetScrollLeft = Math.max(
+    0,
+    Math.min(targetScrollLeft, container.scrollWidth - container.clientWidth)
+  );
+
+  // Запускаем анимацию, если еще не запущена
+  if (!isScrolling) {
+    isScrolling = true;
+    animateScroll();
+  }
+}
+
+// Анимация плавного скролла
+function animateScroll() {
+  const current = container.scrollLeft;
+  const diff = targetScrollLeft - current;
+
+  const smoothFactor = 0.1;
+
+  if (Math.abs(diff) < 0.5) {
+    container.scrollLeft = targetScrollLeft;
+    isScrolling = false;
+    return;
+  }
+
+  container.scrollLeft = current + diff * smoothFactor;
+
+  requestAnimationFrame(animateScroll);
+}
+
+// Отслеживание изменения размера окна
+window.addEventListener("resize", updateScrollFunction);
+
+// Инициализация при загрузке
+updateScrollFunction();
 
 //навигация фильтра
 document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
