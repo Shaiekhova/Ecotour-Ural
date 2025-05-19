@@ -20,7 +20,6 @@ body {
   display: flex;
   height: 100vh;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -40,6 +39,7 @@ body {
 .main-content {
   min-width: 100%;
 }
+
 @media (max-width: 900px), (orientation: portrait) {
   .scroll-container {
     flex-direction: column;
@@ -78,4 +78,7 @@ body {
 .scroll-container {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+* {
+  caret-color: transparent;
 }

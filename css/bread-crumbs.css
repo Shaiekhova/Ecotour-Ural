@@ -115,7 +115,10 @@
     left: 0;
   }
 }
-.bread-link:before {
+.link-hover {
+  position: relative;
+}
+.link-hover:before {
   content: "";
   bottom: 0;
   left: 0;
@@ -125,6 +128,6 @@
   transition: 0.2s;
   background-color: #000000;
 }
-.bread-link:hover:before {
+.link-hover:hover:before {
   width: 100%;
 }

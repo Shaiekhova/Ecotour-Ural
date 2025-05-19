@@ -615,6 +615,7 @@
 @media (max-width: 1640px) {
   .all-tours-link {
     top: 30px;
+    right: 0;
   }
 }
 @media (max-width: 1536px) {
@@ -634,6 +635,9 @@
     margin-bottom: 0;
   }
 }
-.all-tours-link:hover {
-  color: #00000086;
+@media (max-width: 600px) {
+  .all-tours-link {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 }

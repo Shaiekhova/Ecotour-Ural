@@ -16,13 +16,13 @@
           </a>
           <ul class="header-mobile__menu">
             <li>
-              <a href="#">Главная</a>
+              <a href="#home">Главная</a>
             </li>
             <li>
               <a href="#about">О нас</a>
             </li>
             <li>
-              <a href="all-tours.html">Туры</a>
+              <a href="all-tours.html#tour">Туры</a>
             </li>
             <li>
               <a href="#contacts">Контакты</a>
@@ -46,7 +46,9 @@
               <a class="bread-nav bread-nav-main" href="#"
                 >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
               >
-              <a class="bread-link" href="all-tours.html#tour">К ТУРАМ</a>
+              <a class="bread-link link-hover" href="all-tours.html#tour"
+                >К ТУРАМ</a
+              >
             </div>
             <!--menu-->
             <div class="menu-container">
@@ -57,7 +59,7 @@
                       <a href="#" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
                     </li>
                     <li>
                       <a href="#about" class="menu-link">О нас</a>
@@ -74,43 +76,7 @@
                       <a href="#" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
-                    </li>
-                    <li>
-                      <a href="#about" class="menu-link">О нас</a>
-                    </li>
-                    <li>
-                      <a href="#contacts" class="menu-link">Контакты</a>
-                    </li>
-                    <li>
-                      <a href="#hot" class="menu-link">Горящие</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="menu-carousel">
-                  <ul>
-                    <li>
-                      <a href="#" class="menu-link">Главная</a>
-                    </li>
-                    <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
-                    </li>
-                    <li>
-                      <a href="#about" class="menu-link">О нас</a>
-                    </li>
-                    <li>
-                      <a href="#contacts" class="menu-link">Контакты</a>
-                    </li>
-                    <li>
-                      <a href="#hot" class="menu-link">Горящие</a>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>
-                      <a href="#" class="menu-link">Главная</a>
-                    </li>
-                    <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
                     </li>
                     <li>
                       <a href="#about" class="menu-link">О нас</a>
@@ -129,7 +95,7 @@
                       <a href="#" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
                     </li>
                     <li>
                       <a href="#about" class="menu-link">О нас</a>
@@ -146,7 +112,43 @@
                       <a href="#" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                    </li>
+                    <li>
+                      <a href="#about" class="menu-link">О нас</a>
+                    </li>
+                    <li>
+                      <a href="#contacts" class="menu-link">Контакты</a>
+                    </li>
+                    <li>
+                      <a href="#hot" class="menu-link">Горящие</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="menu-carousel">
+                  <ul>
+                    <li>
+                      <a href="#" class="menu-link">Главная</a>
+                    </li>
+                    <li>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                    </li>
+                    <li>
+                      <a href="#about" class="menu-link">О нас</a>
+                    </li>
+                    <li>
+                      <a href="#contacts" class="menu-link">Контакты</a>
+                    </li>
+                    <li>
+                      <a href="#hot" class="menu-link">Горящие</a>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <a href="#" class="menu-link">Главная</a>
+                    </li>
+                    <li>
+                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
                     </li>
                     <li>
                       <a href="#about" class="menu-link">О нас</a>
@@ -339,13 +341,40 @@
               </div>
             </div>
             <div id="hot-tours-left1" class="hot-tours-inner">
-              <a href="all-tours.html" class="all-tours-link">ВСЕ ТУРЫ</a>
+              <a href="all-tours.html#tour" class="all-tours-link link-hover"
+                >ВСЕ ТУРЫ</a
+              >
             </div>
           </div>
         </div>
         <!--шаблон карточки-->
         <template id="template-left-1">
+          <a href="all-tours.html#tour" class="all-tours-link link-hover"
+            >ВСЕ ТУРЫ</a
+          >
           <div
+            id=""
+            data-tip=""
+            data-season=""
+            data-duration=""
+            data-activity=""
+            class="hot-tours-item"
+          >
+            <div class="hot-tours-block">
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/X7qQFkSz/2.jpg"
+                alt=""
+              />
+
+              <div class="hot-tours-desc">
+                <h2>УРАЛЬСКАЯ ШВЕЙЦАРИЯ</h2>
+                <h3>от 65 000 руб/чел</h3>
+              </div>
+              <p>5 ДНЕЙ 4 НОЧИ</p>
+            </div>
+          </div>
+          <!-- <div
             id=""
             data-tip=""
             data-season=""
@@ -363,11 +392,32 @@
                 <h3></h3>
               </div>
             </div>
-          </div>
+          </div> -->
         </template>
         <template id="template-right-1">
-          <a href="all-tours.html" class="all-tours-link">ВСЕ ТУРЫ</a>
           <div
+            id=""
+            data-tip=""
+            data-season=""
+            data-duration=""
+            data-activity=""
+            class="hot-tours-item item-right"
+          >
+            <div class="hot-tours-block item-right-block">
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/X7qQFkSz/2.jpg"
+                alt=""
+              />
+
+              <div class="hot-tours-desc item-right-desc">
+                <h2>НА ГРАНИЦЕ ЕВРОПЫ И АЗИИ</h2>
+                <h3>от 65 000 руб/чел</h3>
+              </div>
+              <p>5 ДНЕЙ 4 НОЧИ</p>
+            </div>
+          </div>
+          <!-- <div
             id=""
             data-tip=""
             data-season=""
@@ -385,7 +435,7 @@
                 <h3></h3>
               </div>
             </div>
-          </div>
+          </div> -->
         </template>
         <div class="content" id="hotTwo">
           <div class="hot-tours">
@@ -472,7 +522,9 @@
         </div>
         <!--шаблон карточки-->
         <template id="template-left-2">
-          <a href="" class="all-tours-link">ВСЕ ТУРЫ</a>
+          <a href="all-tours.html#tour" class="all-tours-link link-hover"
+            >ВСЕ ТУРЫ</a
+          >
           <div
             id=""
             data-tip=""
@@ -482,14 +534,17 @@
             class="hot-tours-item"
           >
             <div class="hot-tours-block">
-              <div class="hot-tours-picture">
-                <img src="" alt="" />
-                <p></p>
-              </div>
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/X7qQFkSz/2.jpg"
+                alt=""
+              />
+
               <div class="hot-tours-desc">
-                <h2></h2>
-                <h3></h3>
+                <h2>УРАЛЬСКАЯ ШВЕЙЦАРИЯ</h2>
+                <h3>от 65 000 руб/чел</h3>
               </div>
+              <p>5 ДНЕЙ 4 НОЧИ</p>
             </div>
           </div>
         </template>
@@ -502,15 +557,18 @@
             data-activity=""
             class="hot-tours-item item-right"
           >
-            <div class="hot-tours-block">
-              <div class="hot-tours-picture">
-                <img src="./images/i.jpg" alt="" />
-                <p></p>
+            <div class="hot-tours-block item-right-block">
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/X7qQFkSz/2.jpg"
+                alt=""
+              />
+
+              <div class="hot-tours-desc item-right-desc">
+                <h2>НА ГРАНИЦЕ ЕВРОПЫ И АЗИИ</h2>
+                <h3>от 65 000 руб/чел</h3>
               </div>
-              <div class="hot-tours-desc">
-                <h2></h2>
-                <h3></h3>
-              </div>
+              <p>5 ДНЕЙ 4 НОЧИ</p>
             </div>
           </div>
         </template>

@@ -271,29 +271,9 @@
     height: 390px;
   }
 }
-.swiper-pagination-bullet {
-  width: 10px;
-  height: 5px;
-  border-radius: 29px;
-  background: #000000;
-  opacity: 1;
+.swiper-button-next:after {
+  content: url(../images/Arrow\ 5.png);
 }
-.swiper-pagination-bullet-active {
-  width: 25px;
-}
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: 20px;
-}
-@media (max-width: 1024px) {
-  .swiper-horizontal > .swiper-pagination-bullets,
-  .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: 10px;
-  }
-}
-@media (max-width: 900px), (orientation: portrait) {
-  .swiper-horizontal > .swiper-pagination-bullets,
-  .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: 20px;
-  }
+.swiper-button-prev:after {
+  content: url(../images/Arrow\ 5.png);
 }

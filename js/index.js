@@ -1,13 +1,10 @@
 const container = document.querySelector(".scroll-container");
 
 let isEnabled = false; // статус активации скролла
-let targetScrollLeft = 0;
-let isScrolling = false;
 
 // Функция для включения/отключения обработчика
 function updateScrollFunction() {
   const width = window.innerWidth;
-  const orientation = window.orientation; // 0 или 180 — портрет, 90 или -90 — ландшафт
   const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
   // Включаем только если ширина > 900 и не в портретной ориентации
@@ -25,11 +22,19 @@ function updateScrollFunction() {
 function enableScroll() {
   isEnabled = true;
   container.addEventListener("wheel", onWheel, { passive: false });
+  container.addEventListener("keydown", onKeyDown);
+  // Включаем плавный скролл через CSS
+  container.style.scrollBehavior = "smooth";
+  // Сделать контейнер фокусируемым для обработки клавиш
+  container.setAttribute("tabindex", "0");
+  container.focus();
 }
 
 function disableScroll() {
   isEnabled = false;
   container.removeEventListener("wheel", onWheel);
+  container.removeEventListener("keydown", onKeyDown);
+  container.style.scrollBehavior = "auto";
 }
 
 // Обработчик колесика
@@ -37,47 +42,63 @@ function onWheel(e) {
   e.preventDefault();
 
   const delta = Math.sign(e.deltaY);
-  const scrollStep = 150; // скорость прокрутки
+  const scrollStep = 500; // шаг прокрутки
 
-  // Обновляем целевое значение
-  targetScrollLeft += delta * scrollStep;
+  const currentScrollLeft = container.scrollLeft;
+  let newScrollLeft = currentScrollLeft + delta * scrollStep;
 
   // Ограничения по границам
-  targetScrollLeft = Math.max(
+  newScrollLeft = Math.max(
     0,
-    Math.min(targetScrollLeft, container.scrollWidth - container.clientWidth)
+    Math.min(newScrollLeft, container.scrollWidth - container.clientWidth)
   );
 
-  // Запускаем анимацию, если еще не запущена
-  if (!isScrolling) {
-    isScrolling = true;
-    animateScroll();
-  }
+  container.scrollTo({
+    left: newScrollLeft,
+    behavior: "smooth",
+  });
 }
 
-// Анимация плавного скролла
-function animateScroll() {
-  const current = container.scrollLeft;
-  const diff = targetScrollLeft - current;
+// Обработчик клавиш
+function onKeyDown(e) {
+  const key = e.key;
+  const scrollStep = 500; // шаг прокрутки для клавиш
 
-  const smoothFactor = 0.1;
+  let newScrollLeft = container.scrollLeft;
 
-  if (Math.abs(diff) < 0.5) {
-    container.scrollLeft = targetScrollLeft;
-    isScrolling = false;
+  if (key === "ArrowRight") {
+    newScrollLeft += scrollStep;
+  } else if (key === "ArrowLeft") {
+    newScrollLeft -= scrollStep;
+  } else if (key === "PageDown") {
+    newScrollLeft += container.clientWidth;
+  } else if (key === "PageUp") {
+    newScrollLeft -= container.clientWidth;
+  } else {
     return;
   }
 
-  container.scrollLeft = current + diff * smoothFactor;
+  // Ограничения по границам
+  newScrollLeft = Math.max(
+    0,
+    Math.min(newScrollLeft, container.scrollWidth - container.clientWidth)
+  );
 
-  requestAnimationFrame(animateScroll);
+  // Плавный скролл
+  container.scrollTo({
+    left: newScrollLeft,
+    behavior: "smooth",
+  });
+
+  e.preventDefault(); // чтобы не было конфликтов с дефолтным поведением
 }
 
-// Отслеживание изменения размера окна
-window.addEventListener("resize", updateScrollFunction);
-
-// Инициализация при загрузке
+// Изначально вызываем для установки правильных условий
 updateScrollFunction();
+
+// Обновляем при изменении размеров окна или ориентации
+window.addEventListener("resize", updateScrollFunction);
+window.addEventListener("orientationchange", updateScrollFunction);
 
 //навигация фильтра
 document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
