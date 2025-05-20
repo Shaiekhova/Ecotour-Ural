@@ -8,7 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showError(message) {
     alert("Тур временно не доступен");
-    console.error("Ошибка:", message);
+    console.error(
+      "Ошибка:",
+      message,
+      (window.location.href = "all-tours.html#tour")
+    );
   }
 
   if (!tourId) {
@@ -91,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";
       const img = document.createElement("img");
-      img.src = src;
+      img.src = src || "https://zelonline.ru/images/404/noimage.png";
       slide.appendChild(img);
       if (swiperWrapper) swiperWrapper.appendChild(slide);
     });

@@ -32,7 +32,7 @@ body {
   flex: 0 0 auto;
   width: 100%;
   max-width: 1920px;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   overflow: hidden;
 }
@@ -42,6 +42,7 @@ body {
 .page-hidden {
   visibility: hidden;
   width: 0;
+  height: 0;
 }
 @media (max-width: 900px), (orientation: portrait) {
   .scroll-container {
@@ -57,7 +58,6 @@ body {
 
   .content {
     min-width: auto;
-    min-height: fit-content;
     flex-direction: column;
     padding: 24px;
     box-sizing: border-box;
