@@ -53,6 +53,7 @@
 .hot-tours-picture {
   width: 100%;
   max-height: 633px;
+  cursor: pointer;
 }
 .hot-tours-desc {
   width: 100%;
@@ -226,7 +227,7 @@
 @media (max-width: 1024px) and (max-height: 600px) {
   .hot-tours-picture,
   .item-right-picture {
-    max-height: 350px;
+    max-height: 320px;
   }
   .hot-tours-desc h3,
   .item-right-desc h3 {

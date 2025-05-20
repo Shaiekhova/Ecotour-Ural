@@ -100,10 +100,19 @@ updateScrollFunction();
 window.addEventListener("resize", updateScrollFunction);
 window.addEventListener("orientationchange", updateScrollFunction);
 
-//навигация фильтра
-document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tab.classList.toggle("active");
+// Обработчик для всех групп фильтров
+document.querySelectorAll(".filter-group").forEach((group) => {
+  group.addEventListener("click", (e) => {
+    if (e.target.classList.contains("all-tours-filter__tab")) {
+      // Убираем активный класс у всех вкладок внутри группы
+      group.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      // Добавляем активный класс к выбранной вкладке
+      e.target.classList.add("active");
+
+      // Тут можно добавить дополнительную логику фильтрации
+    }
   });
 });
 

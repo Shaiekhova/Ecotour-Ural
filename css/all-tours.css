@@ -178,6 +178,7 @@
   font-size: 20px;
   line-height: 100%;
   color: #000000;
+  text-wrap-style: balance;
 }
 .all-tours-card__desc {
   display: flex;
@@ -427,6 +428,9 @@
     max-width: 143px;
     padding: 40px 10px;
   }
+  .all-tours-card__desc {
+    gap: 0;
+  }
 }
 .grand-filter__inner {
   height: 100%;
@@ -634,3 +638,4 @@
     margin-bottom: 5px;
   }
 }
+/******************/
