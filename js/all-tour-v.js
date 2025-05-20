@@ -36,8 +36,6 @@ async function loadTours() {
         const p = document.createElement("p");
         p.textContent = text;
         desc.appendChild(p);
-
-        console.log(text.lenght);
       });
       item.dataset.tip = tour.tip;
       item.dataset.season = tour.season;

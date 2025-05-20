@@ -100,18 +100,13 @@ updateScrollFunction();
 window.addEventListener("resize", updateScrollFunction);
 window.addEventListener("orientationchange", updateScrollFunction);
 
-// Обработчик для всех групп фильтров
 document.querySelectorAll(".filter-group").forEach((group) => {
   group.addEventListener("click", (e) => {
     if (e.target.classList.contains("all-tours-filter__tab")) {
-      // Убираем активный класс у всех вкладок внутри группы
       group.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
         tab.classList.remove("active");
       });
-      // Добавляем активный класс к выбранной вкладке
       e.target.classList.add("active");
-
-      // Тут можно добавить дополнительную логику фильтрации
     }
   });
 });
@@ -179,3 +174,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Назначаем обработчик на все табы
+document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const parent = tab.closest(".filter-group");
+    // Удаляем актив у всех в группе
+    parent
+      .querySelectorAll(".all-tours-filter__tab")
+      .forEach((t) => t.classList.remove("active"));
+    // Добавляем актив к выбранной
+    tab.classList.add("active");
+    // Запускаем фильтрацию
+    // filterTours();
+  });
+});
+
+// function filterTours() {
+//   const activeSeasons = Array.from(
+//     document.querySelectorAll("#season-filter .all-tours-filter__tab.active")
+//   ).map((t) => t.dataset.season);
+//   const activeDurations = Array.from(
+//     document.querySelectorAll("#duration-filter .all-tours-filter__tab.active")
+//   ).map((t) => t.dataset.duration);
+//   const activeActivities = Array.from(
+//     document.querySelectorAll("#activity-filter .all-tours-filter__tab.active")
+//   ).map((t) => t.dataset.activity);
+
+//   document.querySelectorAll(".all-tours-section__item").forEach((item) => {
+//     const itemSeasons = (item.dataset.season || "")
+//       .split(",")
+//       .map((s) => s.trim().toLowerCase());
+//     const itemDuration = item.dataset.duration.toLowerCase();
+//     const itemActivities = (item.dataset.activity || "")
+//       .split(",")
+//       .map((a) => a.trim().toLowerCase());
+
+//     const seasonMatch =
+//       activeSeasons.length === 0 ||
+//       activeSeasons.some((s) => itemSeasons.includes(s.toLowerCase()));
+//     const durationMatch =
+//       activeDurations.length === 0 ||
+//       activeDurations.some((d) => itemDuration.includes(d.toLowerCase()));
+//     const activityMatch =
+//       activeActivities.length === 0 ||
+//       activeActivities.some((a) => itemActivities.includes(a.toLowerCase()));
+
+//     const card = item.querySelector(".all-tours-card");
+
+//     if (seasonMatch && durationMatch && activityMatch) {
+//       card.classList.remove("collapsed");
+//     } else {
+//       card.classList.add("collapsed");
+//     }
+//   });
+// }

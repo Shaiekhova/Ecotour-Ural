@@ -639,3 +639,14 @@
   }
 }
 /******************/
+.tour-card-collapsed {
+  width: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.all-tours-card.collapsed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
