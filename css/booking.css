@@ -61,6 +61,7 @@
   font-size: 32px;
   line-height: 100%;
   color: #000000;
+  text-wrap-style: balance;
 }
 @media (max-width: 1366px) {
   .booking__form-container h2 {

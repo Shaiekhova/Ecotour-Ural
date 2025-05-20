@@ -47,7 +47,7 @@
             </div>
             <!--bread crumbs-->
             <div class="bread-crumbs bread-crumbs-main">
-              <a class="bread-nav bread-nav-main" href="#home"
+              <a class="bread-nav bread-nav-main" href="index.html#home"
                 >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
               >
               <a class="bread-link link-hover" href="all-tours.html#tour"
@@ -225,7 +225,9 @@
           <div class="tour-page">
             <!--bread crumbs-->
             <div class="bread-crumbs">
-              <a class="bread-nav" href="#home">ГЛАВНАЯ / ЭКОТУР УРАЛ</a>
+              <a class="bread-nav" href="index.html#home"
+                >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
+              >
             </div>
             <div id="tour-content" class="tour-page__inner">
               <h2 class="tour-page__text"></h2>
@@ -247,12 +249,8 @@
               <div class="tour-page-swiper-wrap">
                 <div class="swiper tour-page-swiper">
                   <div class="swiper-wrapper"></div>
-                  <div class="swiper-button-prev">
-                    <img src="./images/Arrow 5.png" alt="назад" />
-                  </div>
-                  <div class="swiper-button-next">
-                    <img src="./images/Arrow 6.png" alt="вперед" />
-                  </div>
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
                 </div>
               </div>
             </div>
@@ -262,7 +260,9 @@
           <div class="reviews">
             <!--bread crumbs-->
             <div class="bread-crumbs">
-              <a class="bread-nav" href="#home">ГЛАВНАЯ / ЭКОТУР УРАЛ</a>
+              <a class="bread-nav" href="index.html#home"
+                >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
+              >
             </div>
             <div class="reviews__wrapper">
               <div id="reviews-content" class="reviews__inner">
@@ -290,7 +290,11 @@
                   <div class="reviews__picture"></div>
                 </div>
                 <div class="reviews__item">
-                  <iframe class="reviews__video" src="" scrolling="no"></iframe>
+                  <video class="reviews__video" controls>
+                    <source src="" type="video/webm" />
+                    <source src="" type="video/mp4" />
+                    Ваш браузер не поддерживает встроенные видео :(
+                  </video>
                 </div>
               </div>
             </div>
@@ -300,7 +304,9 @@
           <div class="booking">
             <!--bread crumbs-->
             <div class="bread-crumbs">
-              <a class="bread-nav" href="#home">ГЛАВНАЯ / ЭКОТУР УРАЛ</a>
+              <a class="bread-nav" href="index.html#home"
+                >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
+              >
             </div>
             <div class="booking__wrapper">
               <div class="booking__inner">
@@ -376,9 +382,9 @@
         </div>
       </div>
     </div>
-    <script src="./js/tour-page-init.js"></script>
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/tour-page-init-v.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/swiper.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

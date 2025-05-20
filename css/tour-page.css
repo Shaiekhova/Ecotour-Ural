@@ -86,7 +86,6 @@
 .tour-page__item:nth-child(3) {
   margin-top: 25px;
   margin-bottom: 0;
-  max-width: 265px;
 }
 .tour-page__desc {
   grid-area: bottom-text;
@@ -246,7 +245,6 @@
   }
 }
 .tour-page-swiper {
-  background: #d9d9d9;
   width: 870px;
   height: 100%;
 }
@@ -271,9 +269,23 @@
     height: 390px;
   }
 }
-.swiper-button-next:after {
+.swiper-button-next::after {
   content: url(../images/Arrow\ 5.png);
 }
 .swiper-button-prev:after {
-  content: url(../images/Arrow\ 5.png);
+  content: url(../images/Arrow\ 6.png);
+}
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: var(--swiper-navigation-top-offset, 95%);
+  width: calc(var(--swiper-navigation-size) / 44 * 27);
+  height: var(--swiper-navigation-size);
+  margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+}
+.swiper-button-prev {
+  left: var(--swiper-navigation-sides-offset, 40px);
+}
+.swiper-button-next {
+  right: var(--swiper-navigation-sides-offset, 40px);
 }

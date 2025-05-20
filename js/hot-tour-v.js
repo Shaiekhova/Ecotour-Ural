@@ -1,3 +1,5 @@
+import { apiGet } from "./Api.js";
+
 const containersAndTemplates = [
   {
     containerId: "hot-tours-left1",
@@ -9,18 +11,19 @@ const containersAndTemplates = [
   },
 ];
 
-// Асинхронная функция загрузки данных
 async function loadActivityData() {
   try {
-    const response = await fetch(
-      "https://gist.githubusercontent.com/Shaiekhova/58f6e6b0b44f8b730f7a354d696d9538/raw/46bc8ac0657af5315d886567ce6f3d56034be6ef/db.json"
-    );
-    if (!response.ok) {
-      throw new Error("Ошибка сети: " + response.status);
-    }
-    const data = await response.json();
+    const data = await apiGet(); // вызываем apiGet
     console.log("Полученные данные:", data);
-    return data;
+
+    const tours = data.tours; // предполагаю, что в данных есть свойство tours
+
+    if (!Array.isArray(tours)) {
+      throw new Error("Данные не содержат массив tours");
+    }
+
+    // Возвращаем массив туров
+    return tours;
   } catch (e) {
     console.error("Ошибка при загрузке данных:", e);
     return [];
@@ -31,38 +34,35 @@ async function loadActivityData() {
 function createActivityCard(tour, template, positionClass) {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector(".hot-tours-item");
-  const param = JSON.parse(tour.param);
   card.classList.add(positionClass);
-  card.id = tour.id_tour;
+  card.id = tour.id;
   card.dataset.tip = tour.tip;
-  card.dataset.season = param.season;
-  card.dataset.duration = param.duration;
-  card.dataset.activity = param.activity;
+  card.dataset.season = tour.season;
+  card.dataset.duration = tour.duration;
+  card.dataset.activity = tour.activity;
 
-  // Обработчик перехода
+  //   Обработчик перехода
   card.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = `tour-page.html?id=${tour.id_tour}#tour-page`;
+    window.location.href = `tour-page.html?id=${tour.id}#tour-page`;
   });
 
-  // Заполнение изображения
+  //   // Заполнение изображения
   const img = card.querySelector("img");
-  img.src = param.image;
-  img.alt = param.title || "на ремонте";
+  img.src = tour.hot_picture;
+  img.alt = tour.hot_title || "на ремонте";
 
   // Продолжительность
   const durationElem = card.querySelector("p");
-  durationElem.textContent = param.duration || "5 ДНЕЙ 4 НОЧИ";
+  durationElem.textContent = tour.hot_duration;
 
   // Название тура
   const title = card.querySelector("h2");
-  title.innerHTML = (param.title || "Название тура").replace(/\n/g, "<br />");
+  title.innerHTML = tour.hot_title;
 
   // Цена
   const price = card.querySelector("h3");
-  if (param.price !== undefined && price) {
-    price.textContent = param.price;
-  }
+  price.textContent = tour.hot_price;
 
   return clone;
 }
