@@ -39,7 +39,10 @@ body {
 .main-content {
   min-width: 100%;
 }
-
+.page-hidden {
+  visibility: hidden;
+  width: 0;
+}
 @media (max-width: 900px), (orientation: portrait) {
   .scroll-container {
     flex-direction: column;

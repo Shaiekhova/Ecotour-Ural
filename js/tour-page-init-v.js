@@ -41,9 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("tour-content");
     const bookingForm = document.getElementById("booking-form");
     const reviewsContainer = document.getElementById("reviews-content");
-    if (!container || !bookingForm || !reviewsContainer) {
-      console.warn("Некоторые элементы DOM не найдены");
-      return;
+    const reviewsMain = document.getElementById("reviews");
+    // Проверка и добавление класса page-hidden, если reviews === "no"
+    if (reviewsContainer) {
+      if (tour.reviews === "no") {
+        reviewsMain.classList.add("page-hidden");
+      } else {
+        reviewsMain.classList.remove("page-hidden");
+      }
     }
     // Обновляем название
     const title = container.querySelector(".tour-page__text");
@@ -125,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (reviewImage) {
         const imageCont = reviewImage;
-        console.log(imageCont);
         const image = document.createElement("img");
         image.src = item;
         imageCont.appendChild(image);
@@ -143,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formPrice = bookingForm.querySelector(".booking-price");
     formPrice.textContent = tour.form_prise;
+    swiper.update();
   }
 
   fetchToursData();
