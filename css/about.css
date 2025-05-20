@@ -323,9 +323,7 @@
     min-height: 190px;
     height: 190px;
   }
-  .about__top-animate img {
-    object-fit: contain;
-  }
+
   .about__date {
     margin-top: 10px;
   }

@@ -181,12 +181,6 @@
   .all-tours-card__text {
     max-width: 100%;
   }
-  .all-tours-card__text h2 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-  }
 }
 @media (max-width: 600px) {
   .reviews__banner-pic {

@@ -32,7 +32,7 @@
 .tour-page__text {
   grid-area: top-text;
   font-weight: 400;
-  font-size: clamp(35px, 3.5vw, 60px);
+  font-size: clamp(35px, 3.5vw, 55px);
   line-height: 100%;
   color: #000000;
   text-transform: uppercase;
