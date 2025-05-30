@@ -211,7 +211,7 @@
 @media (max-width: 900px), (orientation: portrait) {
   .hot-tours-wrapper {
     margin: 0;
-    /* overflow: hidden; */
+    overflow: hidden;
   }
   .hot-tours-separator {
     display: none;
@@ -229,9 +229,7 @@
     margin: 0;
   }
   .all-tours-link {
-    position: initial;
-    align-self: flex-end;
-    margin-bottom: 20px;
+    display: none;
   }
   .all-tours-link.active {
     margin-top: 0;
@@ -244,6 +242,11 @@
   }
   .item-right:not(:last-child) {
     margin-right: 0;
+  }
+  .item-right {
+    max-width: 100%;
+    margin: 0;
+    border-bottom: 1px solid #000000;
   }
   .hot-tours-block {
     gap: 24px;
