@@ -239,7 +239,7 @@
     transition: all 0.3s ease-in-out;
   }
   .grand-filter.active {
-    height: 100%;
+    height: auto;
     margin-bottom: 24px;
     border-top: 1px solid #000000;
   }
