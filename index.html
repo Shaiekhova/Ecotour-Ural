@@ -168,7 +168,7 @@
         <div class="content" id="about">
           <div class="about">
             <!--bread crumbs-->
-            <div class="bread-crumbs left-border">
+            <div class="bread-crumbs border-white">
               <a class="bread-nav bread-nav-main" href="#home"
                 >ГЛАВНАЯ / ЭКОТУР УРАЛ</a
               >
@@ -260,7 +260,7 @@
             </div>
           </div>
         </div>
-        <div class="content" id="hot">
+        <div class="content hot-tours-observe" id="hot">
           <div class="hot-tours">
             <!--bread crumbs-->
             <div class="bread-crumbs">
@@ -340,18 +340,13 @@
                 </div>
               </div>
             </div>
-            <div id="hot-tours-left1" class="hot-tours-inner">
-              <a href="all-tours.html#tour" class="all-tours-link link-hover"
-                >ВСЕ ТУРЫ</a
-              >
+            <div class="hot-tours-wrapper">
+              <div id="hot-tours-elements" class="hot-tours-inner"></div>
             </div>
           </div>
         </div>
         <!--шаблон карточки-->
-        <template id="template-left-1">
-          <a href="all-tours.html#tour" class="all-tours-link link-hover"
-            >ВСЕ ТУРЫ</a
-          >
+        <template id="template-left">
           <div
             id=""
             data-tip=""
@@ -361,17 +356,28 @@
             class="hot-tours-item"
           >
             <div class="hot-tours-block">
-              <img class="hot-tours-picture" src="" alt="" />
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/dQbLmJzc/1.jpg"
+                alt=""
+              />
 
               <div class="hot-tours-desc">
                 <h2></h2>
                 <h3></h3>
+                <p></p>
               </div>
-              <p></p>
+              <a class="hot-tours-detailed button-hover" href="">ПОДРОБНЕЕ</a>
             </div>
           </div>
         </template>
-        <template id="template-right-1">
+        <!--разделитель-->
+        <template id="separator-template">
+          <div class="hot-tours-separator">
+            <img src="./images/hot-tours-separ.png" alt="" />
+          </div>
+        </template>
+        <template id="template-right">
           <div
             id=""
             data-tip=""
@@ -380,141 +386,23 @@
             data-activity=""
             class="hot-tours-item item-right"
           >
+            <a
+              href="all-tours.html#tour"
+              class="all-tours-link all-tours-link-hover"
+              >ВСЕ ТУРЫ</a
+            >
             <div class="hot-tours-block item-right-block">
-              <img class="hot-tours-picture" src="" alt="" />
-
-              <div class="hot-tours-desc item-right-desc">
-                <h2></h2>
-                <h3></h3>
-              </div>
-              <p></p>
-            </div>
-          </div>
-        </template>
-        <div class="content" id="hotTwo">
-          <div class="hot-tours">
-            <!--bread crumbs-->
-            <div class="bread-crumbs">
-              <a class="bread-nav" href="#home">ГЛАВНАЯ / ЭКОТУР УРАЛ</a>
-            </div>
-            <!--filter-->
-            <button type="button" class="grand-filter-button hot-tour-two">
-              <img src="./images/filter.png" alt="icon" /> Фильтры
-            </button>
-            <div class="grand-filter hot-tour-two">
-              <div class="grand-filter__inner">
-                <!--TABS-->
-                <div class="grand-filter__item">
-                  <h2>Сезон</h2>
-                  <div class="grand-filter__tab-container">
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Зима</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Лето</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Весна</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Осень</p>
-                    </div>
-                  </div>
-                </div>
-                <!--TABS-->
-                <div class="grand-filter__item">
-                  <h2>Продолжительность</h2>
-                  <div class="grand-filter__tab-container">
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>1 день</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>от 3-х дней</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>5 дней</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>7 дней</p>
-                    </div>
-                  </div>
-                </div>
-                <!--TABS-->
-                <div class="grand-filter__item">
-                  <h2>Тип тура</h2>
-                  <div class="grand-filter__tab-container tab-container-last">
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Сплав</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Для детей</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Ближайшие туры</p>
-                    </div>
-                    <div class="grand-filter__tab">
-                      <span></span>
-                      <p>Для гостей Урала</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="hot-tours-left2" class="hot-tours-inner"></div>
-          </div>
-        </div>
-        <!--шаблон карточки-->
-        <template id="template-left-2">
-          <a href="all-tours.html#tour" class="all-tours-link link-hover"
-            >ВСЕ ТУРЫ</a
-          >
-          <div
-            id=""
-            data-tip=""
-            data-season=""
-            data-duration=""
-            data-activity=""
-            class="hot-tours-item"
-          >
-            <div class="hot-tours-block">
-              <img class="hot-tours-picture" src="" alt="" />
-
+              <img
+                class="hot-tours-picture"
+                src="https://i.postimg.cc/dQbLmJzc/1.jpg"
+                alt=""
+              />
               <div class="hot-tours-desc">
                 <h2></h2>
                 <h3></h3>
+                <p></p>
               </div>
-              <p></p>
-            </div>
-          </div>
-        </template>
-        <template id="template-right-2">
-          <div
-            id=""
-            data-tip=""
-            data-season=""
-            data-duration=""
-            data-activity=""
-            class="hot-tours-item item-right"
-          >
-            <div class="hot-tours-block item-right-block">
-              <img class="hot-tours-picture" src="" alt="" />
-
-              <div class="hot-tours-desc item-right-desc">
-                <h2>НА ГРАНИЦЕ ЕВРОПЫ И АЗИИ</h2>
-                <h3></h3>
-              </div>
-              <p></p>
+              <a class="hot-tours-detailed button-hover" href="">ПОДРОБНЕЕ</a>
             </div>
           </div>
         </template>
@@ -575,5 +463,6 @@
     </div>
     <script type="module" src="./js/hot-tour-v.js"></script>
     <script src="./js/index.js"></script>
+    <script type="module" src="./js/scroll-hot-tours-container.js"></script>
   </body>
 </html>

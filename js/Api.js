@@ -7,24 +7,25 @@ export function apiGet() {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log("error", error));
 }
 
-export function apiPut(dataObject) {
+export function updateData(newTours) {
   return fetch(API_URL, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(dataObject),
-  }).then((response) => response.text());
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ tours: newTours }),
+  }).catch((error) => console.log("error", error));
 }
 
-export function apiDelete() {
-  return fetch(API_URL, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => response.text());
+export function apiDelete(tourId) {
+  return apiGet()
+    .then((data) => {
+      if (!data || !data.tours) throw new Error("Данные не найдены");
+      data.tours = data.tours.filter((t) => t.id !== tourId);
+      return updateData(data.tours);
+    })
+    .catch((error) => console.log("error", error));
 }

@@ -3,6 +3,10 @@
   display: flex;
 }
 @media (max-width: 900px), (orientation: portrait) {
+  #booking:target {
+    padding-top: 143px;
+    margin-top: -143px;
+  }
   .booking {
     flex-direction: column;
   }
@@ -367,6 +371,10 @@ input:focus::placeholder {
   }
 }
 @media (max-width: 600px) {
+  #booking:target {
+    padding-top: 99px;
+    margin-top: -99px;
+  }
   .booking__inner {
     gap: 25px;
   }

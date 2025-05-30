@@ -3,6 +3,10 @@
   display: flex;
 }
 @media (max-width: 900px), (orientation: portrait) {
+  #reviews:target {
+    padding-top: 143px;
+    margin-top: -143px;
+  }
   .reviews {
     flex-direction: column;
   }
@@ -183,6 +187,10 @@
   }
 }
 @media (max-width: 600px) {
+  #reviews:target {
+    padding-top: 99px;
+    margin-top: -99px;
+  }
   .reviews__banner-pic {
     max-width: 353px;
     aspect-ratio: 353/348;

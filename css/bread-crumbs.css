@@ -19,6 +19,9 @@
   border-right: none;
   border-left: 1px solid #000000;
 }
+.border-white {
+  border: none;
+}
 @media (max-width: 1366px) {
   .bread-crumbs {
     max-width: 30px;

@@ -1,29 +1,27 @@
 import { apiGet } from "./Api.js";
+import { updateCardWidth } from "./scroll-hot-tours-container.js";
 
-const containersAndTemplates = [
-  {
-    containerId: "hot-tours-left1",
-    templates: ["template-left-1", "template-right-1"],
-  },
-  {
-    containerId: "hot-tours-left2",
-    templates: ["template-left-2", "template-right-2"],
-  },
-];
+const containerId = "hot-tours-elements";
+const templates = ["template-left", "template-right"];
 
-async function loadActivityData() {
+// Глобальный массив для хранения только туров с tip: "hot"
+let hotTours = [];
+
+// Загрузка данных и фильтрация только hot-туры
+async function loadHotTours() {
   try {
-    const data = await apiGet(); // вызываем apiGet
+    const data = await apiGet();
     console.log("Полученные данные:", data);
 
-    const tours = data.tours; // предполагаю, что в данных есть свойство tours
+    const tours = data.tours;
 
     if (!Array.isArray(tours)) {
       throw new Error("Данные не содержат массив tours");
     }
 
-    // Возвращаем массив туров
-    return tours;
+    // сохраняем только туры с tip: "hot"
+    hotTours = tours.filter((tour) => tour.tip === "hot");
+    return hotTours;
   } catch (e) {
     console.error("Ошибка при загрузке данных:", e);
     return [];
@@ -37,17 +35,17 @@ function createActivityCard(tour, template, positionClass) {
   card.classList.add(positionClass);
   card.id = tour.id;
   card.dataset.tip = tour.tip;
-  card.dataset.season = tour.season;
+  card.dataset.season = tour.season.join(",");
   card.dataset.duration = tour.duration;
-  card.dataset.activity = tour.activity;
+  card.dataset.activity = tour.activity.join(",");
 
-  //   Обработчик перехода
+  // Обработчик перехода
   card.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = `tour-page.html?id=${tour.id}#tour-page`;
   });
 
-  //   // Заполнение изображения
+  // Заполнение изображения
   const img = card.querySelector("img");
   img.src = tour.hot_picture;
   img.alt = tour.hot_title || "на ремонте";
@@ -67,7 +65,18 @@ function createActivityCard(tour, template, positionClass) {
   return clone;
 }
 
-// Рендеринг туров в указанный контейнер
+// Создание разделителя
+function createSeparator() {
+  const separatorTemplate = document.getElementById("separator-template");
+  if (!separatorTemplate) {
+    console.error("Шаблон разделителя не найден");
+    return null;
+  }
+  const separatorClone = separatorTemplate.content.cloneNode(true);
+  return separatorClone;
+}
+
+// Рендеринг туров с разделителями между 1-ой и 2-й, 3-ей и 4-й и т.д.
 function renderActivities(tours, containerId, templates) {
   const container = document.getElementById(containerId);
   if (!container) {
@@ -77,7 +86,7 @@ function renderActivities(tours, containerId, templates) {
   container.innerHTML = ""; // очищаем контейнер
 
   tours.forEach((tour, index) => {
-    const templateId = templates[index];
+    const templateId = templates[index % templates.length]; // чередуем шаблоны
     const template = document.getElementById(templateId);
     if (!template) {
       console.error(`Шаблон ${templateId} не найден`);
@@ -86,25 +95,29 @@ function renderActivities(tours, containerId, templates) {
     const positionClass = index % 2 === 0 ? "item-left" : "item-right";
     const cardElement = createActivityCard(tour, template, positionClass);
     container.appendChild(cardElement);
+
+    // После каждой нечетной карточки (индексы 0, 2, 4, ...) вставляем разделитель, кроме последней
+    if (index % 2 === 0 && index !== tours.length - 1) {
+      const separator = createSeparator();
+      if (separator) {
+        container.appendChild(separator);
+        updateCardWidth();
+      }
+    }
   });
+  updateCardWidth();
 }
 
 // Инициализация
 async function initActivities() {
-  const tours = await loadActivityData();
+  const tours = await loadHotTours();
 
   if (!Array.isArray(tours)) {
     console.error("Данные туров не получены или не являются массивом");
     return;
   }
 
-  const hotTours = tours.filter((tour) => tour.tip === "hot");
-
-  // Распределяем по контейнерам
-  for (const { containerId, templates } of containersAndTemplates) {
-    const toursSubset = hotTours.splice(0, 2);
-    renderActivities(toursSubset, containerId, templates);
-  }
+  renderActivities(tours, containerId, templates);
 }
 
 document.addEventListener("DOMContentLoaded", initActivities);

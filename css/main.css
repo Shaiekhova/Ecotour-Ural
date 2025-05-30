@@ -25,7 +25,8 @@ body {
 .content-wrapper {
   display: flex;
   min-width: 100%;
-  min-height: 100vh;
+  max-height: 1080px;
+  height: 100%;
 }
 .content {
   flex: 0 0 auto;
@@ -83,4 +84,11 @@ body {
 }
 * {
   caret-color: transparent;
+}
+.button-hover {
+  transition: all 0.3s ease-in-out;
+}
+.button-hover:hover {
+  color: #ffffff;
+  background: #000000;
 }

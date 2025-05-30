@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Добавление тура</title>
+  </head>
+  <body class="admin-body">
+    <div class="admin-page">
+      <div id="status" class="status-page"></div>
+      <div class="admin-form-wrapper">
+        <form id="addTourForm" class="add-tour-form">
+          <div class="add-tour-form-item">
+            <h2>Data-Set</h2>
+            <label>ID: <input type="text" id="addId" required /></label>
+            <label
+              >Tip:
+              <input type="text" id="addTip" required placeholder="prost / hot"
+            /></label>
+            <label
+              >Сезоны (через запятую):
+              <input
+                type="text"
+                id="addSeason"
+                placeholder="Зима, Лето, Весна, Осень"
+            /></label>
+            <label
+              >Продолжительность:
+              <input
+                type="text"
+                id="addDuration"
+                placeholder="например, 1 день"
+            /></label>
+            <label
+              >Активность (через запятую):
+              <input
+                type="text"
+                id="addActivity"
+                placeholder="Сплав,ближайшие,для гостей Урала,Для детей"
+            /></label>
+          </div>
+          <div class="add-tour-form-item">
+            <h2>Все туры</h2>
+            <label>Название тура: <input type="text" id="addAllTitle" /></label>
+            <label
+              >Картинка (URL): <input type="text" id="addAllPicture"
+            /></label>
+            <label
+              >Цена:
+              <input type="text" id="addAllPrice" placeholder="от 0000 р."
+            /></label>
+            <label
+              >Описание (через перенос строки или ;):
+              <textarea
+                id="addAllDescription"
+                rows="3"
+                cols="50"
+                placeholder="абзац;абзац;абзац;"
+              ></textarea>
+            </label>
+          </div>
+
+          <div class="add-tour-form-item">
+            <h2>Горящий</h2>
+            <label
+              >Название для горящего тура: <input type="text" id="addHotTitle"
+            /></label>
+            <label
+              >Картинка (URL) для горящего тура:
+              <input type="text" id="addHotPicture"
+            /></label>
+            <label
+              >Цена для горящего тура: <input type="text" id="addHotPrice"
+            /></label>
+            <label
+              >Продолжительность для горящего тура:
+              <input type="text" id="addHotDuration"
+            /></label>
+          </div>
+          <div class="add-tour-form-item">
+            <h2>Страница тура</h2>
+            <label
+              >Название для страницы тура:
+              <input type="text" id="addTourPageTitle"
+            /></label>
+            <label
+              >В ПРОГРАММЕ: (через перенос строки или ;):
+              <textarea id="addTourPageProgramm" rows="3" cols="50"></textarea>
+            </label>
+            <label
+              >В СТОИМОСТЬ ВКЛЮЧЕНО: (через перенос строки или ;):
+              <textarea id="addTourPageIncluded" rows="3" cols="50"></textarea>
+            </label>
+            <label
+              >СТОИМОСТЬ: (через перенос строки или ;):
+              <textarea id="addTourPageCost" rows="3" cols="50"></textarea>
+            </label>
+            <label
+              >Слайды (через запятую URL):
+              <input type="text" id="addTourSlides"
+            /></label>
+          </div>
+
+          <div class="add-tour-form-item">
+            <h2>Отзывы</h2>
+            <label
+              >Отзывы (yes/no):
+              <input
+                type="text"
+                id="addReviews"
+                placeholder="yes / no"
+                required
+            /></label>
+            <label
+              >GIF отзывов URL: <input type="text" id="addReviewsGif"
+            /></label>
+            <label
+              >Изображения отзывов (через запятую URL):
+              <input type="text" id="addReviewsImages"
+            /></label>
+            <div id="reviewsContainer">
+              <div class="review">
+                <h4>Отзыв 1</h4>
+                <label>Имя: <input type="text" class="reviewTitle" /></label>
+                <label
+                  >Тексты (через перенос строки или ;):
+                  <textarea class="reviewText" rows="3" cols="50"></textarea>
+                </label>
+              </div>
+              <div class="review">
+                <h4>Отзыв 2</h4>
+                <label>Имя: <input type="text" class="reviewTitle" /></label>
+                <label
+                  >Тексты (через перенос строки или ;):
+                  <textarea class="reviewText" rows="3" cols="50"></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button type="submit">Добавить тур</button>
+        </form>
+      </div>
+      <button id="refreshBtn">Обновить туры</button>
+      <div id="toursContainer"></div>
+    </div>
+
+    <script type="module" src="./js/Api.js"></script>
+    <script type="module" src="./js/manageTours.js"></script>
+  </body>
+</html>
