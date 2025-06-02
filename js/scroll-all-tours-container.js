@@ -1,9 +1,7 @@
 let disableHorizontalScrollFn = null; // Функция отключения горизонтального скролла
 let isHorizontalScrollActive = false; // Статус активности горизонтального скролла
 
-// Ваша исходная функция, обертка
 function initHorizontalScroll() {
-  // Весь ваш оригинальный код без изменений
   function enableHorizontalScrollOnWheel(selector) {
     const element = document.querySelector(selector);
     if (!element) return null;
@@ -226,3 +224,4 @@ function updateCardWidth() {
 
 window.addEventListener("load", updateCardWidth);
 window.addEventListener("resize", updateCardWidth);
+///

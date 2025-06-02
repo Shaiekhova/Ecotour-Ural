@@ -118,7 +118,8 @@
 .all-tours-link-hover {
   transition: all 0.3s ease-in-out;
 }
-.all-tours-link-hover:hover {
+.all-tours-link-hover:hover,
+.all-tours-link-hover:focus {
   color: #000000;
   background: #ffffff;
 }
@@ -176,10 +177,18 @@
     font-size: 18px;
   }
 }
+@media (max-width: 1024px) and (max-height: 600px) {
+  .all-tours-link {
+    font-size: 15px;
+  }
+  .hot-tours-picture {
+    height: 54.6vh;
+  }
+}
 @media (max-width: 900px), (orientation: portrait) {
   #hot:target {
-    padding-top: 143px;
-    margin-top: -143px;
+    padding-top: 200px;
+    margin-top: -200px;
   }
   .hot-tours {
     flex-direction: column;
@@ -222,6 +231,7 @@
   .item-right-block .hot-tours-picture {
     order: 0;
     max-height: 773px;
+    height: auto;
   }
   .hot-tours-item {
     margin: 0;
@@ -233,6 +243,7 @@
   }
   .hot-tours-picture {
     max-height: 773px;
+    height: auto;
   }
 
   .hot-tours-desc {
@@ -252,6 +263,10 @@
   }
 }
 @media (max-width: 600px) {
+  #hot:target {
+    padding-top: 99px;
+    margin-top: -99px;
+  }
   .hot-tours-block {
     gap: 15px;
   }

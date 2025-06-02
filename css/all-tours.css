@@ -382,6 +382,7 @@
   width: 50%;
   height: auto;
   position: relative;
+  cursor: pointer;
 }
 .all-tours-card__pic img {
   width: 100%;
@@ -507,6 +508,10 @@
   .all-tours-card__text h2 {
     font-size: 16px;
   }
+  .all-tours-card__link {
+    font-size: 15px;
+    padding: 3px 15px;
+  }
 }
 @media (max-width: 900px) {
   .all-tours__container-inner {
@@ -518,8 +523,8 @@
 }
 @media (max-width: 900px), (orientation: portrait) {
   #tour:target {
-    padding-top: 143px;
-    margin-top: -143px;
+    padding-top: 200px;
+    margin-top: -200px;
   }
   .all-tours {
     flex-direction: column;

@@ -62,9 +62,11 @@
   text-transform: uppercase;
   color: #000000;
   width: fit-content;
-  position: relative;
   align-self: flex-end;
   margin-top: auto;
+  border: 1px solid #000000;
+  padding: 6px 22px;
+  box-sizing: border-box;
 }
 .tour-page__link:before {
   content: "";
@@ -170,6 +172,10 @@
   }
 }
 @media (max-width: 900px), (orientation: portrait) {
+  #hot:target {
+    padding-top: 200px;
+    margin-top: -200px;
+  }
   .tour-page {
     flex-direction: column;
   }
@@ -240,6 +246,10 @@
   }
 }
 @media (max-width: 460px) {
+  #hot:target {
+    padding-top: 99px;
+    margin-top: -99px;
+  }
   .tour-page__text {
     font-size: 23px;
   }

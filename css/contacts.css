@@ -5,8 +5,8 @@
 }
 @media (max-width: 900px), (orientation: portrait) {
   #contacts:target {
-    padding-top: 143px;
-    margin-top: -143px;
+    padding-top: 200px;
+    margin-top: -200px;
   }
   .contacts {
     flex-direction: column;
