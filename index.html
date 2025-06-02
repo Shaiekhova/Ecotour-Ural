@@ -32,7 +32,7 @@
             </li>
           </ul>
         </div>
-        <div class="content main-content" id="home">
+        <div class="content main-content" id="home" style="display: none">
           <div class="promo">
             <div class="promo__inner">
               <img
@@ -260,7 +260,7 @@
             </div>
           </div>
         </div>
-        <div class="content hot-tours-observe" id="hot">
+        <div class="content" id="hot">
           <div class="hot-tours">
             <!--bread crumbs-->
             <div class="bread-crumbs">
@@ -341,10 +341,17 @@
               </div>
             </div>
             <div class="hot-tours-wrapper">
-              <div id="hot-tours-elements" class="hot-tours-inner"></div>
+              <a
+                href="all-tours.html#tour"
+                class="all-tours-link all-tours-link-mobile all-tours-link-hover"
+                >ВСЕ ТУРЫ</a
+              >
+              <div id="hot-tours-elements-1" class="hot-tours-inner"></div>
             </div>
           </div>
         </div>
+        <!-- <div id="hot-tours-elements-2" ></div>
+        <div id="hot-tours-elements-3" ></div> -->
         <!--шаблон карточки-->
         <template id="template-left">
           <div
@@ -374,7 +381,16 @@
         <!--разделитель-->
         <template id="separator-template">
           <div class="hot-tours-separator">
-            <img src="./images/hot-tours-separ.png" alt="" />
+            <img
+              class="separator-desctop"
+              src="./images/hot-tours-separ.png"
+              alt=""
+            />
+            <img
+              class="separator-mobile"
+              src="./images/separ-mobile.gif"
+              alt=""
+            />
           </div>
         </template>
         <template id="template-right">
@@ -406,7 +422,7 @@
             </div>
           </div>
         </template>
-        <div class="content" id="contacts">
+        <div class="content" id="contacts" style="display: none">
           <div class="contacts">
             <!--bread crumbs-->
             <div class="bread-crumbs">
@@ -463,6 +479,6 @@
     </div>
     <script type="module" src="./js/hot-tour-v.js"></script>
     <script src="./js/index.js"></script>
-    <script type="module" src="./js/scroll-hot-tours-container.js"></script>
+    <!-- <script type="module" src="./js/scroll-hot-tours-container.js"></script> -->
   </body>
 </html>

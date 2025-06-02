@@ -1,34 +1,36 @@
 import { apiGet } from "./Api.js";
-import { updateCardWidth } from "./scroll-hot-tours-container.js";
 
-const containerId = "hot-tours-elements";
+// Массив id контейнеров
+const containerIds = [
+  "hot-tours-elements-1",
+  "hot-tours-elements-2",
+  "hot-tours-elements-3",
+];
+// Массив шаблонов
 const templates = ["template-left", "template-right"];
 
-// Глобальный массив для хранения только туров с tip: "hot"
 let hotTours = [];
 
-// Загрузка данных и фильтрация только hot-туры
+// Загрузка данных и фильтрация
 async function loadHotTours() {
   try {
     const data = await apiGet();
-    console.log("Полученные данные:", data);
+    // console.info("Полученные данные:", data);
 
     const tours = data.tours;
-
     if (!Array.isArray(tours)) {
       throw new Error("Данные не содержат массив tours");
     }
-
-    // сохраняем только туры с tip: "hot"
     hotTours = tours.filter((tour) => tour.tip === "hot");
     return hotTours;
   } catch (e) {
+    // Только важное сообщение об ошибке
     console.error("Ошибка при загрузке данных:", e);
     return [];
   }
 }
 
-// Создание карточки тура
+// Создание карточки
 function createActivityCard(tour, template, positionClass) {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector(".hot-tours-item");
@@ -39,85 +41,82 @@ function createActivityCard(tour, template, positionClass) {
   card.dataset.duration = tour.duration;
   card.dataset.activity = tour.activity.join(",");
 
-  // Обработчик перехода
   card.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = `tour-page.html?id=${tour.id}#tour-page`;
   });
 
-  // Заполнение изображения
   const img = card.querySelector("img");
   img.src = tour.hot_picture;
   img.alt = tour.hot_title || "на ремонте";
 
-  // Продолжительность
   const durationElem = card.querySelector("p");
   durationElem.textContent = tour.hot_duration;
 
-  // Название тура
   const title = card.querySelector("h2");
   title.innerHTML = tour.hot_title;
 
-  // Цена
   const price = card.querySelector("h3");
   price.textContent = tour.hot_price;
 
   return clone;
 }
 
-// Создание разделителя
 function createSeparator() {
   const separatorTemplate = document.getElementById("separator-template");
   if (!separatorTemplate) {
-    console.error("Шаблон разделителя не найден");
+    // Можно оставить пустой или логировать, если нужно
     return null;
   }
-  const separatorClone = separatorTemplate.content.cloneNode(true);
-  return separatorClone;
+  return separatorTemplate.content.cloneNode(true);
 }
 
-// Рендеринг туров с разделителями между 1-ой и 2-й, 3-ей и 4-й и т.д.
-function renderActivities(tours, containerId, templates) {
-  const container = document.getElementById(containerId);
-  if (!container) {
-    console.error(`Контейнер ${containerId} не найден`);
-    return;
-  }
-  container.innerHTML = ""; // очищаем контейнер
-
-  tours.forEach((tour, index) => {
-    const templateId = templates[index % templates.length]; // чередуем шаблоны
-    const template = document.getElementById(templateId);
-    if (!template) {
-      console.error(`Шаблон ${templateId} не найден`);
-      return;
-    }
-    const positionClass = index % 2 === 0 ? "item-left" : "item-right";
-    const cardElement = createActivityCard(tour, template, positionClass);
-    container.appendChild(cardElement);
-
-    // После каждой нечетной карточки (индексы 0, 2, 4, ...) вставляем разделитель, кроме последней
-    if (index % 2 === 0 && index !== tours.length - 1) {
-      const separator = createSeparator();
-      if (separator) {
-        container.appendChild(separator);
-        updateCardWidth();
-      }
-    }
-  });
-  updateCardWidth();
-}
-
-// Инициализация
-async function initActivities() {
+async function renderToursInContainers() {
   const tours = await loadHotTours();
 
-  if (!Array.isArray(tours)) {
-    console.error("Данные туров не получены или не являются массивом");
-    return;
+  const toursPerContainer = [];
+  const chunkSize = 2;
+  for (let i = 0; i < hotTours.length; i += chunkSize) {
+    toursPerContainer.push(hotTours.slice(i, i + chunkSize));
   }
 
-  renderActivities(tours, containerId, templates);
+  for (let index = 0; index < containerIds.length; index++) {
+    const containerId = containerIds[index];
+    const container = document.getElementById(containerId);
+    if (!container) {
+      // В случае отсутствия контейнера — просто пропускаем без логов
+      continue;
+    }
+
+    container.innerHTML = "";
+
+    const toursChunk = toursPerContainer[index] || [];
+
+    toursChunk.forEach((tour, tourIndex) => {
+      const templateId = templates[tourIndex % templates.length];
+      const template = document.getElementById(templateId);
+      if (!template) {
+        // Можно пропускать без логов, если шаблон не найден
+        return;
+      }
+
+      const positionClass = tourIndex % 2 === 0 ? "item-left" : "item-right";
+      const cardElement = createActivityCard(tour, template, positionClass);
+      container.appendChild(cardElement);
+
+      if (tourIndex % 2 === 0 && tourIndex !== toursChunk.length - 1) {
+        const separator = createSeparator();
+        if (separator) {
+          container.appendChild(separator);
+        }
+      }
+    });
+  }
+}
+
+async function initActivities() {
+  await loadHotTours();
+  await renderToursInContainers();
 }
 
 document.addEventListener("DOMContentLoaded", initActivities);

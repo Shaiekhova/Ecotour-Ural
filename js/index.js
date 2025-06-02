@@ -89,7 +89,6 @@ function onKeyDown(e) {
     left: newScrollLeft,
     behavior: "smooth",
   });
-
   e.preventDefault(); // чтобы не было конфликтов с дефолтным поведением
 }
 
@@ -171,3 +170,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+/////////////////////////////////

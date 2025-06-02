@@ -92,3 +92,6 @@ body {
   color: #ffffff;
   background: #000000;
 }
+.lock {
+  overflow: hidden;
+}

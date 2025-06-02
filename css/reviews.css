@@ -62,6 +62,7 @@
 .reviews__item-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .reviews__item-text h2 {
   font-weight: 400;
@@ -81,6 +82,7 @@
 }
 .reviews__video {
   width: 100%;
+  height: 100%;
   position: relative;
   border: none;
   overflow: hidden;
@@ -186,15 +188,18 @@
     max-width: 100%;
   }
 }
-@media (max-width: 600px) {
-  #reviews:target {
-    padding-top: 99px;
-    margin-top: -99px;
-  }
+@media (max-width: 767px) {
   .reviews__banner-pic {
     max-width: 353px;
     aspect-ratio: 353/348;
   }
+}
+@media (max-width: 460px) {
+  #reviews:target {
+    padding-top: 99px;
+    margin-top: -99px;
+  }
+
   .reviews__item-text h2 {
     font-size: 17px;
   }
