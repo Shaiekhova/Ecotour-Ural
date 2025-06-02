@@ -138,6 +138,16 @@
     height: 221px;
   }
 }
+@media (max-width: 1024px) {
+  .reviews__item-text {
+    height: 240px;
+  }
+}
+@media (max-width: 1024px) and (max-height: 600px) {
+  .reviews__item:not(:first-child) {
+    height: 250px;
+  }
+}
 @media (max-width: 900px), (orientation: portrait) {
   .reviews__inner {
     display: flex;
