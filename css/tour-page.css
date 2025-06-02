@@ -15,7 +15,7 @@
   grid-area: top-text;
   font-weight: 400;
   font-size: clamp(35px, 3.5vw, 55px);
-  line-height: 100%;
+  line-height: 120%;
   color: #000000;
   text-transform: uppercase;
   border-bottom: 1px solid #000000;
@@ -132,6 +132,7 @@
 @media (max-width: 1366px) {
   .tour-page__text {
     font-size: 40px;
+    line-height: 115%;
   }
   .tour-page__item:nth-child(3) {
     max-width: 100%;
