@@ -34,7 +34,7 @@ const activityTabs = document.querySelectorAll(
 );
 
 const grandFilterTabs = document.querySelectorAll(
-  "#all-toursFilter .grand-filter__tab"
+  ".grand-filter .grand-filter__tab"
 );
 
 // Обработчики для вкладок фильтра

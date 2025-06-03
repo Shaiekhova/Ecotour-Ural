@@ -95,6 +95,13 @@
   display: flex;
   padding: 50px 8px;
   box-sizing: border-box;
+  background: #ffffff;
+}
+.grand-filter.active {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
 }
 @media (max-width: 1440px) {
   .grand-filter {
@@ -297,7 +304,7 @@
 
 .all-tours__container-inner {
   max-width: 1780px;
-  width: 100%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   overflow-x: auto;
