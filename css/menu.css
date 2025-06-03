@@ -4,7 +4,6 @@
 }
 @media (max-width: 1366px) {
   .menu-container {
-    border-right: transparent;
     margin-right: 30px;
   }
 }

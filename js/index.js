@@ -42,7 +42,7 @@ function onWheel(e) {
   e.preventDefault();
 
   const delta = Math.sign(e.deltaY);
-  const scrollStep = 500; // шаг прокрутки
+  const scrollStep = 100; // шаг прокрутки
 
   const currentScrollLeft = container.scrollLeft;
   let newScrollLeft = currentScrollLeft + delta * scrollStep;
@@ -99,6 +99,7 @@ updateScrollFunction();
 window.addEventListener("resize", updateScrollFunction);
 window.addEventListener("orientationchange", updateScrollFunction);
 
+//Фильтры
 document.querySelectorAll(".filter-group").forEach((group) => {
   group.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
     tab.addEventListener("click", () => {
