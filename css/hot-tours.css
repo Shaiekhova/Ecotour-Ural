@@ -179,9 +179,6 @@
   .all-tours-link {
     font-size: 15px;
   }
-  .hot-tours-picture {
-    height: 54.6vh;
-  }
 }
 @media (max-width: 900px), (orientation: portrait) {
   #hot:target {
