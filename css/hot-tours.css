@@ -25,7 +25,6 @@
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
-  flex-shrink: 0;
 }
 .item-right {
   align-items: flex-end;
@@ -40,7 +39,6 @@
 }
 .hot-tours-picture {
   width: 100%;
-  height: 58.6vh;
   overflow: hidden;
   position: relative;
 }
@@ -130,7 +128,7 @@
   display: none;
 }
 .hot-tours-separator {
-  max-width: 246px;
+  max-width: 13vw;
   width: 100%;
   height: auto;
   display: flex;
