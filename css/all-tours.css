@@ -97,12 +97,7 @@
   box-sizing: border-box;
   background: #ffffff;
 }
-.grand-filter.active {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 9999;
-}
+
 @media (max-width: 1440px) {
   .grand-filter {
     max-width: 230px;
@@ -182,6 +177,9 @@
   width: 15px;
   height: 15px;
   border: 1px solid #000000;
+}
+.grand-filter__tab.active span {
+  background: #000000;
 }
 .grand-filter__tab span.active {
   background: #000000;
@@ -333,9 +331,7 @@
   gap: 30px;
   min-width: max-content;
 }
-.all-tours-section__item {
-  width: 100%;
-}
+
 .top-row .all-tours-section__item {
   padding-bottom: 8vh;
   border-bottom: 1px solid #000000;

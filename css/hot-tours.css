@@ -18,13 +18,20 @@
 .hot-tours-inner {
   width: 100%;
   display: flex;
+  justify-content: center;
 }
+
 .hot-tours-item {
   width: 30.5vw;
   margin: 60px 0;
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
+}
+@media (max-height: 1079px) and (min-height: 900px) {
+  .hot-tours-item {
+    width: min(30.5vw, 50vh);
+  }
 }
 .item-right {
   align-items: flex-end;
@@ -42,6 +49,7 @@
   overflow: hidden;
   position: relative;
 }
+
 .hot-tours-picture img {
   width: 100%;
   height: 100%;
@@ -62,7 +70,6 @@
   color: #000000;
   text-transform: uppercase;
 }
-
 .hot-tours-desc h3 {
   font-weight: 400;
   font-size: 1.6vw;
@@ -70,7 +77,6 @@
   color: #000000;
   text-transform: uppercase;
 }
-
 .hot-tours-block p {
   font-weight: 400;
   font-size: 1.05vw;
@@ -91,6 +97,14 @@
   width: fit-content;
   padding: 6px 22px;
   margin-top: 20px;
+}
+@media (max-height: 1079px) and (min-height: 900px) {
+  .hot-tours-desc h2 {
+    font-size: 1.8vw;
+  }
+  .hot-tours-desc h3 {
+    font-size: 1.4vw;
+  }
 }
 /*===item-right-block===*/
 .item-right-block .hot-tours-picture {
@@ -305,6 +319,12 @@
 .hot-tours-two {
   max-width: 1637px;
   width: 100%;
+}
+#hot-tours-two {
+  display: none;
+}
+#hot-tours-two.hot-tours-two-visible {
+  display: flex;
 }
 .hot-tours-separator-two {
   display: none;
