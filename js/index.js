@@ -171,4 +171,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-/////////////////////////////////
+
+//Высота текстового блока  about и рассчет количества строк
+function setLineClamp() {
+  const width = window.innerWidth;
+  const textBlock = document.querySelector(".about__text");
+
+  if (!textBlock) return; // если элемента нет, ничего не делаем
+
+  if (width <= 900) {
+    // Отключаем ограничение при ширине 900px и меньше
+    textBlock.style.setProperty("-webkit-line-clamp", "none");
+    textBlock.style.removeProperty("display");
+    textBlock.style.removeProperty("-webkit-box-orient");
+    textBlock.style.removeProperty("overflow");
+    textBlock.style.removeProperty("word-break");
+    // Можно также сбросить переменную, если нужно
+    return;
+  }
+
+  // Для разрешений больше 900px
+  const style = getComputedStyle(textBlock);
+  const fontSizeStr = style.fontSize; // например, "20px"
+  const fontSize = parseFloat(fontSizeStr);
+  const lineHeight = 1.2 * fontSize;
+
+  // Высота блока
+  const height = textBlock.clientHeight;
+
+  // Количество строк
+  const linesCount = Math.max(0, Math.floor(height / lineHeight));
+
+  // Устанавливаем переменную для line-clamp
+  textBlock.style.setProperty("--line-clamp", linesCount);
+
+  // Убедимся, что стили для multiline включены
+  textBlock.style.display = "-webkit-box";
+  textBlock.style.setProperty("-webkit-box-orient", "vertical");
+  textBlock.style.overflow = "hidden";
+  textBlock.style.setProperty("-webkit-line-clamp", "var(--line-clamp)");
+  textBlock.style.wordBreak = "break-word";
+}
+
+// Обновляем при загрузке и при resize
+window.addEventListener("load", () => {
+  setLineClamp();
+});
+window.addEventListener("resize", () => {
+  setLineClamp();
+});
