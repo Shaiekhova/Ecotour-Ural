@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicons/favicon-16x16.png"
+    />
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
@@ -63,7 +80,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
+                      >
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -82,47 +101,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
-                    </li>
-                    <li>
-                      <a href="index.html#about" class="menu-link">О нас</a>
-                    </li>
-                    <li>
-                      <a href="index.html#contacts" class="menu-link"
-                        >Контакты</a
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
                       >
-                    </li>
-                    <li>
-                      <a href="index.html#hot" class="menu-link">Горящие</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="menu-carousel">
-                  <ul>
-                    <li>
-                      <a href="index.html#home" class="menu-link">Главная</a>
-                    </li>
-                    <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
-                    </li>
-                    <li>
-                      <a href="index.html#about" class="menu-link">О нас</a>
-                    </li>
-                    <li>
-                      <a href="index.html#contacts" class="menu-link"
-                        >Контакты</a
-                      >
-                    </li>
-                    <li>
-                      <a href="index.html#hot" class="menu-link">Горящие</a>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>
-                      <a href="index.html#home" class="menu-link">Главная</a>
-                    </li>
-                    <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -143,7 +124,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
+                      >
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -162,7 +145,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
+                      >
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -183,7 +168,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
+                      >
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -202,7 +189,9 @@
                       <a href="index.html#home" class="menu-link">Главная</a>
                     </li>
                     <li>
-                      <a href="all-tours.html#tour" class="menu-link">Туры</a>
+                      <a href="all-tours.html#tour" class="menu-link"
+                        >Все туры</a
+                      >
                     </li>
                     <li>
                       <a href="index.html#about" class="menu-link">О нас</a>
@@ -292,11 +281,7 @@
                   <div class="reviews__picture"></div>
                 </div>
                 <div class="reviews__item">
-                  <video class="reviews__video" controls>
-                    <source src="" type="video/webm" />
-                    <source src="" type="video/mp4" />
-                    Ваш браузер не поддерживает встроенные видео :(
-                  </video>
+                  <div class="reviews__video"></div>
                 </div>
               </div>
             </div>
@@ -359,7 +344,7 @@
                   <p class="privacy-policy">
                     Нажимая на кнопку, вы даете согласие на&nbsp;обработку
                     персональных данных и соглашаетесь c <a
-                      href=""
+                      href="#"
                       target="_blank"
                       >политикой конфиденциальности</a
                     >
@@ -384,7 +369,16 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./js/tour-page-init-v.js"></script>
+    <!--LOADER-->
+    <div class="overlay" id="loader">
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+    </div>
+    <!--END LOADER-->
+    <script type="module" src="./js/tour-page-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/swiper.js"></script>
     <script src="./js/index.js"></script>

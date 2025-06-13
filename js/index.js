@@ -186,13 +186,12 @@ function setLineClamp() {
     textBlock.style.removeProperty("-webkit-box-orient");
     textBlock.style.removeProperty("overflow");
     textBlock.style.removeProperty("word-break");
-    // Можно также сбросить переменную, если нужно
     return;
   }
 
   // Для разрешений больше 900px
   const style = getComputedStyle(textBlock);
-  const fontSizeStr = style.fontSize; // например, "20px"
+  const fontSizeStr = style.fontSize;
   const fontSize = parseFloat(fontSizeStr);
   const lineHeight = 1.2 * fontSize;
 
@@ -220,3 +219,4 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
   setLineClamp();
 });
+

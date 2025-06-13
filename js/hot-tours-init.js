@@ -1,4 +1,5 @@
-import { apiGet } from "./Api.js";
+import { getTours } from "./Api.js";
+import { showLoader, hideLoader } from "./loader.js";
 
 // Константы
 const containerIds = [
@@ -35,8 +36,8 @@ function toggleHotToursTwoClass(toursCount) {
 // Загрузка данных и первичный рендер
 async function loadHotTours() {
   try {
-    const data = await apiGet();
-    const tours = data.tours;
+    const data = await getTours();
+    const tours = data;
     hotTours = tours.filter((tour) => tour.tip === "hot");
     // Перед рендерингом проверяем количество карточек
     toggleHotToursTwoClass(hotTours.length);
@@ -193,54 +194,58 @@ function removeFilter(category, text) {
 
 // Основная функция фильтрации
 function applyFilters() {
-  const filtered = hotTours.filter((tour) => {
-    const tourSeasons = Array.isArray(tour.season)
-      ? tour.season.map((s) => s.toLowerCase())
-      : [];
-    const tourActivities = Array.isArray(tour.activity)
-      ? tour.activity.map((a) => a.toLowerCase())
-      : [];
-    const tourDuration = tour.duration.toLowerCase();
+  showLoader();
+  setTimeout(() => {
+    const filtered = hotTours.filter((tour) => {
+      const tourSeasons = Array.isArray(tour.season)
+        ? tour.season.map((s) => s.toLowerCase())
+        : [];
+      const tourActivities = Array.isArray(tour.activity)
+        ? tour.activity.map((a) => a.toLowerCase())
+        : [];
+      const tourDuration = tour.duration.toLowerCase();
 
-    // Проверка по "гранд" фильтрам
-    const grandSeasonMatch =
-      selectedGrandFilters.season.length === 0 ||
-      selectedGrandFilters.season.some((s) =>
-        tourSeasons.includes(s.toLowerCase())
+      // Проверка по "гранд" фильтрам
+      const grandSeasonMatch =
+        selectedGrandFilters.season.length === 0 ||
+        selectedGrandFilters.season.some((s) =>
+          tourSeasons.includes(s.toLowerCase())
+        );
+      const grandDurationMatch =
+        selectedGrandFilters.duration.length === 0 ||
+        selectedGrandFilters.duration.some(
+          (d) => d.toLowerCase() === tourDuration
+        );
+      const grandActivityMatch =
+        selectedGrandFilters.activity.length === 0 ||
+        selectedGrandFilters.activity.some((a) => tourActivities.includes(a));
+
+      // Мультивыбор
+      const seasonMatch =
+        selectedSeasons.length === 0 ||
+        selectedSeasons.some((s) => tourSeasons.includes(s.toLowerCase()));
+      const durationMatch =
+        selectedDurations.length === 0 ||
+        selectedDurations.some((d) => d.toLowerCase() === tourDuration);
+      const activityMatch =
+        selectedActivities.length === 0 ||
+        selectedActivities.some((a) => tourActivities.includes(a));
+
+      return (
+        seasonMatch &&
+        durationMatch &&
+        activityMatch &&
+        grandSeasonMatch &&
+        grandDurationMatch &&
+        grandActivityMatch
       );
-    const grandDurationMatch =
-      selectedGrandFilters.duration.length === 0 ||
-      selectedGrandFilters.duration.some(
-        (d) => d.toLowerCase() === tourDuration
-      );
-    const grandActivityMatch =
-      selectedGrandFilters.activity.length === 0 ||
-      selectedGrandFilters.activity.some((a) => tourActivities.includes(a));
+    });
 
-    // Мультивыбор
-    const seasonMatch =
-      selectedSeasons.length === 0 ||
-      selectedSeasons.some((s) => tourSeasons.includes(s.toLowerCase()));
-    const durationMatch =
-      selectedDurations.length === 0 ||
-      selectedDurations.some((d) => d.toLowerCase() === tourDuration);
-    const activityMatch =
-      selectedActivities.length === 0 ||
-      selectedActivities.some((a) => tourActivities.includes(a));
-
-    return (
-      seasonMatch &&
-      durationMatch &&
-      activityMatch &&
-      grandSeasonMatch &&
-      grandDurationMatch &&
-      grandActivityMatch
-    );
-  });
-
-  // Перед рендерингом проверяем количество карточек
-  toggleHotToursTwoClass(filtered.length);
-  renderTours(filtered);
+    // Перед рендерингом проверяем количество карточек
+    toggleHotToursTwoClass(filtered.length);
+    renderTours(filtered);
+    hideLoader();
+  }, 400);
 }
 
 // Инициализация

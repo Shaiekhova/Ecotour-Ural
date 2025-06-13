@@ -36,6 +36,7 @@
 .item-right {
   align-items: flex-end;
   position: relative;
+
 }
 .hot-tours-block {
   width: 100%;
@@ -125,7 +126,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 2;
+  z-index: 10;
 }
 .all-tours-link-hover {
   transition: all 0.3s ease-in-out;
@@ -135,6 +136,7 @@
   color: #000000;
   background: #ffffff;
 }
+
 .all-tours-link-mobile {
   display: none;
 }

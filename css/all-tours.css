@@ -126,6 +126,7 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 0 auto;
+  gap: 30px;
 }
 @media (max-width: 1200px) {
   .grand-filter__inner {
@@ -249,6 +250,7 @@
   }
   .grand-filter__inner {
     width: 100%;
+    gap: 0;
   }
   .grand-filter__tab-container {
     gap: 22px;

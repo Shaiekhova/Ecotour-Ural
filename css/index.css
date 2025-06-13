@@ -1,5 +1,6 @@
 @import url(../css/normalize.css);
 @import url(../fonts/fonts.css);
+@import url(../css/loader.css);
 @import url(../css/main.css);
 @import url(../css/menu.css);
 @import url(../css/bread-crumbs.css);
@@ -12,4 +13,3 @@
 @import url(../css/reviews.css);
 @import url(../css/booking.css);
 @import url(../css/all-tours.css);
-@import url(../css/add-tour-form.css);

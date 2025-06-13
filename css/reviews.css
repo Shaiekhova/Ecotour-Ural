@@ -25,9 +25,12 @@
   margin: 60px 60px 60px 20px;
 }
 .reviews__item {
+  width: 100%;
+  height: 100%;
   display: flex;
   overflow: hidden;
   padding-bottom: 5px;
+  box-sizing: border-box;
 }
 .reviews__item:not(:first-child) {
   height: 307px;
@@ -84,10 +87,15 @@
   width: 100%;
   height: 100%;
   position: relative;
-  border: none;
-  overflow: hidden;
 }
-
+.reviews__video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 @media (max-width: 1536px) {
   .cropped-text {
     margin-top: 0;
