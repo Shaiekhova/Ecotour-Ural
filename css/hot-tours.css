@@ -28,7 +28,7 @@
   align-items: flex-start;
   box-sizing: border-box;
 }
-@media (max-height: 1079px) and (min-height: 900px) {
+@media (max-height: 1440px) and (max-height: 900px) {
   .hot-tours-item {
     width: min(30.5vw, 50vh);
   }
@@ -36,7 +36,6 @@
 .item-right {
   align-items: flex-end;
   position: relative;
-
 }
 .hot-tours-block {
   width: 100%;
