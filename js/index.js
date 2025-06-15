@@ -1,43 +1,7 @@
 const container = document.querySelector(".scroll-container");
 
-let isEnabled = false; // статус активации скролла
+let isEnabled = false;
 
-// Функция для включения/отключения обработчика
-function updateScrollFunction() {
-  const width = window.innerWidth;
-  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-
-  // Включаем только если ширина > 900 и не в портретной ориентации
-  if (width > 900 && !isPortrait) {
-    if (!isEnabled) {
-      enableScroll();
-    }
-  } else {
-    if (isEnabled) {
-      disableScroll();
-    }
-  }
-}
-
-function enableScroll() {
-  isEnabled = true;
-  container.addEventListener("wheel", onWheel, { passive: false });
-  container.addEventListener("keydown", onKeyDown);
-  // Включаем плавный скролл через CSS
-  container.style.scrollBehavior = "smooth";
-  // Сделать контейнер фокусируемым для обработки клавиш
-  container.setAttribute("tabindex", "0");
-  container.focus();
-}
-
-function disableScroll() {
-  isEnabled = false;
-  container.removeEventListener("wheel", onWheel);
-  container.removeEventListener("keydown", onKeyDown);
-  container.style.scrollBehavior = "auto";
-}
-
-// Обработчик колесика
 function onWheel(e) {
   e.preventDefault();
 
@@ -59,7 +23,6 @@ function onWheel(e) {
   });
 }
 
-// Обработчик клавиш
 function onKeyDown(e) {
   const key = e.key;
   const scrollStep = 500; // шаг прокрутки для клавиш
@@ -84,12 +47,49 @@ function onKeyDown(e) {
     Math.min(newScrollLeft, container.scrollWidth - container.clientWidth)
   );
 
-  // Плавный скролл
   container.scrollTo({
     left: newScrollLeft,
     behavior: "smooth",
   });
-  e.preventDefault(); // чтобы не было конфликтов с дефолтным поведением
+  e.preventDefault();
+}
+
+// Функция для включения скролла
+function enableScroll() {
+  if (isEnabled) return;
+  isEnabled = true;
+  // Добавляем слушатели
+  container.addEventListener("wheel", onWheel, { passive: false });
+  container.addEventListener("keydown", onKeyDown);
+  // Включаем плавный скролл через CSS
+  container.style.scrollBehavior = "smooth";
+  // Сделать контейнер фокусируемым для обработки клавиш
+  container.setAttribute("tabindex", "0");
+  container.focus();
+}
+
+// Функция для отключения скролла
+function disableScroll() {
+  if (!isEnabled) return; // предотвращаем повторное выключение
+
+  isEnabled = false;
+  // Удаляем слушатели
+  container.removeEventListener("wheel", onWheel);
+  container.removeEventListener("keydown", onKeyDown);
+  // Возвращаем плавность
+  container.style.scrollBehavior = "auto";
+}
+
+// Обновление условий активации/отключения
+function updateScrollFunction() {
+  const width = window.innerWidth;
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+  if (width > 900 && !isPortrait) {
+    enableScroll();
+  } else {
+    disableScroll();
+  }
 }
 
 // Изначально вызываем для установки правильных условий
@@ -219,4 +219,3 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
   setLineClamp();
 });
-

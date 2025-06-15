@@ -148,7 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Видеоролик
     if (videoCont && tour.reviews_video) {
-      videoCont.innerHTML = tour.reviews_video;
+      const iframe = tour.reviews_video;
+      videoCont.appendChild(iframe);
     }
 
     // Обновление формы бронирования
