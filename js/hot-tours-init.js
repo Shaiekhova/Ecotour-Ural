@@ -58,6 +58,11 @@ function createActivityCard(tour, template, positionClass) {
   card.dataset.duration = tour.duration;
   card.dataset.activity = tour.activity.join(",");
 
+  document.querySelectorAll(".all-tours-link").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+  });
   card.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = `tour-page.html?id=${tour.id}#tour-page`;
