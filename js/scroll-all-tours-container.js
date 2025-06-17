@@ -210,7 +210,7 @@ function updateCardWidth() {
     const containerWidth = container.offsetWidth;
     let cardWidth;
 
-    if (window.innerWidth <= 1279) {
+    if (window.innerWidth <= 1179) {
       // Для экранов 1279px и меньше делим на 2
       cardWidth = containerWidth / 2;
     } else {
@@ -224,4 +224,3 @@ function updateCardWidth() {
 
 window.addEventListener("load", updateCardWidth);
 window.addEventListener("resize", updateCardWidth);
-///
