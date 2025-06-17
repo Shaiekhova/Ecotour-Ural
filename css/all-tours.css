@@ -352,6 +352,7 @@
 }
 .all-tours-card {
   max-width: calc(var(--card-width) - 20px);
+  width: 100%;
   display: flex;
   position: relative;
 }
@@ -383,6 +384,7 @@
   height: auto;
   position: relative;
   cursor: pointer;
+  aspect-ratio: 284 / 307;
 }
 .all-tours-card__pic img {
   width: 100%;

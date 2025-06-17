@@ -135,7 +135,9 @@ function initHorizontalScroll() {
   }
 
   // Объект для отслеживания конца прокрутки
+
   const scrollContainer = document.querySelector(".all-tours__container-inner");
+
   if (scrollContainer) {
     let reachedEnd = false;
 
@@ -211,10 +213,10 @@ function updateCardWidth() {
     let cardWidth;
 
     if (window.innerWidth <= 1179) {
-      // Для экранов 1279px и меньше делим на 2
+      // Для экранов 1179px и меньше делим на 2
       cardWidth = containerWidth / 2;
     } else {
-      // Для экранов больше 1279px делим на 3
+      // Для экранов больше 1179px делим на 3
       cardWidth = containerWidth / 3;
     }
 

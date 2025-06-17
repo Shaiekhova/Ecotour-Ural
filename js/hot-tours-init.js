@@ -72,10 +72,13 @@ function createActivityCard(tour, template, positionClass) {
   const img = card.querySelector("img");
   if (tour.hot_picture) {
     img.src = tour.hot_picture;
+  } else {
+    img.style = "border:solid grey";
+    img.src = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
   }
   if (tour.hot_title) {
     img.alt = tour.hot_title;
-    card.querySelector("h2").innerHTML = tour.hot_title;
+    card.querySelector("h2").textContent = tour.hot_title;
   } else {
     img.alt = "на ремонте";
   }

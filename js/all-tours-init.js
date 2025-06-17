@@ -218,7 +218,13 @@ function renderCards(toursArray, container) {
       ? tour.all_description.join("<br>")
       : "";
     const img = item.querySelector(".all-tours-card__pic img");
-    if (tour.all_picture) img.src = tour.all_picture;
+    if (tour.all_picture) {
+      img.src = tour.all_picture;
+    } else {
+      img.style = "border:solid grey";
+      img.src = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
+    }
+
     const price = item.querySelector(".all-tours-card__price");
     if (tour.all_price) price.textContent = tour.all_price;
 
@@ -240,4 +246,3 @@ function renderCards(toursArray, container) {
 
 // Запуск при загрузке
 window.addEventListener("DOMContentLoaded", init);
-//
