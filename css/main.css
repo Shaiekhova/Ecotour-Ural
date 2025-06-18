@@ -43,6 +43,7 @@ body {
   visibility: hidden;
   width: 0;
   height: 0;
+  padding: 0 !important;
 }
 @media (max-width: 900px), (orientation: portrait) {
   .scroll-container {

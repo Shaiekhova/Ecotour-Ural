@@ -170,8 +170,7 @@
     margin: 0;
   }
   .reviews__banner-pic {
-    max-width: 597px;
-    aspect-ratio: 597/223;
+    display: none;
   }
   .reviews__item:not(:first-child) {
     height: auto;
@@ -214,6 +213,7 @@
 }
 @media (max-width: 767px) {
   .reviews__banner-pic {
+    display: block;
     max-width: 353px;
     aspect-ratio: 353/348;
   }
