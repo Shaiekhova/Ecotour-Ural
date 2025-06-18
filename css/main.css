@@ -97,3 +97,67 @@ body {
 .lock {
   overflow: hidden;
 }
+
+/*---plug---*/
+.plug {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  z-index: 9999;
+}
+.plug.plug-visible {
+  display: flex;
+}
+.plug-inner {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 65px;
+}
+.plug-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+.plug-top p {
+  font-weight: 400;
+  font-size: 1.6vw;
+  line-height: 100%;
+  color: #000000;
+}
+.plug-link {
+  position: initial !important;
+  height: fit-content;
+}
+.plug-image {
+  width: 100%;
+  height: 246px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 900px), (orientation: portrait) {
+  .plug {
+    position: initial;
+    margin-top: 24px;
+  }
+  .plug-inner {
+    align-items: center;
+    gap: 24px;
+  }
+  .plug-top p {
+    font-size: 1.1em;
+  }
+  .plug-image {
+    width: 100%;
+    height: 100px;
+    padding: 3px 15px;
+  }
+}

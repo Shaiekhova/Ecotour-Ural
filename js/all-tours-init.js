@@ -34,7 +34,6 @@ async function init() {
   try {
     const data = await getTours();
     allTours = data;
-    console.log("Загружено туров:", allTours);
     setupEventListeners();
     displayTours(allTours);
   } catch (err) {

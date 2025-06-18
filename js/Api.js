@@ -8,7 +8,6 @@ export async function getTours() {
       throw new Error(`Ошибка: ${response.status}`);
     }
     const data = await response.json();
-    console.log("Все туры:", data);
     return data;
   } catch (error) {
     console.error("Ошибка получения туров:", error);

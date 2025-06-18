@@ -23,6 +23,18 @@ const selectedSeasons = [];
 const selectedDurations = [];
 const selectedActivities = [];
 
+// Функция для управления классом .plug
+function togglePlugClass(toursCount) {
+  const plugElement = document.querySelector(".plug");
+  if (!plugElement) return;
+  if (toursCount < 1) {
+    plugElement.classList.add("plug-visible");
+  } else {
+    plugElement.classList.remove("plug-visible");
+  }
+}
+
+// Переключение видимости блока "hot-tours-two"
 function toggleHotToursTwoClass(toursCount) {
   const element = document.getElementById("hot-tours-two");
   if (!element) return;
@@ -40,6 +52,7 @@ async function loadHotTours() {
     const tours = data;
     hotTours = tours.filter((tour) => tour.tip === "hot");
     toggleHotToursTwoClass(hotTours.length);
+    togglePlugClass(hotTours.length); // добавляем вызов
     renderTours(); // Отрисовка сразу после загрузки
     updateAllCardImages(hotTours); // Обновляем изображения после рендера
   } catch (error) {
@@ -137,10 +150,6 @@ function renderTours(toursArray = hotTours) {
 
 // Обновление изображений у всех карточек
 function updateAllCardImages(toursArray) {
-  console.log(
-    "updateAllCardImages вызвано. Количество туров:",
-    toursArray.length
-  );
   const cards = document.querySelectorAll(".hot-tours-item");
   cards.forEach((card) => {
     const tourId = card.id;
@@ -163,7 +172,6 @@ function updateAllCardImages(toursArray) {
     } else {
       imageSrc = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
     }
-    console.log(`Обновление изображения для тура ${tour.id}: ${imageSrc}`);
     img.src = imageSrc;
   });
 }
@@ -283,10 +291,10 @@ function applyFilters() {
         grandActivityMatch
       );
     });
-
     toggleHotToursTwoClass(filtered.length);
+    togglePlugClass(filtered.length); // добавляем вызов
     renderTours(filtered);
-    updateAllCardImages(filtered); // Обновляем изображения для отфильтрованных туров
+    updateAllCardImages(filtered);
     hideLoader();
   }, 400);
 }
@@ -295,7 +303,6 @@ function applyFilters() {
 async function init() {
   await loadHotTours();
   setupGrandFilterHandlers();
-  // Обновляем изображения при первой загрузке
   updateAllCardImages(hotTours);
 }
 
