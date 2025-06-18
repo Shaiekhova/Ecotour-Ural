@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const programEl = container?.querySelector(".tour-program");
     if (programEl && tour.tourpage_programm) {
       programEl.innerHTML = "";
-      tour.tourpage_programm.split("\n").forEach((line) => {
+      tour.tourpage_programm.split(";").forEach((line) => {
         const li = document.createElement("li");
         li.textContent = line.trim();
         programEl.appendChild(li);
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const descriptionEl = container?.querySelector(".tour-description");
     if (descriptionEl && tour.tourpage_included) {
       descriptionEl.innerHTML = "";
-      tour.tourpage_included.split("\n").forEach((line) => {
+      tour.tourpage_included.split(";").forEach((line) => {
         const li = document.createElement("li");
         li.textContent = line.trim();
         descriptionEl.appendChild(li);
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const costEl = container?.querySelector(".tour-cost");
     if (costEl && tour.tourpage_cost) {
       costEl.innerHTML = "";
-      tour.tourpage_cost.split("\n").forEach((line) => {
+      tour.tourpage_cost.split(";").forEach((line) => {
         const li = document.createElement("li");
         li.textContent = line.trim();
         costEl.appendChild(li);
@@ -148,8 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Видеоролик
     if (videoCont && tour.reviews_video) {
-      const iframe = tour.reviews_video;
-      videoCont.appendChild(iframe);
+      videoCont.innerHTML = tour.reviews_video;
     }
 
     // Обновление формы бронирования

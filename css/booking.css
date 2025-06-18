@@ -114,18 +114,8 @@ input:focus::placeholder {
   margin-top: 20px;
   width: fit-content;
   background: transparent;
-  position: relative;
-}
-
-.booking-submit:before {
-  content: "";
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  width: 0;
-  height: 1px;
-  transition: 0.2s;
-  background-color: black;
+  border: 1px solid #000000;
+  padding: 6px 22px;
 }
 .booking-submit:hover:before {
   width: 100%;
