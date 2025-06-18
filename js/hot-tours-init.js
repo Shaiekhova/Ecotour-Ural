@@ -18,7 +18,7 @@ const selectedGrandFilters = {
   activity: [],
 };
 
-// Изначальные выбранные фильтры для мультивыборов (если есть)
+// Изначальные выбранные фильтры для мультивыборов
 const selectedSeasons = [];
 const selectedDurations = [];
 const selectedActivities = [];
@@ -39,9 +39,9 @@ async function loadHotTours() {
     const data = await getTours();
     const tours = data;
     hotTours = tours.filter((tour) => tour.tip === "hot");
-    // Перед рендерингом проверяем количество карточек
     toggleHotToursTwoClass(hotTours.length);
     renderTours(); // Отрисовка сразу после загрузки
+    updateAllCardImages(hotTours); // Обновляем изображения после рендера
   } catch (error) {
     console.error("Ошибка при загрузке данных:", error);
   }
@@ -73,7 +73,7 @@ function createActivityCard(tour, template, positionClass) {
   if (tour.hot_picture) {
     img.src = tour.hot_picture;
   } else {
-    img.style = "border:solid grey";
+    img.style.border = "solid grey";
     img.src = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
   }
   if (tour.hot_title) {
@@ -107,7 +107,6 @@ function renderTours(toursArray = hotTours) {
     if (!container) continue;
     container.innerHTML = "";
 
-    // Разделение на чанки по 2
     const toursChunks = [];
     const chunkSize = 2;
     for (let i = 0; i < toursArray.length; i += chunkSize) {
@@ -127,7 +126,7 @@ function renderTours(toursArray = hotTours) {
       const cardElement = createActivityCard(tour, template, positionClass);
       container.appendChild(cardElement);
 
-      // Добавляем разделитель, если нужно
+      // разделитель
       if (tourIndex % 2 === 0 && tourIndex !== toursInContainer.length - 1) {
         const separator = createSeparator();
         if (separator) container.appendChild(separator);
@@ -136,7 +135,46 @@ function renderTours(toursArray = hotTours) {
   }
 }
 
-// Обработка кликов по вкладкам "Гранд-фильтра"
+// Обновление изображений у всех карточек
+function updateAllCardImages(toursArray) {
+  console.log(
+    "updateAllCardImages вызвано. Количество туров:",
+    toursArray.length
+  );
+  const cards = document.querySelectorAll(".hot-tours-item");
+  cards.forEach((card) => {
+    const tourId = card.id;
+    const tour = toursArray.find((t) => t.id === tourId);
+    if (!tour) return;
+    const img = card.querySelector("img");
+    if (!img) return;
+
+    let imageSrc;
+    if (window.innerWidth <= 900 && tour.hot_picture_900) {
+      imageSrc = tour.hot_picture_900;
+    } else if (
+      window.innerWidth <= 1024 &&
+      window.innerHeight >= 768 &&
+      tour.hot_picture_1024
+    ) {
+      imageSrc = tour.hot_picture_1024;
+    } else if (tour.hot_picture) {
+      imageSrc = tour.hot_picture;
+    } else {
+      imageSrc = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
+    }
+    console.log(`Обновление изображения для тура ${tour.id}: ${imageSrc}`);
+    img.src = imageSrc;
+  });
+}
+
+// Обработчик resize
+window.addEventListener("resize", () => {
+  console.log("Resize event detected");
+  updateAllCardImages(hotTours);
+});
+
+// Обработка вкладок фильтра
 function setupGrandFilterHandlers() {
   const tabs = document.querySelectorAll(
     "#hot-grand-filter .grand-filter__tab"
@@ -150,7 +188,6 @@ function setupGrandFilterHandlers() {
       const category = categoryElem.textContent.trim();
       const text = tab.querySelector("p").textContent.trim();
 
-      // Обновляем активность вкладки
       if (tab.classList.contains("active")) {
         tab.classList.remove("active");
         removeFilter(category, text);
@@ -200,7 +237,7 @@ function removeFilter(category, text) {
   }
 }
 
-// Основная функция фильтрации
+// Фильтрация
 function applyFilters() {
   showLoader();
   setTimeout(() => {
@@ -213,7 +250,6 @@ function applyFilters() {
         : [];
       const tourDuration = tour.duration.toLowerCase();
 
-      // Проверка по "гранд" фильтрам
       const grandSeasonMatch =
         selectedGrandFilters.season.length === 0 ||
         selectedGrandFilters.season.some((s) =>
@@ -228,7 +264,6 @@ function applyFilters() {
         selectedGrandFilters.activity.length === 0 ||
         selectedGrandFilters.activity.some((a) => tourActivities.includes(a));
 
-      // Мультивыбор
       const seasonMatch =
         selectedSeasons.length === 0 ||
         selectedSeasons.some((s) => tourSeasons.includes(s.toLowerCase()));
@@ -249,9 +284,9 @@ function applyFilters() {
       );
     });
 
-    // Перед рендерингом проверяем количество карточек
     toggleHotToursTwoClass(filtered.length);
     renderTours(filtered);
+    updateAllCardImages(filtered); // Обновляем изображения для отфильтрованных туров
     hideLoader();
   }, 400);
 }
@@ -260,7 +295,9 @@ function applyFilters() {
 async function init() {
   await loadHotTours();
   setupGrandFilterHandlers();
-  renderTours();
+  // Обновляем изображения при первой загрузке
+  updateAllCardImages(hotTours);
 }
 
+// Запуск
 document.addEventListener("DOMContentLoaded", init);
