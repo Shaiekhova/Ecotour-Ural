@@ -181,8 +181,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Видеоролик
-    if (videoCont && tour.reviews_video) {
-      videoCont.innerHTML = tour.reviews_video;
+    if (videoCont) {
+      videoCont.innerHTML = ""; // очищаем содержимое
+
+      if (tour.reviews_video && typeof tour.reviews_video === "string") {
+        // Попытка вставить видео
+        try {
+          // Создаем временный контейнер для проверки содержимого
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = tour.reviews_video;
+
+          // Можно добавить дополнительные проверки,что есть iframe
+          const iframe = tempDiv.querySelector("iframe");
+          if (iframe) {
+            // Вставляем проверенное содержимое
+            videoCont.innerHTML = tour.reviews_video;
+          } else {
+            // Нет iframe — считаем, что видео некорректное
+            throw new Error("Некорректное содержимое видео");
+          }
+        } catch (e) {
+          // В случае ошибки — показываем картинку-заглушку
+          const videoPlaceholder = document.createElement("img");
+          videoPlaceholder.src = "./images/no-video.jpg";
+          videoPlaceholder.alt = "Нет видео";
+          videoCont.appendChild(videoPlaceholder);
+        }
+      } else {
+        // Нет видео или некорректный формат
+        const videoPlaceholder = document.createElement("img");
+        videoPlaceholder.src = "./images/no-video.jpg";
+        videoPlaceholder.alt = "Нет видео";
+        videoCont.appendChild(videoPlaceholder);
+      }
     }
 
     // Обновление формы бронирования
