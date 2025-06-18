@@ -19,14 +19,16 @@
 .promo__inner {
   width: 100%;
   position: relative;
-  background: url(../images/main.png) no-repeat center center;
+  background: url("https://i.postimg.cc/kgx8t24H/1920.webp") no-repeat center
+    center;
   background-size: cover;
   background-attachment: local;
   overflow: hidden;
 }
 @media (max-width: 1024px) {
   .promo__inner {
-    background: url(../images/main-1024.png) no-repeat center center;
+    background: url("https://i.postimg.cc/HLrYGNSv/main.webp") no-repeat center
+      center;
     background-size: cover;
     background-attachment: local;
   }
@@ -34,7 +36,8 @@
 @media (max-width: 900px), (orientation: portrait) {
   .promo__inner {
     height: 100%;
-    background: url(../images/main-900.png) no-repeat bottom center;
+    background: url("https://i.postimg.cc/NfVQccVh/main.webp") no-repeat bottom
+      center;
     background-size: cover;
     background-attachment: local;
   }
