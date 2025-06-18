@@ -205,6 +205,50 @@ input:focus::placeholder {
     max-width: 75px;
   }
 }
+@media (min-width: 1200px) and (max-width: 1920px) and (max-height: 800px) {
+  .booking__form-container {
+    max-width: 400px;
+  }
+  .booking__form-container h2 {
+    font-size: 22px;
+  }
+  .booking__form-container h3 {
+    font-size: 20px;
+  }
+  .booking__form-container span {
+    font-size: 16px;
+  }
+  .booking-form input,
+  .booking-form textarea {
+    font-size: 18px;
+  }
+  .booking-form input {
+    height: 44px;
+    padding-top: 18px;
+  }
+  .booking-form {
+    margin-top: 60px;
+  }
+  input::placeholder {
+    font-size: 16px;
+  }
+  .booking-price {
+    font-size: 18px;
+  }
+  .booking-submit {
+    font-size: 20px;
+  }
+  .privacy-policy,
+  .privacy-policy a {
+    font-size: 16px;
+  }
+  .privacy-policy {
+    margin-top: 60px;
+  }
+  .booking__coordinates {
+    max-width: 75px;
+  }
+}
 @media (max-width: 1024px) {
   .booking__inner {
     gap: 181px;

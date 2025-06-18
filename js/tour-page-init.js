@@ -18,6 +18,52 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  let currentTour = null; // глобальная переменная для хранения данных тура
+
+  // Функция для отрисовки слайдов в зависимости от ширины экрана
+  function renderSlides(tour) {
+    const container = document.getElementById("tour-content");
+    const swiperWrapper = container?.querySelector(".swiper-wrapper");
+    if (!swiperWrapper) return;
+
+    // Очистка текущих слайдов
+    swiperWrapper.innerHTML = "";
+
+    // Определяем текущую ширину экрана
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Выбираем массив слайдов в зависимости от ширины
+    let slidesArray = [];
+    if (width <= 900 && tour.tourpage_slides_900) {
+      slidesArray = tour.tourpage_slides_900;
+    } else if (
+      window.innerWidth <= 1024 &&
+      window.innerHeight >= 768 &&
+      tour.tourpage_slides_1024
+    ) {
+      slidesArray = tour.tourpage_slides_1024;
+    } else if (tour.tourpage_slides) {
+      // Если есть основной массив
+      slidesArray = tour.tourpage_slides;
+    }
+
+    // Создаем слайды
+    slidesArray.forEach((src) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+      const img = document.createElement("img");
+      img.src = src || "https://zelonline.ru/images/404/noimage.png";
+      slide.appendChild(img);
+      swiperWrapper.appendChild(slide);
+    });
+
+    // Обновляем слайдер, если используется библиотека swiper
+    if (typeof swiper !== "undefined" && swiper.update) {
+      swiper.update();
+    }
+  }
+
   // Асинхронная функция загрузки данных
   async function fetchToursData() {
     showLoader();
@@ -27,7 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const tours = data;
       const tour = tours.find((t) => t.id.toString() === tourId);
       if (!tour) throw new Error("Тур не найден");
+      currentTour = tour; // сохраняем глобально
       renderTour(tour);
+      renderSlides(tour);
     } catch (error) {
       showError(error.message);
     } finally {
@@ -98,22 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Фото слайдов
-    const swiperWrapper = container?.querySelector(".swiper-wrapper");
-    if (swiperWrapper && tour.tourpage_slides) {
-      swiperWrapper.innerHTML = "";
-      tour.tourpage_slides.forEach((src) => {
-        const slide = document.createElement("div");
-        slide.className = "swiper-slide";
-        const img = document.createElement("img");
-        img.src = src || "https://zelonline.ru/images/404/noimage.png";
-        slide.appendChild(img);
-        swiperWrapper.appendChild(slide);
-      });
-      if (typeof swiper !== "undefined" && swiper.update) {
-        swiper.update();
-      }
-    }
+    // Фото слайдов - вызов функции для рендеринга
+    renderSlides(tour);
 
     // Обновление отзывов
     if (reviewEls.length && tour.reviews_item) {
@@ -162,5 +196,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Загружаем данные
   fetchToursData();
+
+  // Обработка изменения размера окна
+  window.addEventListener("resize", () => {
+    if (currentTour) {
+      renderSlides(currentTour);
+    }
+  });
 });

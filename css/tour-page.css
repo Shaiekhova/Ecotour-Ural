@@ -123,11 +123,32 @@
   .tour-page-swiper-wrap {
     padding: 30px 30px 30px 20px;
   }
+  .tour-page__text {
+    font-size: clamp(35px, 3vw, 55px);
+  }
   .tour-page__desc {
     padding: 20px 20px 30px 20px;
   }
 }
 @media (max-width: 1366px) {
+  .tour-page__text {
+    font-size: 40px;
+    line-height: 115%;
+  }
+  .tour-page__item:nth-child(3) {
+    max-width: 100%;
+  }
+  .tour-page__item h4 {
+    font-size: 16px;
+  }
+  .tour-page__item ul li {
+    font-size: 16px;
+  }
+  .tour-page__link {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1920px) and (max-height: 800px) {
   .tour-page__text {
     font-size: 40px;
     line-height: 115%;
