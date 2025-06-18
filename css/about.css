@@ -259,7 +259,7 @@
     flex-direction: column;
     gap: 0;
   }
-  .cell:not(:first-child) {
+  .cell:not(:last-child) {
     margin-top: 24px;
   }
 
@@ -342,7 +342,7 @@
     padding-top: 99px;
     margin-top: -99px;
   }
-  .cell:not(:first-child) {
+  .cell:not(:last-child) {
     margin-top: 15px;
   }
 

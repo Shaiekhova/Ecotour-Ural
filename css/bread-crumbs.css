@@ -49,7 +49,7 @@
 }
 @media (max-width: 600px) {
   .bread-crumbs {
-    padding: 13px 13px 13px 16px;
+    padding: 15px;
   }
 }
 .bread-nav {
@@ -93,15 +93,25 @@
 
 .bread-link {
   font-weight: 400;
-  font-size: 20px;
-  line-height: 18px;
+  font-size: 30px;
+  line-height: 100%;
   color: #000000;
   text-transform: uppercase;
-  position: relative;
-  left: -45px;
+  border: 1px solid #000000;
+  text-transform: uppercase;
   width: fit-content;
+  height: fit-content;
+  padding: 6px 22px;
+  position: relative;
+  left: -135px;
 }
-@media (max-width: 1366px) {
+@media (max-width: 1600px) {
+  .bread-link {
+    font-size: 20px;
+    left: -100px;
+  }
+}
+@media (max-width: 1400px) {
   .bread-link {
     font-size: 18px;
   }
@@ -110,12 +120,14 @@
   .bread-link {
     line-height: 100%;
     left: 0;
+    bottom: 10px;
   }
 }
 @media (max-width: 600px) {
   .bread-link {
     font-size: 17px;
-    left: 0;
+    padding: 3px 15px;
+    bottom: 0;
   }
 }
 .link-hover {
