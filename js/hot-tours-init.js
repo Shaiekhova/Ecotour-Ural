@@ -70,8 +70,7 @@ function createActivityCard(tour, template, positionClass) {
   card.dataset.season = tour.season.join(",");
   card.dataset.duration = tour.duration;
   card.dataset.activity = tour.activity.join(",");
-
-  document.querySelectorAll(".all-tours-link").forEach(function (link) {
+  card.querySelectorAll(".all-tours-link").forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.stopPropagation();
     });

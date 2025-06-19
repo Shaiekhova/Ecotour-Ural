@@ -100,10 +100,18 @@
   height: 100%;
 }
 .swiper-button-next::after {
-  content: url(../images/Arrow\ 5.png);
+  content: url(../images/Arrow\ 4.png);
 }
 .swiper-button-prev:after {
-  content: url(../images/Arrow\ 6.png);
+  content: url(../images/Arrow\ 5.png);
+}
+@media (max-width: 1400px) {
+  .swiper-button-next::after {
+    content: url(../images/Arrow\ 7.png);
+  }
+  .swiper-button-prev:after {
+    content: url(../images/Arrow\ 6.png);
+  }
 }
 .swiper-button-next,
 .swiper-button-prev {

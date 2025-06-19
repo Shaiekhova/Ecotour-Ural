@@ -216,13 +216,17 @@ function renderCards(toursArray, container) {
     )
       ? tour.all_description.join("<br>")
       : "";
+
     const img = item.querySelector(".all-tours-card__pic img");
-    if (tour.all_picture) {
-      img.src = tour.all_picture;
-    } else {
-      img.style = "border:solid grey";
-      img.src = "https://i.postimg.cc/QML4mft7/placeholder.jpg";
-    }
+    const placeholder = "https://i.postimg.cc/t4qmGcjH/zaglushka.webp";
+    const src = tour.all_picture || placeholder;
+
+    img.src = src;
+    img.style.border = "1px solid grey";
+
+    img.onerror = () => {
+      img.src = placeholder;
+    };
 
     const price = item.querySelector(".all-tours-card__price");
     if (tour.all_price) price.textContent = tour.all_price;
