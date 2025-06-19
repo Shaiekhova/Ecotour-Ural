@@ -136,7 +136,6 @@
 
 @media (max-width: 1280px) {
   .reviews__inner {
-    grid-template-columns: 287px 1fr 1fr;
     margin: 30px 30px 30px 20px;
   }
   .reviews__item-text h2 {
@@ -156,10 +155,30 @@
   .reviews__item-text {
     height: 240px;
   }
+  .reviews__inner {
+    grid-template-columns: 287px 1fr 1fr;
+  }
 }
 @media (max-width: 1024px) and (max-height: 600px) {
   .reviews__item:not(:first-child) {
     height: 250px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1920px) and (max-height: 800px) {
+  .reviews__inner {
+    grid-template-rows: min-content min-content;
+  }
+  .reviews__item {
+    height: 250px;
+  }
+  .reviews__item:not(:first-child) {
+    height: 250px;
+  }
+  .reviews__item-text h2 {
+    font-size: 20px;
+  }
+  .reviews__item-text p {
+    font-size: 17px;
   }
 }
 @media (orientation: portrait) and (device-width: 768px) and (device-height: 1024px) {
