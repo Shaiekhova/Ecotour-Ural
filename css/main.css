@@ -107,7 +107,7 @@ body {
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  z-index: 9999;
+  z-index: 998;
 }
 .plug.plug-visible {
   display: flex;

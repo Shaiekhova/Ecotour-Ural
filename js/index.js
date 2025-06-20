@@ -99,14 +99,38 @@ updateScrollFunction();
 window.addEventListener("resize", updateScrollFunction);
 window.addEventListener("orientationchange", updateScrollFunction);
 
-//Фильтры
+// Функция для сброса всех активных вкладок при условии ширины <= 900 и ориентации portrait
+function resetTabsOnResize() {
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+  if (window.innerWidth <= 900 && isPortrait) {
+    document.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
+      tab.classList.remove("clicked-tab");
+    });
+  }
+}
+
+// Обработка клика по вкладкам
 document.querySelectorAll(".filter-group").forEach((group) => {
   group.querySelectorAll(".all-tours-filter__tab").forEach((tab) => {
     tab.addEventListener("click", () => {
-      tab.classList.toggle("clicked-tab");
+      const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+      if (window.innerWidth <= 900 && isPortrait) {
+        // Если ширина <= 900 и ориентация портрет, сбрасываем класс
+        tab.classList.remove("clicked-tab");
+      } else {
+        // Иначе переключаем класс
+        tab.classList.toggle("clicked-tab");
+      }
     });
   });
 });
+
+// Сброс вкладок при загрузке страницы
+window.addEventListener("load", resetTabsOnResize);
+
+// Сброс вкладок при изменении размера окна или ориентации
+window.addEventListener("resize", resetTabsOnResize);
+window.addEventListener("orientationchange", resetTabsOnResize);
 
 // Функция для форматирования номера телефона
 function formatPhoneNumber(input) {

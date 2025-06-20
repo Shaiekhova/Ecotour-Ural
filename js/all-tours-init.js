@@ -2,6 +2,7 @@ import { getTours } from "./Api.js";
 import { showLoader, hideLoader, delay } from "./loader.js";
 
 let allTours = [];
+let currentTours = []; // Для хранения текущего отображаемого списка туров
 
 // Массивы для мультивыбора
 const selectedSeasons = [];
@@ -29,13 +30,65 @@ const grandFilterTabs = document.querySelectorAll(
   ".grand-filter .grand-filter__tab"
 );
 
+// Объявляем переменную для определения портретной ориентации
+let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+// Обновляем переменную при изменении размера окна
+window.addEventListener("resize", () => {
+  isPortrait = window.matchMedia("(orientation: portrait)").matches;
+  renderTours();
+  if (isPortrait) {
+    resetFilters();
+  } else {
+    selectedGrandFilters.season.length = 0;
+    selectedGrandFilters.duration.length = 0;
+    selectedGrandFilters.activity.length = 0;
+    grandFilterTabs.forEach((tab) => tab.classList.remove("active"));
+    applyFilters();
+  }
+});
+
+// Инициализация при загрузке
+window.addEventListener("DOMContentLoaded", () => {
+  // Изначально
+  if (isPortrait) {
+    resetFilters();
+  }
+  init(); // запуск загрузки туров
+});
+
+// Функции сброса фильтров
+function resetFilters() {
+  // Сброс мультивыбора
+  selectedSeasons.length = 0;
+  selectedDurations.length = 0;
+  selectedActivities.length = 0;
+
+  // Убираем активность с вкладок
+  seasonTabs.forEach((tab) => tab.classList.remove("active"));
+  durationTabs.forEach((tab) => tab.classList.remove("active"));
+  activityTabs.forEach((tab) => tab.classList.remove("active"));
+
+  // Сброс глобальных фильтров
+  selectedGrandFilters.season.length = 0;
+  selectedGrandFilters.duration.length = 0;
+  selectedGrandFilters.activity.length = 0;
+
+  // Убираем активность с глобальных вкладок
+  grandFilterTabs.forEach((tab) => tab.classList.remove("active"));
+
+  // Обновляем отображение
+  applyFilters();
+}
+
+// Основная функция инициализации
 async function init() {
   showLoader();
   try {
     const data = await getTours();
     allTours = data;
-    setupEventListeners();
     displayTours(allTours);
+    setupEventListeners();
   } catch (err) {
     console.error("Ошибка при загрузке данных", err);
   } finally {
@@ -46,14 +99,12 @@ async function init() {
 
 // Установка всех обработчиков
 function setupEventListeners() {
-  // Обработчики вкладок для мультивыбора
   [...seasonTabs, ...durationTabs, ...activityTabs].forEach((tab) => {
     tab.addEventListener("click", () => {
       handleTabClick(tab);
     });
   });
 
-  // Обработчики глобальных фильтров
   grandFilterTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       handleGrandFilterClick(tab);
@@ -148,50 +199,66 @@ function applyFilters() {
       );
     });
     displayTours(filtered);
+
+    // Проверка, есть ли карточки после фильтрации
+    const container = document.querySelector(".all-tours__container-inner");
+    const cards = container.querySelectorAll(".all-tours-section__item");
+    const plug = document.querySelector(".plug");
+
+    if (cards.length === 0) {
+      if (plug) {
+        plug.classList.add("plug-visible");
+      }
+    } else {
+      if (plug) {
+        plug.classList.remove("plug-visible");
+      }
+    }
     hideLoader();
   }, 400);
 }
 
 // Отображение туров
 function displayTours(tours) {
-  const container = document.querySelector(".all-tours__container-inner");
-  const template = document.getElementById("tour-card-template");
+  currentTours = tours; // сохраняем текущие туры
+  renderTours();
+}
 
-  // Очистка
+// Основная функция рендера карточек с учетом ориентации
+function renderTours() {
+  const container = document.querySelector(".all-tours__container-inner");
   container.innerHTML = "";
 
-  const isMobile = window.innerWidth <= 900;
-
-  // Создаем/используем ряды
-  let topRow = document.querySelector(".top-row");
-  let bottomRow = document.querySelector(".bottom-row");
-
-  if (!topRow) {
+  if (isPortrait) {
+    // Портретная ориентация — все карточки в один ряд
+    let topRow = document.querySelector(".row.top-row");
+    if (topRow && topRow.parentNode) {
+      topRow.parentNode.removeChild(topRow);
+    }
     topRow = document.createElement("div");
     topRow.className = "row top-row";
-  }
 
-  if (!bottomRow && !isMobile) {
-    bottomRow = document.createElement("div");
-    bottomRow.className = "row bottom-row";
-  }
-
-  if (isMobile) {
-    // Удаляем нижний ряд, если есть
-    if (bottomRow && bottomRow.parentNode) {
-      bottomRow.parentNode.removeChild(bottomRow);
-    }
-    // Очищаем верхний и рендерим все в один ряд
-    topRow.innerHTML = "";
-    renderCards(tours, topRow);
+    renderCards(currentTours, topRow);
     container.appendChild(topRow);
   } else {
-    // Для больших экранов
+    // Ландшафт или другие ориентации — делим на две части
+    let topRow = document.querySelector(".row.top-row");
+    let bottomRow = document.querySelector(".row.bottom-row");
+    if (!topRow) {
+      topRow = document.createElement("div");
+      topRow.className = "row top-row";
+    }
+    if (!bottomRow) {
+      bottomRow = document.createElement("div");
+      bottomRow.className = "row bottom-row";
+    }
+
     topRow.innerHTML = "";
-    if (bottomRow) bottomRow.innerHTML = "";
-    const half = Math.ceil(tours.length / 2);
-    const firstHalf = tours.slice(0, half);
-    const secondHalf = tours.slice(half);
+    bottomRow.innerHTML = "";
+
+    const half = Math.ceil(currentTours.length / 2);
+    const firstHalf = currentTours.slice(0, half);
+    const secondHalf = currentTours.slice(half);
 
     renderCards(firstHalf, topRow);
     renderCards(secondHalf, bottomRow);
@@ -246,6 +313,3 @@ function renderCards(toursArray, container) {
     container.appendChild(clone);
   });
 }
-
-// Запуск при загрузке
-window.addEventListener("DOMContentLoaded", init);
