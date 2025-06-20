@@ -120,14 +120,18 @@ input:focus::placeholder {
 .booking-submit:hover:before {
   width: 100%;
 }
+.privacy-policy-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 133px;
+}
 .privacy-policy {
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
   color: #000000;
-  margin-top: 133px;
 }
-
 .privacy-policy a {
   font-weight: 400;
   font-size: 20px;
@@ -152,7 +156,7 @@ input:focus::placeholder {
   .booking-form {
     margin-top: 80px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 103px;
   }
 }
@@ -198,8 +202,9 @@ input:focus::placeholder {
   .privacy-policy a {
     font-size: 16px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 60px;
+    gap: 10px;
   }
   .booking__coordinates {
     max-width: 75px;
@@ -242,7 +247,7 @@ input:focus::placeholder {
   .privacy-policy a {
     font-size: 16px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 60px;
   }
   .booking__coordinates {
@@ -270,7 +275,7 @@ input:focus::placeholder {
     font-size: 14px;
     max-width: 307px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 103px;
   }
   .privacy-policy,
@@ -334,7 +339,7 @@ input:focus::placeholder {
     margin: 0;
     gap: 69px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 24px;
   }
   .booking__form-container {
@@ -396,7 +401,7 @@ input:focus::placeholder {
     font-size: 17px;
     max-width: 232px;
   }
-  .privacy-policy {
+  .privacy-policy-wrapper {
     margin-top: 30px;
     max-width: 353px;
   }
