@@ -138,6 +138,8 @@
 /*---text---*/
 .cell-text {
   grid-area: a-text;
+  display: flex;
+  align-items: center;
 }
 .about__text {
   font-weight: 400;
@@ -194,6 +196,11 @@
   line-height: 100%;
   color: #000000;
 }
+@media (max-height: 900px) {
+  .spacer {
+    display: none;
+  }
+}
 @media (max-width: 1700px) {
   .spacer {
     display: none;
@@ -205,6 +212,7 @@
     overflow: hidden;
     -webkit-line-clamp: var(--line-clamp);
     word-break: break-word;
+    margin: 0 auto;
   }
 }
 @media (max-width: 1536px) {
