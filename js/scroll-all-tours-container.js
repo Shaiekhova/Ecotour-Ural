@@ -37,7 +37,7 @@ function initHorizontalScroll() {
     }
 
     function onKeyDown(e) {
-      const step = 50;
+      const step = 50; // шаг прокрутки по клавише
       const currentScrollLeft = element.scrollLeft;
       const maxScrollLeft = element.scrollWidth - element.clientWidth;
       let newScrollLeft = currentScrollLeft;
@@ -47,11 +47,14 @@ function initHorizontalScroll() {
       } else if (e.key === "ArrowLeft") {
         newScrollLeft = Math.max(currentScrollLeft - step, 0);
       } else {
-        return; // Игнорировать другие клавиши
+        return; // игнорируем другие клавиши
       }
 
       e.preventDefault();
-      element.scrollTo({ left: newScrollLeft, behavior: "auto" });
+      element.scrollTo({
+        left: newScrollLeft,
+        behavior: "auto",
+      });
     }
 
     function onTouchStart(e) {
@@ -70,8 +73,11 @@ function initHorizontalScroll() {
 
         newScrollLeft = Math.max(0, Math.min(newScrollLeft, maxScrollLeft));
 
-        element.scrollTo({ left: newScrollLeft, behavior: "auto" });
-        startTouchX = currentX; // Обновляем стартовую точку
+        element.scrollTo({
+          left: newScrollLeft,
+          behavior: "auto",
+        });
+        startTouchX = currentX; // обновляем стартовую точку
       }
     }
 
@@ -86,7 +92,7 @@ function initHorizontalScroll() {
     element.addEventListener("touchmove", onTouchMove, { passive: false });
     element.addEventListener("touchend", onTouchEnd);
 
-    // Функция для отключения всех обработчиков
+    // Возвращаем функцию для отключения всех обработчиков
     return () => {
       element.removeEventListener("wheel", onWheel);
       document.removeEventListener("keydown", onKeyDown);
@@ -98,6 +104,7 @@ function initHorizontalScroll() {
 
   let disableHorizontalScroll = null;
 
+  // Объект для наблюдения за видимостью элемента
   const wrapperElement = document.querySelector(".all-tours__wrapper");
   if (wrapperElement) {
     const observer = new IntersectionObserver(
@@ -106,62 +113,94 @@ function initHorizontalScroll() {
           if (entry.isIntersecting && entry.intersectionRatio === 1) {
             if (typeof disableScroll === "function") disableScroll();
 
+            // отключить предыдущий горизонтальный скролл
             if (disableHorizontalScroll) {
               disableHorizontalScroll();
               disableHorizontalScroll = null;
             }
 
+            // включить горизонтальный скролл
             disableHorizontalScroll = enableHorizontalScrollOnWheel(
               ".all-tours__container-inner"
             );
           }
         });
       },
-      { threshold: 1.0 }
+      {
+        threshold: 1.0,
+      }
     );
+
     observer.observe(wrapperElement);
   }
 
+  // Объект для отслеживания конца прокрутки
   const scrollContainer = document.querySelector(".all-tours__container-inner");
+
   if (scrollContainer) {
     let reachedEnd = false;
 
     function onScroll() {
       const currentScrollLeft = scrollContainer.scrollLeft;
+
       reachedEnd = true;
 
+      // Проверка возврата к левому краю после достижения конца
       if (reachedEnd && currentScrollLeft === 0) {
-        reachedEnd = false;
+        reachedEnd = false; // сбрасываем флаг
 
+        // отключить горизонтальный скролл
         if (disableHorizontalScroll) {
           disableHorizontalScroll();
           disableHorizontalScroll = null;
         }
 
+        // активировать основной скролл
         if (typeof enableScroll === "function") {
           enableScroll();
         }
       }
     }
+
     scrollContainer.addEventListener("scroll", onScroll);
   }
 }
 
-// В функции проверки условий добавлена проверка ориентации
+// Функция, которая отключает или включает функционал в зависимости от условий
 function checkAndToggleHorizontalScroll() {
-  const tours = document.querySelectorAll(".all-tours-section__item");
-  const toursCount = tours.length;
-  const screenWidth = window.innerWidth;
+  const itemsTours = document.querySelectorAll(".all-tours-section__item");
+  console.log(itemsTours);
+  const mqWidth = window.matchMedia("(max-width: 900px)");
   const mqOrientation = window.matchMedia("(orientation: portrait)");
+  console.log(itemsTours.length);
+  // Проверяем, что карточек больше 6
+  if (itemsTours.length <= 6) {
+    // Если карточек 6 или меньше — отключаем горизонтальный скролл, если он активен
+    if (isHorizontalScrollActive) {
+      if (typeof disableHorizontalScrollFn === "function") {
+        disableHorizontalScrollFn();
+        disableHorizontalScrollFn = null;
+        isHorizontalScrollActive = false;
+      }
+    }
+    return; // Выходим, больше ничего не делаем
+  }
 
-  // Активировать, если туров больше 6, ширина > 900 и ориентация НЕ portrait
-  const shouldActivate =
-    toursCount > 6 && screenWidth > 900 && !mqOrientation.matches;
-
-  if (shouldActivate) {
-    // Включаем горизонтальный скролл, если еще не активен
+  // Если условие выполнено — отключить
+  if (mqWidth.matches || mqOrientation.matches) {
+    // Отключить, если активен
+    if (isHorizontalScrollActive) {
+      if (typeof disableHorizontalScrollFn === "function") {
+        disableHorizontalScrollFn();
+        disableHorizontalScrollFn = null;
+        isHorizontalScrollActive = false;
+      }
+    }
+  } else {
+    // Включить, если ещё не активен
     if (!isHorizontalScrollActive) {
       initHorizontalScroll();
+      // сохраняем функцию отключения
       disableHorizontalScrollFn = () => {
         if (typeof disableHorizontalScroll === "function") {
           disableHorizontalScroll();
@@ -170,22 +209,20 @@ function checkAndToggleHorizontalScroll() {
       };
       isHorizontalScrollActive = true;
     }
-  } else {
-    // Выключаем, если активен
-    if (isHorizontalScrollActive) {
-      if (typeof disableHorizontalScrollFn === "function") {
-        disableHorizontalScrollFn();
-        disableHorizontalScrollFn = null;
-        isHorizontalScrollActive = false;
-      }
-    }
   }
 }
 
-// Изначально
-checkAndToggleHorizontalScroll();
+const targetNode = document.querySelector(".all-tours__container-inner");
+if (targetNode) {
+  const observer = new MutationObserver((mutationsList, observer) => {
+    // при любых изменениях вызываем проверку
+    checkAndToggleHorizontalScroll();
+  });
 
-// Обновляем при изменении размеров экрана или ориентации
+  observer.observe(targetNode, { childList: true, subtree: true });
+}
+
+// Обновляем при изменениях размеров экрана или ориентации
 window.addEventListener("resize", checkAndToggleHorizontalScroll);
 window.addEventListener("orientationchange", checkAndToggleHorizontalScroll);
 
