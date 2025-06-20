@@ -257,29 +257,44 @@ function applyFilters() {
         : [];
       const tourDuration = tour.duration.toLowerCase();
 
+      // Фильтр по сезонам
       const grandSeasonMatch =
         selectedGrandFilters.season.length === 0 ||
         selectedGrandFilters.season.some((s) =>
           tourSeasons.includes(s.toLowerCase())
         );
+
+      // Фильтр по продолжительности
       const grandDurationMatch =
         selectedGrandFilters.duration.length === 0 ||
         selectedGrandFilters.duration.some(
           (d) => d.toLowerCase() === tourDuration
         );
+
+      // Фильтр по типам активностей (активности тура)
       const grandActivityMatch =
         selectedGrandFilters.activity.length === 0 ||
-        selectedGrandFilters.activity.some((a) => tourActivities.includes(a));
+        selectedGrandFilters.activity.some((a) =>
+          tourActivities.includes(a.toLowerCase())
+        );
 
+      // Фильтр по выбранным сезонам
       const seasonMatch =
         selectedSeasons.length === 0 ||
         selectedSeasons.some((s) => tourSeasons.includes(s.toLowerCase()));
+
+      // Фильтр по выбранной продолжительности
       const durationMatch =
         selectedDurations.length === 0 ||
         selectedDurations.some((d) => d.toLowerCase() === tourDuration);
+
+      // Фильтр по выбранным активностям
+      const selectedActivitiesLower = selectedActivities.map((a) =>
+        a.toLowerCase()
+      );
       const activityMatch =
         selectedActivities.length === 0 ||
-        selectedActivities.some((a) => tourActivities.includes(a));
+        selectedActivitiesLower.some((a) => tourActivities.includes(a));
 
       return (
         seasonMatch &&
@@ -291,7 +306,7 @@ function applyFilters() {
       );
     });
     toggleHotToursTwoClass(filtered.length);
-    togglePlugClass(filtered.length); // добавляем вызов
+    togglePlugClass(filtered.length);
     renderTours(filtered);
     updateAllCardImages(filtered);
     hideLoader();
