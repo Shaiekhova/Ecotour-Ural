@@ -177,6 +177,7 @@ function updateAllCardImages(toursArray) {
 
 // Обработчик resize
 window.addEventListener("resize", () => {
+  console.log("Resize event detected");
   updateAllCardImages(hotTours);
 });
 
