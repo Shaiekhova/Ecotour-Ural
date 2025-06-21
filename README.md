@@ -24,7 +24,11 @@
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=flat-square&logo=express&logoColor=white)  
 - Развертывание на облачном VPS  
 - Управление процессами через PM2  
-- Веб-сервер Nginx  
+- Веб-сервер Nginx
+- Админ-панель с Basic-аутентификацией
+- CSRF-защита критических операций
+- Логирование действий администратора
+- Кластерный режим через PM2
 
 ### Клиентская часть
 - **Динамическая отрисовка** через DOM API  
