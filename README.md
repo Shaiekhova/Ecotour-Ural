@@ -1,6 +1,6 @@
 # 🌿 Ecotour-Ural
 
-![Project Banner](https://via.placeholder.com/800x400/2e8b57/ffffff?text=Ecotour-Ural+Preview)
+![alt text](https://github.com/Shaiekhova/Ecotour-Ural/blob/main/images/gif-readmi.gif)
 
 Веб-сайт туристического агентства с горизонтальной прокруткой, выполненный с использованием современных веб-технологий.
 
